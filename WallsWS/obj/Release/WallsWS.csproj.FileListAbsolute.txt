@@ -1,0 +1,168 @@
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ApplicationInsights.config
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\csc.exe
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\vbc.exe
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.dll.config
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.pdb
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Antlr3.Runtime.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.SqlServer.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Kendo.Mvc.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Web.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Newtonsoft.Json.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Net.Http.Formatting.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Helpers.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.WebHost.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Mvc.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Optimization.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Razor.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Razor.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WebGrease.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.SqlServer.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Kendo.Mvc.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Web.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Newtonsoft.Json.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Net.Http.Formatting.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Helpers.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.WebHost.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Mvc.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Optimization.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Razor.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Razor.xml
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Antlr3.Runtime.pdb
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\fr-CA\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\sk-SK\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.csprojResolveAssemblyReference.cache
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.dll
+C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.pdb
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ApplicationInsights.config
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\csc.exe
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\vbc.exe
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\VBCSCompiler.exe
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.dll.config
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WallsWS.pdb
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Antlr3.Runtime.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.SqlServer.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Kendo.Mvc.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Web.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Newtonsoft.Json.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Net.Http.Formatting.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Helpers.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.WebHost.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Mvc.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Optimization.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Razor.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Razor.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\WebGrease.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\EntityFramework.SqlServer.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Kendo.Mvc.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.Web.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Newtonsoft.Json.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Net.Http.Formatting.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Helpers.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Http.WebHost.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Mvc.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Optimization.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.Razor.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\System.Web.WebPages.Razor.xml
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\Antlr3.Runtime.pdb
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\fr-CA\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\sk-SK\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.csprojResolveAssemblyReference.cache
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.dll
+C:\Users\Mike\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Release\WallsWS.pdb

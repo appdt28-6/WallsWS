@@ -1,0 +1,26 @@
+﻿
+@(Html.Kendo().Grid<WallsWS.Models.VENTASTICKET>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.Venta_Id);
+        columns.Bound(c => c.Prod_Id);
+        columns.Bound(c => c.Ticket_Id);
+        columns.Bound(c => c.Venta_Cantidad);
+        columns.Bound(c => c.Prod_Price);
+        columns.Bound(c => c.Venta_Importe);
+        columns.Bound(c => c.venta_discount);
+        columns.Bound(c => c.disc_desc);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .Pageable()
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("TICKETS_Read", "Tickets"))
+      )
+)

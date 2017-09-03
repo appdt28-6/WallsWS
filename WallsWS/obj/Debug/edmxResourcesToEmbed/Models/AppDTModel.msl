@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AppDTModelStoreContainer" CdmEntityContainer="AppDTEntities">
+    <EntitySetMapping Name="HORARIO_DISPONIBLE">
+      <EntityTypeMapping TypeName="AppDTModel.HORARIO_DISPONIBLE">
+        <MappingFragment StoreEntitySet="HORARIO_DISPONIBLE">
+          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
+          <ScalarProperty Name="hrdi_date" ColumnName="hrdi_date" />
+          <ScalarProperty Name="hrdi_status" ColumnName="hrdi_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUCURSAL">
+      <EntityTypeMapping TypeName="AppDTModel.SUCURSAL">
+        <MappingFragment StoreEntitySet="SUCURSAL">
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="sucu_name" ColumnName="sucu_name" />
+          <ScalarProperty Name="sucu_addres" ColumnName="sucu_addres" />
+          <ScalarProperty Name="sucu_lat" ColumnName="sucu_lat" />
+          <ScalarProperty Name="sucu_lon" ColumnName="sucu_lon" />
+          <ScalarProperty Name="sucu_phone" ColumnName="sucu_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_SET_HORARIO" FunctionName="AppDTModel.Store.sp_SET_HORARIO" />
+    <EntitySetMapping Name="BARBEROS">
+      <EntityTypeMapping TypeName="AppDTModel.BARBEROS">
+        <MappingFragment StoreEntitySet="BARBEROS">
+          <ScalarProperty Name="barb_urlimage" ColumnName="barb_urlimage" />
+          <ScalarProperty Name="barb_password" ColumnName="barb_password" />
+          <ScalarProperty Name="barb_user" ColumnName="barb_user" />
+          <ScalarProperty Name="barb_mail" ColumnName="barb_mail" />
+          <ScalarProperty Name="barb_phone" ColumnName="barb_phone" />
+          <ScalarProperty Name="barb_name" ColumnName="barb_name" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="AppDTModel.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_user" ColumnName="user_user" />
+          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HORARIO">
+      <EntityTypeMapping TypeName="AppDTModel.HORARIO">
+        <MappingFragment StoreEntitySet="HORARIO">
+          <ScalarProperty Name="hora_status" ColumnName="hora_status" />
+          <ScalarProperty Name="hora_date" ColumnName="hora_date" />
+          <ScalarProperty Name="hora_desc" ColumnName="hora_desc" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="hora_id" ColumnName="hora_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TICKETS">
+      <EntityTypeMapping TypeName="AppDTModel.TICKETS">
+        <MappingFragment StoreEntitySet="TICKETS">
+          <ScalarProperty Name="Ticket_Turno" ColumnName="Ticket_Turno" />
+          <ScalarProperty Name="Ticket_Pago" ColumnName="Ticket_Pago" />
+          <ScalarProperty Name="Ticket_Status" ColumnName="Ticket_Status" />
+          <ScalarProperty Name="Ticket_Factura" ColumnName="Ticket_Factura" />
+          <ScalarProperty Name="Ticket_Subtotal" ColumnName="Ticket_Subtotal" />
+          <ScalarProperty Name="Ticket_Date" ColumnName="Ticket_Date" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="Sucu_Id" ColumnName="Sucu_Id" />
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Barberos_Pagos" FunctionName="AppDTModel.Store.sp_Barberos_Pagos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AppDTModel.sp_Barberos_Pagos_Result">
+          <ScalarProperty Name="total" ColumnName="total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="BARBERO_PAGO">
+      <EntityTypeMapping TypeName="AppDTModel.BARBERO_PAGO">
+        <MappingFragment StoreEntitySet="BARBERO_PAGO">
+          <ScalarProperty Name="pago_date" ColumnName="pago_date" />
+          <ScalarProperty Name="pago_procent" ColumnName="pago_procent" />
+          <ScalarProperty Name="pago_total" ColumnName="pago_total" />
+          <ScalarProperty Name="barb_Id" ColumnName="barb_Id" />
+          <ScalarProperty Name="sucu_Id" ColumnName="sucu_Id" />
+          <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AGENDA">
+      <EntityTypeMapping TypeName="AppDTModel.AGENDA">
+        <MappingFragment StoreEntitySet="AGENDA">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_Set_Agenda">
+      <EntityTypeMapping TypeName="AppDTModel.vis_Set_Agenda">
+        <MappingFragment StoreEntitySet="vis_Set_Agenda">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
+          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTOS">
+      <EntityTypeMapping TypeName="AppDTModel.PRODUCTOS">
+        <MappingFragment StoreEntitySet="PRODUCTOS">
+          <ScalarProperty Name="prod_stock" ColumnName="prod_stock" />
+          <ScalarProperty Name="prod_price" ColumnName="prod_price" />
+          <ScalarProperty Name="prod_desc" ColumnName="prod_desc" />
+          <ScalarProperty Name="prod_name" ColumnName="prod_name" />
+          <ScalarProperty Name="prod_sku" ColumnName="prod_sku" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIOS">
+      <EntityTypeMapping TypeName="AppDTModel.SERVICIOS">
+        <MappingFragment StoreEntitySet="SERVICIOS">
+          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
+          <ScalarProperty Name="serv_desc" ColumnName="serv_desc" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_sku" ColumnName="serv_sku" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_AGENDA">
+      <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
+        <MappingFragment StoreEntitySet="vis_AGENDA">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
+          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_name" ColumnName="barb_name" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_AGENDA_BARBEROS">
+      <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA_BARBEROS">
+        <MappingFragment StoreEntitySet="vis_AGENDA_BARBEROS">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VENTASTICKET">
+      <EntityTypeMapping TypeName="AppDTModel.VENTASTICKET">
+        <MappingFragment StoreEntitySet="VENTASTICKET">
+          <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+          <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Venta_Cantidad" ColumnName="Venta_Cantidad" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BARBERO_COMISION">
+      <EntityTypeMapping TypeName="AppDTModel.BARBERO_COMISION">
+        <MappingFragment StoreEntitySet="BARBERO_COMISION">
+          <ScalarProperty Name="como_procent" ColumnName="como_procent" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_Id" ColumnName="barb_Id" />
+          <ScalarProperty Name="sucu_Id" ColumnName="sucu_Id" />
+          <ScalarProperty Name="comi_Id" ColumnName="comi_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

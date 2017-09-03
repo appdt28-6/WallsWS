@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="HORARIO_DISPONIBLE">
+    <Key>
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="hrdi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="barb_id" Type="Int32" />
+    <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hrdi_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hrdi_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SUCURSAL">
+    <Key>
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="sucu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sucu_addres" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sucu_lat" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sucu_lon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sucu_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="AppDTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="HORARIO_DISPONIBLE" EntityType="Self.HORARIO_DISPONIBLE" />
+    <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
+    <FunctionImport Name="sp_SET_HORARIO">
+      <Parameter Name="barbid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="BARBEROS" EntityType="AppDTModel.BARBEROS" />
+    <EntitySet Name="USUARIOS" EntityType="AppDTModel.USUARIOS" />
+    <EntitySet Name="VENTASTICKET" EntityType="AppDTModel.VENTASTICKET" />
+    <EntitySet Name="HORARIO" EntityType="AppDTModel.HORARIO" />
+    <EntitySet Name="TICKETS" EntityType="AppDTModel.TICKETS" />
+    <FunctionImport Name="sp_Barberos_Pagos" ReturnType="Collection(AppDTModel.sp_Barberos_Pagos_Result)">
+      <Parameter Name="barber" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="BARBERO_PAGO" EntityType="AppDTModel.BARBERO_PAGO" />
+    <EntitySet Name="AGENDA" EntityType="AppDTModel.AGENDA" />
+    <EntitySet Name="vis_Set_Agenda" EntityType="AppDTModel.vis_Set_Agenda" />
+    <EntitySet Name="PRODUCTOS" EntityType="AppDTModel.PRODUCTOS" />
+    <EntitySet Name="SERVICIOS" EntityType="AppDTModel.SERVICIOS" />
+    <EntitySet Name="vis_AGENDA" EntityType="AppDTModel.vis_AGENDA" />
+    <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="AppDTModel.vis_AGENDA_BARBEROS" />
+  </EntityContainer>
+  <EntityType Name="BARBEROS">
+    <Key>
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="barb_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="barb_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="barb_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="barb_user" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="barb_password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="barb_urlimage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_user" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="user_password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="user_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VENTASTICKET">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+    </Key>
+    <Property Name="Venta_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Venta_Cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Prod_Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Venta_Importe" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="HORARIO">
+    <Key>
+      <PropertyRef Name="hora_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="hora_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="hora_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hora_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hora_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TICKETS">
+    <Key>
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Sucu_Id" />
+      <PropertyRef Name="barb_id" />
+    </Key>
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sucu_Id" Type="Int32" Nullable="false" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="Ticket_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Ticket_Subtotal" Type="Double" Nullable="false" />
+    <Property Name="Ticket_Factura" Type="Int32" Nullable="false" />
+    <Property Name="Ticket_Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ticket_Pago" Type="Int32" />
+    <Property Name="Ticket_Turno" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="sp_Barberos_Pagos_Result">
+    <Property Type="Double" Name="total" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="BARBERO_PAGO">
+    <Key>
+      <PropertyRef Name="pago_Id" />
+      <PropertyRef Name="sucu_Id" />
+      <PropertyRef Name="barb_Id" />
+    </Key>
+    <Property Name="pago_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_Id" Type="Int32" Nullable="false" />
+    <Property Name="barb_Id" Type="Int32" Nullable="false" />
+    <Property Name="pago_total" Type="Double" Nullable="false" />
+    <Property Name="pago_procent" Type="Double" Nullable="false" />
+    <Property Name="pago_date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="AGENDA">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="agen_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_id" Type="Int32" Nullable="false" />
+    <Property Name="hrdi_id" Type="Int32" Nullable="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_Set_Agenda">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="agen_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hrdi_id" Type="Int32" Nullable="false" />
+    <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="prod_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="prod_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_price" Type="Double" />
+    <Property Name="prod_stock" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SERVICIOS">
+    <Key>
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="serv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_price" Type="Double" />
+  </EntityType>
+  <EntityType Name="vis_AGENDA">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="agen_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_price" Type="Double" />
+    <Property Name="agen_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_AGENDA_BARBEROS">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="agen_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agen_status" Type="Int32" />
+  </EntityType>
+</Schema>

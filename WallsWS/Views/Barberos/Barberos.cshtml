@@ -1,0 +1,56 @@
+﻿
+@(Html.Kendo().Grid<WallsWS.Models.BARBEROS>()
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.barb_id).Hidden();
+		  columns.Bound(c => c.barb_name).Title("Nombre");
+		  columns.Bound(c => c.barb_phone).Title("Telefono");
+		  columns.Bound(c => c.barb_mail).Title("Email");
+		  columns.Bound(c => c.barb_user).Title("Usuario");
+		  columns.Bound(c => c.barb_password).Title("Contraseña").Format("***");
+		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+	  })
+	  .ToolBar(toolbar => {
+		  toolbar.Create();
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.InLine))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .ClientDetailTemplateId("template")
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model => model.Id(p => p.barb_id))
+		  .Read(read => read.Action("BARBEROS_Read", "Barberos"))
+		  .Create(create => create.Action("BARBEROS_Create", "Barberos"))
+		  .Update(update => update.Action("BARBEROS_Update", "Barberos"))
+		  .Destroy(destroy => destroy.Action("BARBEROS_Destroy", "Barberos"))
+	  )
+)
+
+<script id="template" type="text/kendo-tmpl">
+	@(Html.Kendo().Grid<WallsWS.Models.BARBERO_COMISION>()
+            .Name("grid_#=barb_id#") // template expression, to be evaluated in the master context
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.comi_Id).Hidden();
+                columns.Bound(o => o.sucu_Id).Hidden();
+                columns.Bound(o => o.barb_Id).Hidden();
+                columns.Bound(o => o.serv_id).Title("Servicio");
+                columns.Bound(o => o.como_procent).Title("Comisión");
+            })
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(10)
+                .Read(read => read.Action("BARBEROS_COMISION_Read", "Barberos", new { barb = "#=barb_id#" }))
+                .Update(update => update.Action("BARBEROS_COMISION_Update", "Barberos", new { barb = "#=barb_id#" }))
+            )
+            .Pageable()
+            .Sortable()
+            .ToClientTemplate()
+	)
+</script>

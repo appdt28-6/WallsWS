@@ -1,0 +1,30 @@
+﻿
+@(Html.Kendo().Grid<WallsWS.Models.SUCURSAL>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.sucu_name);
+        columns.Bound(c => c.sucu_addres);
+        columns.Bound(c => c.sucu_lat);
+        columns.Bound(c => c.sucu_lon);
+        columns.Bound(c => c.sucu_phone);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.InLine))
+      .Pageable()
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.sucu_id))
+          .Read(read => read.Action("SUCURSAL_Read", "Sucursales"))
+          .Create(create => create.Action("SUCURSAL_Create", "Sucursales"))
+          .Update(update => update.Action("SUCURSAL_Update", "Sucursales"))
+          .Destroy(destroy => destroy.Action("SUCURSAL_Destroy", "Sucursales"))
+      )
+)

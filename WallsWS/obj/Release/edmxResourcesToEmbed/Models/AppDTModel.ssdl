@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AGENDA">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="agen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="serv_id" Type="int" Nullable="false" />
+    <Property Name="hrdi_id" Type="int" Nullable="false" />
+    <Property Name="cust_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_phone" Type="varchar" MaxLength="50" />
+    <Property Name="cust_mail" Type="varchar" MaxLength="50" />
+    <Property Name="agen_date" Type="varchar" MaxLength="50" />
+    <Property Name="agen_status" Type="int" />
+  </EntityType>
+  <EntityType Name="BARBERO_PAGO">
+    <Key>
+      <PropertyRef Name="pago_Id" />
+      <PropertyRef Name="sucu_Id" />
+      <PropertyRef Name="barb_Id" />
+    </Key>
+    <Property Name="pago_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_Id" Type="int" Nullable="false" />
+    <Property Name="barb_Id" Type="int" Nullable="false" />
+    <Property Name="pago_total" Type="float" Nullable="false" />
+    <Property Name="pago_procent" Type="float" Nullable="false" />
+    <Property Name="pago_date" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BARBEROS">
+    <Key>
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="barb_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="barb_name" Type="varchar" MaxLength="50" />
+    <Property Name="barb_phone" Type="varchar" MaxLength="50" />
+    <Property Name="barb_mail" Type="varchar" MaxLength="50" />
+    <Property Name="barb_user" Type="varchar" MaxLength="15" />
+    <Property Name="barb_password" Type="varchar" MaxLength="15" />
+    <Property Name="barb_urlimage" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="HORARIO">
+    <Key>
+      <PropertyRef Name="hora_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="hora_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="hora_desc" Type="varchar" MaxLength="50" />
+    <Property Name="hora_date" Type="varchar" MaxLength="50" />
+    <Property Name="hora_status" Type="int" />
+  </EntityType>
+  <EntityType Name="HORARIO_DISPONIBLE">
+    <Key>
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="hrdi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="barb_id" Type="int" />
+    <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
+    <Property Name="hrdi_date" Type="varchar" MaxLength="50" />
+    <Property Name="hrdi_status" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="prod_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="prod_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="prod_sku" Type="varchar" MaxLength="50" />
+    <Property Name="prod_name" Type="varchar" MaxLength="50" />
+    <Property Name="prod_desc" Type="varchar" MaxLength="50" />
+    <Property Name="prod_price" Type="float" />
+    <Property Name="prod_stock" Type="int" />
+  </EntityType>
+  <EntityType Name="SERVICIOS">
+    <Key>
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="serv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="serv_sku" Type="varchar" MaxLength="50" />
+    <Property Name="serv_name" Type="varchar" MaxLength="50" />
+    <Property Name="serv_desc" Type="varchar" MaxLength="50" />
+    <Property Name="serv_price" Type="float" />
+  </EntityType>
+  <EntityType Name="SUCURSAL">
+    <Key>
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="sucu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_name" Type="varchar" MaxLength="50" />
+    <Property Name="sucu_addres" Type="varchar" MaxLength="150" />
+    <Property Name="sucu_lat" Type="varchar" MaxLength="15" />
+    <Property Name="sucu_lon" Type="varchar" MaxLength="15" />
+    <Property Name="sucu_phone" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="TICKETS">
+    <Key>
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Sucu_Id" />
+      <PropertyRef Name="barb_id" />
+    </Key>
+    <Property Name="Ticket_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sucu_Id" Type="int" Nullable="false" />
+    <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="Ticket_Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="Ticket_Subtotal" Type="float" Nullable="false" />
+    <Property Name="Ticket_Factura" Type="int" Nullable="false" />
+    <Property Name="Ticket_Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ticket_Pago" Type="int" />
+    <Property Name="Ticket_Turno" Type="int" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_phone" Type="varchar" MaxLength="50" />
+    <Property Name="user_mail" Type="varchar" MaxLength="50" />
+    <Property Name="user_user" Type="varchar" MaxLength="15" />
+    <Property Name="user_password" Type="varchar" MaxLength="15" />
+    <Property Name="user_role" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VENTASTICKET">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+    </Key>
+    <Property Name="Venta_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ticket_Id" Type="int" Nullable="false" />
+    <Property Name="Prod_Id" Type="int" Nullable="false" />
+    <Property Name="Venta_Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Prod_Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Venta_Importe" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vis_AGENDA">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="agen_id" Type="int" Nullable="false" />
+    <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="barb_name" Type="varchar" MaxLength="50" />
+    <Property Name="serv_id" Type="int" Nullable="false" />
+    <Property Name="serv_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_phone" Type="varchar" MaxLength="50" />
+    <Property Name="cust_mail" Type="varchar" MaxLength="50" />
+    <Property Name="agen_date" Type="varchar" MaxLength="50" />
+    <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
+    <Property Name="serv_price" Type="float" />
+    <Property Name="agen_status" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vis_AGENDA_BARBEROS">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="agen_id" Type="int" Nullable="false" />
+    <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="serv_id" Type="int" Nullable="false" />
+    <Property Name="serv_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_name" Type="varchar" MaxLength="50" />
+    <Property Name="agen_date" Type="varchar" MaxLength="50" />
+    <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
+    <Property Name="agen_status" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vis_Set_Agenda">
+    <Key>
+      <PropertyRef Name="agen_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="hrdi_id" />
+    </Key>
+    <Property Name="agen_id" Type="int" Nullable="false" />
+    <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="serv_id" Type="int" Nullable="false" />
+    <Property Name="serv_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_name" Type="varchar" MaxLength="50" />
+    <Property Name="cust_phone" Type="varchar" MaxLength="50" />
+    <Property Name="cust_mail" Type="varchar" MaxLength="50" />
+    <Property Name="agen_date" Type="varchar" MaxLength="50" />
+    <Property Name="hrdi_id" Type="int" Nullable="false" />
+    <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
+    <Property Name="agen_status" Type="int" />
+  </EntityType>
+  <Function Name="sp_Barberos_Pagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="barber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="barbid" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="AppDTModelStoreContainer">
+    <EntitySet Name="AGENDA" EntityType="Self.AGENDA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BARBERO_PAGO" EntityType="Self.BARBERO_PAGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BARBEROS" EntityType="Self.BARBEROS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HORARIO" EntityType="Self.HORARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HORARIO_DISPONIBLE" EntityType="Self.HORARIO_DISPONIBLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TICKETS" EntityType="Self.TICKETS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VENTASTICKET" EntityType="Self.VENTASTICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vis_AGENDA" EntityType="Self.vis_AGENDA" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vis_AGENDA].[agen_id] AS [agen_id], 
+    [vis_AGENDA].[barb_id] AS [barb_id], 
+    [vis_AGENDA].[barb_name] AS [barb_name], 
+    [vis_AGENDA].[serv_id] AS [serv_id], 
+    [vis_AGENDA].[serv_name] AS [serv_name], 
+    [vis_AGENDA].[cust_name] AS [cust_name], 
+    [vis_AGENDA].[cust_phone] AS [cust_phone], 
+    [vis_AGENDA].[cust_mail] AS [cust_mail], 
+    [vis_AGENDA].[agen_date] AS [agen_date], 
+    [vis_AGENDA].[hrdi_hora] AS [hrdi_hora], 
+    [vis_AGENDA].[serv_price] AS [serv_price], 
+    [vis_AGENDA].[agen_status] AS [agen_status]
+    FROM [dbo].[vis_AGENDA] AS [vis_AGENDA]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="Self.vis_AGENDA_BARBEROS" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vis_AGENDA_BARBEROS].[agen_id] AS [agen_id], 
+    [vis_AGENDA_BARBEROS].[barb_id] AS [barb_id], 
+    [vis_AGENDA_BARBEROS].[serv_id] AS [serv_id], 
+    [vis_AGENDA_BARBEROS].[serv_name] AS [serv_name], 
+    [vis_AGENDA_BARBEROS].[cust_name] AS [cust_name], 
+    [vis_AGENDA_BARBEROS].[agen_date] AS [agen_date], 
+    [vis_AGENDA_BARBEROS].[hrdi_hora] AS [hrdi_hora], 
+    [vis_AGENDA_BARBEROS].[agen_status] AS [agen_status]
+    FROM [dbo].[vis_AGENDA_BARBEROS] AS [vis_AGENDA_BARBEROS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vis_Set_Agenda" EntityType="Self.vis_Set_Agenda" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vis_Set_Agenda].[agen_id] AS [agen_id], 
+    [vis_Set_Agenda].[barb_id] AS [barb_id], 
+    [vis_Set_Agenda].[serv_id] AS [serv_id], 
+    [vis_Set_Agenda].[serv_name] AS [serv_name], 
+    [vis_Set_Agenda].[cust_name] AS [cust_name], 
+    [vis_Set_Agenda].[cust_phone] AS [cust_phone], 
+    [vis_Set_Agenda].[cust_mail] AS [cust_mail], 
+    [vis_Set_Agenda].[agen_date] AS [agen_date], 
+    [vis_Set_Agenda].[hrdi_id] AS [hrdi_id], 
+    [vis_Set_Agenda].[hrdi_hora] AS [hrdi_hora], 
+    [vis_Set_Agenda].[agen_status] AS [agen_status]
+    FROM [dbo].[vis_Set_Agenda] AS [vis_Set_Agenda]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

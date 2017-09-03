@@ -1,0 +1,71 @@
+﻿@model WallsWS.Models.UserModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+    <title>Login :: BarberShop</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Login al Panel de Control">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/login/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" type="text/css" media="all">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
+</head>
+
+<body>
+
+    <div class="containerw3layouts-agileits">
+
+        <div class="w3imageaits">
+            <img src="~/Content/images/logowallsbco.png" alt="">
+        </div>
+
+@using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+        <div class="aitsloginwthree w3layouts agileits">
+            <h2>Log In Panel</h2>
+            <form action="#" method="post">
+                @Html.TextBoxFor(a => a.UserName, new { placeholder = "Usuario" })
+                @Html.ValidationMessageFor(a => a.UserName)
+                @Html.PasswordFor(a => a.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(a => a.Password)
+                <ul class="tick w3layouts agileinfo">
+                    <li>
+                        <input type="checkbox" id="brand1" value="">
+                        <label for="brand1"><span></span>Recordar</label>
+                    </li>
+                    <li>
+                        <a href="#">Olvido Contraseña?</a>
+                    </li>
+                </ul>
+                <div class="send-button wthree agileits">
+                    <input type="submit" value="Login">
+                    <p style="font:medium">@ViewData["Error"]</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="clear"></div>
+}
+    </div>
+
+    <div class="w3lsfooteragileits">
+        <p> &copy; 2017 Walls-BarberShop. All Rights Reserved | Design by <a href="http://appdt.info" target="=_blank">AppDT</a></p>
+    </div>
+
+
+
+</body>
+</html>

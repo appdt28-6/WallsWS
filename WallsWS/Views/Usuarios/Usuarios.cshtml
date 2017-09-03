@@ -1,0 +1,31 @@
+﻿
+@(Html.Kendo().Grid<WallsWS.Models.USUARIOS>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.comp_id).Hidden();
+        columns.Bound(c => c.user_name).Title("Nombre");
+        columns.Bound(c => c.user_phone).Title("Telefono");
+        columns.Bound(c => c.user_mail).Title("Email");
+        columns.Bound(c => c.user_user).Title("Usuario");
+        columns.Bound(c => c.user_password).Title("Contraseña").Format("***");
+        columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create().Text("Nuevo");
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.InLine))
+      .Pageable()
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.user_id))
+          .Read(read => read.Action("USUARIOS_Read", "Usuarios"))
+          .Create(create => create.Action("USUARIOS_Create", "Usuarios"))
+          .Update(update => update.Action("USUARIOS_Update", "Usuarios"))
+          .Destroy(destroy => destroy.Action("USUARIOS_Destroy", "Usuarios"))
+      )
+)

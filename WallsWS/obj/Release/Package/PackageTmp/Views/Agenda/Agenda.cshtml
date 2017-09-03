@@ -1,0 +1,121 @@
+﻿
+
+<table>
+	<tr>
+		<td><a id="myLink" href="#" onclick="MyFunction(1);return false;"><img src="~/Content/images/b1.png" /></a></td>
+		<td><a id="myLink" href="#" onclick="MyFunction(2);return false;"><img src="~/Content/images/b2.png" /></a></td>
+		<td><a id="myLink" href="#" onclick="MyFunction(3);return false;"><img src="~/Content/images/b3.png" /></a></td>
+		<td><a id="myLink" href="#" onclick="MyFunction(4);return false;"><img src="~/Content/images/b4.png" /></a></td>
+	</tr>
+</table>
+
+<br />
+
+@(Html.Kendo().Grid<WallsWS.Models.vis_AGENDA>()
+	  .Name("grid")
+	  .AutoBind(false)
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.barb_name).Title("Barbero");
+		  columns.Bound(c => c.serv_name).Title("Servicio");
+		  columns.Bound(c => c.cust_name).Title("Cliente");
+		  columns.Bound(c => c.cust_phone).Hidden();
+		  columns.Bound(c => c.cust_mail).Hidden();
+		  columns.Bound(c => c.agen_date).Title("Fecha");
+		  columns.Bound(c => c.serv_price).Title("Costo").Format("{0:N}");
+		  columns.Bound(c => c.hrdi_hora).Hidden();
+		  columns.Bound(c => c.agen_status).Hidden();
+		  columns.Command(command => { command.Edit(); });
+		  //columns.Bound(p => p.agen_id)
+		  //		.ClientTemplate("<input type='button' class='k-button' onclick=\"GetId('#=agen_id#','#=serv_id#','#=barb_id#')\" value='Cobrar' />")
+		  //.Title("");
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("_Cobro"))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		   //.Server()
+		.Model(model => model.Id(p => p.agen_id))
+		 .Read(read => read.Action("AGENDA_Barbero_Read", "Agenda").Data("additionalData"))
+		 .Update(update => update.Action("AGENDA_Barbero_Update", "Agenda").Data("additionalData"))
+	  )
+)
+<br />
+Servicios Cobrados<br />
+<br />
+@(Html.Kendo().Grid<WallsWS.Models.vis_AGENDA>()
+      .Name("gridend")
+      .Columns(columns =>
+      {
+      columns.Bound(c => c.barb_name).Title("Barbero");
+      columns.Bound(c => c.serv_name).Title("Servicio");
+      columns.Bound(c => c.cust_name).Title("Cliente");
+      columns.Bound(c => c.cust_phone).Hidden();
+      columns.Bound(c => c.cust_mail).Hidden();
+      columns.Bound(c => c.agen_date).Title("Fecha");
+      columns.Bound(c => c.serv_price).Title("Pagado").Format("{0:C}");
+    columns.Bound(c => c.hrdi_hora).Hidden();
+    columns.Bound(c => c.agen_status).Hidden();
+})
+      .ToolBar(toolbar =>
+      {
+    toolbar.Excel();
+    toolbar.Pdf();
+})
+      .Pageable()
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("AGENDA_Sin_Read", "Agenda"))
+      )
+)
+   
+<script>
+
+	var ddlItem;
+	function additionalData(e) {
+		return { barb: ddlItem }
+	}
+
+	function MyFunction(barbid) {
+	   
+	    ddlItem = barbid;
+	    alert(ddlItem)
+		var grid = $("#grid").data("kendoGrid");
+		grid.dataSource.read();
+	}
+
+
+    function GetId(agen, serv,barb) {
+        $.ajax({
+            type: "POST",
+            data: { agen_id: agen, serv_id: serv, barb_id: barb },
+            url: '@Url.Action("GetCobro", "Agenda")',
+            dataType: 'json',
+            success: function (response) {
+                if (response != null && response.success) {
+                    $("#grid").data("kendoGrid").dataSource.read();
+                    $("#gridend").data("kendoGrid").dataSource.read();
+                    alert(response.responseText);
+
+                } else {
+                    // DoSomethingElse()
+                    alert(response.responseText);
+                }
+            },
+            error: function (response) {
+                alert("error!");  //
+            }
+
+        });
+    }
+
+</script>

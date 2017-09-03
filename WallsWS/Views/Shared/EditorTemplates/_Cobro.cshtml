@@ -1,0 +1,45 @@
+﻿@model WallsWS.Models.vis_AGENDA
+
+<h1>Cobro de serivcios</h1>
+
+@(Html.Kendo().DropDownList()
+                .Name("product")
+                .OptionLabel("Seleccione...")
+                .DataTextField("serv_name")
+                .DataValueField("serv_id")
+                .HtmlAttributes(new { style = "width:300px" })
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("GetProductos", "Agenda");
+                    });
+                })
+)
+<input type="button" id="Add" value="Agregar" />
+<br />
+
+
+@(Html.Kendo().Grid<WallsWS.Models.vis_AGENDA>()
+	  .Name("gridend")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.barb_name).Title("Barbero");
+		  columns.Bound(c => c.serv_name).Title("Servicio");
+		  columns.Bound(c => c.cust_name).Title("Cliente");
+		  columns.Bound(c => c.cust_phone).Hidden();
+		  columns.Bound(c => c.cust_mail).Hidden();
+		  columns.Bound(c => c.agen_date).Title("Fecha");
+		  columns.Bound(c => c.serv_price).Title("Pagado").Format("{0:C}");
+		  columns.Bound(c => c.hrdi_hora).Hidden();
+		  columns.Bound(c => c.agen_status).Hidden();
+	  })
+	  .Pageable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Read(read => read.Action("AGENDA_Sin_Read", "Agenda"))
+	  )
+)
+
+

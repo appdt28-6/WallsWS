@@ -1,0 +1,26 @@
+﻿
+@(Html.Kendo().Grid<WallsWS.Models.HORARIO>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.sucu_id).Hidden();
+          columns.Bound(c => c.hora_desc).Title("Horario");
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+          toolbar.Create();
+          toolbar.Excel();
+          toolbar.Pdf();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.InLine))
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.hora_id))
+          .Read(read => read.Action("HORARIO_Read", "Horarios"))
+          .Create(create => create.Action("HORARIO_Create", "Horarios"))
+          .Update(update => update.Action("HORARIO_Update", "Horarios"))
+          .Destroy(destroy => destroy.Action("HORARIO_Destroy", "Horarios"))
+      )
+)
