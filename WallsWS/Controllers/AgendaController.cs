@@ -211,7 +211,8 @@ namespace WallsWS.Controllers
                 }
                 catch(Exception e) { }
                 //  Send "Success"
-                return Json(new { success = true, responseText = "Venta registrada!" }, JsonRequestBehavior.AllowGet);
+                // return Json(new { success = true, responseText = "Venta registrada!" }, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Tickets", "Ticket",new {agenid=agen_id,serid=serv_id, barid=barb_id });
             }
         }
 

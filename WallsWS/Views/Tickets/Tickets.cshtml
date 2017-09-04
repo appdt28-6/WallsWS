@@ -3,24 +3,34 @@
       .Name("grid")
       .Columns(columns =>
       {
-        columns.Bound(c => c.Venta_Id);
-        columns.Bound(c => c.Prod_Id);
-        columns.Bound(c => c.Ticket_Id);
-        columns.Bound(c => c.Venta_Cantidad);
-        columns.Bound(c => c.Prod_Price);
-        columns.Bound(c => c.Venta_Importe);
-        columns.Bound(c => c.venta_discount);
-        columns.Bound(c => c.disc_desc);
+          columns.Bound(c => c.Venta_Id).Hidden();
+          columns.Bound(c => c.Prod_Id).Title("Producto").EditorTemplateName("_Producto");
+          columns.Bound(c => c.Ticket_Id).Hidden();
+          columns.Bound(c => c.Venta_Cantidad).Title("Cantidad");
+          columns.Bound(c => c.Prod_Price).Title("Precio");
+          columns.Bound(c => c.Venta_Importe).Title("Subtotal");
+          columns.Bound(c => c.venta_discount).Title("Descuento");
+          columns.Bound(c => c.disc_desc).Title("Descripción");
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
       })
       .ToolBar(toolbar => {
-            toolbar.Excel();
-            toolbar.Pdf();
+          toolbar.Create();
+          toolbar.Excel();
+          toolbar.Pdf();
       })
       .Pageable()
       .Filterable()
       .Scrollable()
       .DataSource(dataSource => dataSource
           .Ajax()
+          .Model(model => {
+              model.Id(p => p.Venta_Id);
+              model.Field(p => p.Prod_Price).Editable(false);
+              model.Field(p => p.Venta_Importe).Editable(false);
+          })
           .Read(read => read.Action("TICKETS_Read", "Tickets"))
+          .Create(create => create.Action("TICKETS_Create", "Tickets"))
+          .Update(update => update.Action("TICKETS_Update", "Tickets"))
+          .Destroy(destroy => destroy.Action("TICKETS_Destroy", "Tickets"))
       )
 )
