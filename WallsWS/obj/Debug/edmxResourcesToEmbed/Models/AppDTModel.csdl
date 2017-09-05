@@ -43,6 +43,7 @@
     <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="AppDTModel.vis_AGENDA_BARBEROS" />
     <EntitySet Name="VENTASTICKET" EntityType="AppDTModel.VENTASTICKET" />
     <EntitySet Name="BARBERO_COMISION" EntityType="AppDTModel.BARBERO_COMISION" />
+    <EntitySet Name="vis_VENTASTICKET_PRODUCTOS" EntityType="AppDTModel.vis_VENTASTICKET_PRODUCTOS" />
   </EntityContainer>
   <EntityType Name="BARBEROS">
     <Key>
@@ -237,5 +238,24 @@
     <Property Name="barb_Id" Type="Int32" Nullable="false" />
     <Property Name="serv_id" Type="Double" Nullable="false" />
     <Property Name="como_procent" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vis_VENTASTICKET_PRODUCTOS">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Prod_Id" />
+      <PropertyRef Name="Venta_Cantidad" />
+      <PropertyRef Name="Prod_Price" />
+      <PropertyRef Name="Venta_Importe" />
+    </Key>
+    <Property Name="Venta_Id" Type="Int32" Nullable="false" />
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Venta_Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Price" Type="Double" Nullable="false" />
+    <Property Name="Venta_Importe" Type="Double" Nullable="false" />
+    <Property Name="venta_discount" Type="Double" />
+    <Property Name="disc_desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

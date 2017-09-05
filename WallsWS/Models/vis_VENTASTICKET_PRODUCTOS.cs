@@ -15,32 +15,26 @@ namespace WallsWS.Models
 using System;
     using System.Collections.Generic;
     
-public partial class vis_AGENDA
+public partial class vis_VENTASTICKET_PRODUCTOS
 {
 
-    public int agen_id { get; set; }
+    public int Venta_Id { get; set; }
 
-    public int barb_id { get; set; }
+    public int Ticket_Id { get; set; }
 
-    public string barb_name { get; set; }
-
-    public int serv_id { get; set; }
+    public int Prod_Id { get; set; }
 
     public string serv_name { get; set; }
 
-    public string cust_name { get; set; }
+    public int Venta_Cantidad { get; set; }
 
-    public string cust_phone { get; set; }
+    public double Prod_Price { get; set; }
 
-    public string cust_mail { get; set; }
+    public double Venta_Importe { get; set; }
 
-    public string agen_date { get; set; }
+    public Nullable<double> venta_discount { get; set; }
 
-    public string hrdi_hora { get; set; }
-
-    public Nullable<double> serv_price { get; set; }
-
-    public Nullable<int> agen_status { get; set; }
+    public string disc_desc { get; set; }
 
 }
 

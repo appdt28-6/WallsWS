@@ -212,5 +212,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="vis_VENTASTICKET_PRODUCTOS">
+      <EntityTypeMapping TypeName="AppDTModel.vis_VENTASTICKET_PRODUCTOS">
+        <MappingFragment StoreEntitySet="vis_VENTASTICKET_PRODUCTOS">
+          <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+          <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Venta_Cantidad" ColumnName="Venta_Cantidad" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

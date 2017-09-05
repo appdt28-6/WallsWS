@@ -24,12 +24,14 @@ namespace WallsWS.Controllers
         public ActionResult TICKETS_Read([DataSourceRequest]DataSourceRequest request)
         {
             var ticket = db.TICKETS.Where(q => q.Sucu_Id == 1).Max(q => q.Ticket_Id);
-            IQueryable<VENTASTICKET> tickets = db.VENTASTICKET.Where(q=>q.Ticket_Id== ticket);
+            Session["ticket"] = ticket;
+            IQueryable<vis_VENTASTICKET_PRODUCTOS> tickets = db.vis_VENTASTICKET_PRODUCTOS.Where(q=>q.Ticket_Id== ticket);
             DataSourceResult result = tickets.ToDataSourceResult(request, tICKETS => new
             {
                 Venta_Id = tICKETS.Venta_Id,
                 Ticket_Id = tICKETS.Ticket_Id,
                 Prod_Id = tICKETS.Prod_Id,
+                serv_name = tICKETS.serv_name,
                 Venta_Cantidad = tICKETS.Venta_Cantidad,
                 Prod_Price = tICKETS.Prod_Price,
                 Venta_Importe = tICKETS.Venta_Importe,
@@ -39,19 +41,34 @@ namespace WallsWS.Controllers
 
             return Json(result);
         }
-        public ActionResult TICKETS_Create([DataSourceRequest]DataSourceRequest request, VENTASTICKET vENTASTICKET)
+        public ActionResult TICKETS_Create([DataSourceRequest]DataSourceRequest request, vis_VENTASTICKET_PRODUCTOS vENTASTICKET)
         {
+            var ticket =Convert.ToInt32(Session["ticket"].ToString());
+            var price = db.SERVICIOS.Where(a => a.serv_id == vENTASTICKET.Prod_Id).ToList() ;
+            double pri = Convert.ToDouble(price[0].serv_price);
 
             var CrearVenta = new VENTASTICKET //Make sure you have a table called test in DB
             {
-                Ticket_Id = vENTASTICKET.Ticket_Id,
+                Ticket_Id = ticket,
                 Prod_Id = vENTASTICKET.Prod_Id,
                 Venta_Cantidad = vENTASTICKET.Venta_Cantidad,
-                Prod_Price = 1,
-                Venta_Importe = 1 * (vENTASTICKET.Prod_Price)
+                Prod_Price = pri,
+                Venta_Importe = (vENTASTICKET.Venta_Cantidad) * (pri),
+                venta_discount = vENTASTICKET.venta_discount,
+                disc_desc = (vENTASTICKET.disc_desc==null)?"": vENTASTICKET.disc_desc,
             };
 
             db.VENTASTICKET.Add(CrearVenta);
+
+            var total = db.VENTASTICKET.Where(q=>q.Ticket_Id==ticket).Sum(q => q.Venta_Importe);
+
+            var stud = (from s in db.TICKETS
+                        where s.Ticket_Id == ticket
+                        select s).FirstOrDefault();
+
+            stud.Ticket_Subtotal = total;
+
+
             db.SaveChanges();
 
             return Json(new[] { vENTASTICKET }.ToDataSourceResult(request, ModelState));
@@ -104,5 +121,30 @@ namespace WallsWS.Controllers
             return PartialView("_Total");
 
         }
+
+        public ActionResult TICKETS_Close(int Tp)
+        {
+            try { 
+            var ticket = Convert.ToInt32(Session["ticket"].ToString());
+            var stud = (from s in db.TICKETS
+                        where s.Ticket_Id == ticket
+                        select s).FirstOrDefault();
+
+            stud.Ticket_Pago = Tp;
+            stud.Ticket_Status = "cerrado";
+            db.SaveChanges();
+                return Json(new { success = true, responseText = "Venta terminada con exito" }, JsonRequestBehavior.AllowGet);
+               // return RedirectToAction("Agenda","Agenda");
+
+
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, responseText = "Error" }, JsonRequestBehavior.AllowGet);
+            }
+
+            //return RedirectToAction("Agenda", "Agenda");
+        }
+
     }
 }

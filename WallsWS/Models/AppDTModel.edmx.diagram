@@ -20,6 +20,7 @@
         <EntityTypeShape EntityType="AppDTModel.vis_AGENDA_BARBEROS" Width="1.5" PointX="3.375" PointY="6.75" />
         <EntityTypeShape EntityType="AppDTModel.VENTASTICKET" Width="1.5" PointX="11.375" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.BARBERO_COMISION" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="AppDTModel.vis_VENTASTICKET_PRODUCTOS" Width="1.5" PointX="7.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -159,8 +159,8 @@
     <Property Name="venta_discount" Type="float" />
     <Property Name="disc_desc" Type="varchar" MaxLength="150" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="vis_AGENDA">
     <Key>
       <PropertyRef Name="agen_id" />
@@ -180,8 +180,8 @@ warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA' does not have a pr
     <Property Name="serv_price" Type="float" />
     <Property Name="agen_status" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="vis_AGENDA_BARBEROS">
     <Key>
       <PropertyRef Name="agen_id" />
@@ -197,8 +197,8 @@ warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' does not 
     <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
     <Property Name="agen_status" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="vis_Set_Agenda">
     <Key>
       <PropertyRef Name="agen_id" />
@@ -217,6 +217,27 @@ warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' does not have 
     <Property Name="hrdi_id" Type="int" Nullable="false" />
     <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
     <Property Name="agen_status" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCTOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vis_VENTASTICKET_PRODUCTOS">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Prod_Id" />
+      <PropertyRef Name="Venta_Cantidad" />
+      <PropertyRef Name="Prod_Price" />
+      <PropertyRef Name="Venta_Importe" />
+    </Key>
+    <Property Name="Venta_Id" Type="int" Nullable="false" />
+    <Property Name="Ticket_Id" Type="int" Nullable="false" />
+    <Property Name="Prod_Id" Type="int" Nullable="false" />
+    <Property Name="serv_name" Type="varchar" MaxLength="50" />
+    <Property Name="Venta_Cantidad" Type="int" Nullable="false" />
+    <Property Name="Prod_Price" Type="float" Nullable="false" />
+    <Property Name="Venta_Importe" Type="float" Nullable="false" />
+    <Property Name="venta_discount" Type="float" />
+    <Property Name="disc_desc" Type="varchar" MaxLength="150" />
   </EntityType>
   <Function Name="sp_Barberos_Pagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barber" Type="int" Mode="In" />
@@ -279,6 +300,19 @@ warning 6002: The table/view 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' does not have 
     [vis_Set_Agenda].[hrdi_hora] AS [hrdi_hora], 
     [vis_Set_Agenda].[agen_status] AS [agen_status]
     FROM [dbo].[vis_Set_Agenda] AS [vis_Set_Agenda]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vis_VENTASTICKET_PRODUCTOS" EntityType="Self.vis_VENTASTICKET_PRODUCTOS" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vis_VENTASTICKET_PRODUCTOS].[Venta_Id] AS [Venta_Id], 
+    [vis_VENTASTICKET_PRODUCTOS].[Ticket_Id] AS [Ticket_Id], 
+    [vis_VENTASTICKET_PRODUCTOS].[Prod_Id] AS [Prod_Id], 
+    [vis_VENTASTICKET_PRODUCTOS].[serv_name] AS [serv_name], 
+    [vis_VENTASTICKET_PRODUCTOS].[Venta_Cantidad] AS [Venta_Cantidad], 
+    [vis_VENTASTICKET_PRODUCTOS].[Prod_Price] AS [Prod_Price], 
+    [vis_VENTASTICKET_PRODUCTOS].[Venta_Importe] AS [Venta_Importe], 
+    [vis_VENTASTICKET_PRODUCTOS].[venta_discount] AS [venta_discount], 
+    [vis_VENTASTICKET_PRODUCTOS].[disc_desc] AS [disc_desc]
+    FROM [dbo].[vis_VENTASTICKET_PRODUCTOS] AS [vis_VENTASTICKET_PRODUCTOS]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

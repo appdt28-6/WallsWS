@@ -286,6 +286,9 @@
     <Compile Include="Models\vis_Set_Agenda.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vis_VENTASTICKET_PRODUCTOS.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -464,6 +467,7 @@
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Views\Shared\_Total.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Cobro.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
