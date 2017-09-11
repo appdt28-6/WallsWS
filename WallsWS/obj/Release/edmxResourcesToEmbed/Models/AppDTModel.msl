@@ -53,18 +53,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VENTASTICKET">
-      <EntityTypeMapping TypeName="AppDTModel.VENTASTICKET">
-        <MappingFragment StoreEntitySet="VENTASTICKET">
-          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
-          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
-          <ScalarProperty Name="Venta_Cantidad" ColumnName="Venta_Cantidad" />
-          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
-          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="HORARIO">
       <EntityTypeMapping TypeName="AppDTModel.HORARIO">
         <MappingFragment StoreEntitySet="HORARIO">
@@ -155,18 +143,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SERVICIOS">
-      <EntityTypeMapping TypeName="AppDTModel.SERVICIOS">
-        <MappingFragment StoreEntitySet="SERVICIOS">
-          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
-          <ScalarProperty Name="serv_desc" ColumnName="serv_desc" />
-          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
-          <ScalarProperty Name="serv_sku" ColumnName="serv_sku" />
-          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
-          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="vis_AGENDA">
       <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
         <MappingFragment StoreEntitySet="vis_AGENDA">
@@ -199,5 +175,66 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BARBERO_COMISION">
+      <EntityTypeMapping TypeName="AppDTModel.BARBERO_COMISION">
+        <MappingFragment StoreEntitySet="BARBERO_COMISION">
+          <ScalarProperty Name="como_procent" ColumnName="como_procent" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_Id" ColumnName="barb_Id" />
+          <ScalarProperty Name="sucu_Id" ColumnName="sucu_Id" />
+          <ScalarProperty Name="comi_Id" ColumnName="comi_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_VENTASTICKET_PRODUCTOS">
+      <EntityTypeMapping TypeName="AppDTModel.vis_VENTASTICKET_PRODUCTOS">
+        <MappingFragment StoreEntitySet="vis_VENTASTICKET_PRODUCTOS">
+          <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+          <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Venta_Cantidad" ColumnName="Venta_Cantidad" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIOS">
+      <EntityTypeMapping TypeName="AppDTModel.SERVICIOS">
+        <MappingFragment StoreEntitySet="SERVICIOS">
+          <ScalarProperty Name="serv_comi" ColumnName="serv_comi" />
+          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
+          <ScalarProperty Name="serv_desc" ColumnName="serv_desc" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_sku" ColumnName="serv_sku" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VENTASTICKET">
+      <EntityTypeMapping TypeName="AppDTModel.VENTASTICKET">
+        <MappingFragment StoreEntitySet="VENTASTICKET">
+          <ScalarProperty Name="serv_comi" ColumnName="serv_comi" />
+          <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+          <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Venta_Cantidad" ColumnName="Venta_Cantidad" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <ScalarProperty Name="Venta_Id" ColumnName="Venta_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_Commission" FunctionName="AppDTModel.Store.sp_Get_Commission">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AppDTModel.sp_Get_Commission_Result">
+          <ScalarProperty Name="comision" ColumnName="comision" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

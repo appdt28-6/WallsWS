@@ -13,28 +13,11 @@ namespace WallsWS.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class VENTASTICKET
+public partial class sp_Get_Commission_Result
 {
 
-    public int Venta_Id { get; set; }
-
-    public int Ticket_Id { get; set; }
-
-    public int Prod_Id { get; set; }
-
-    public int Venta_Cantidad { get; set; }
-
-    public double Prod_Price { get; set; }
-
-    public double Venta_Importe { get; set; }
-
-    public Nullable<double> venta_discount { get; set; }
-
-    public string disc_desc { get; set; }
-
-    public Nullable<double> serv_comi { get; set; }
+    public Nullable<double> comision { get; set; }
 
 }
 

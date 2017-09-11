@@ -1,0 +1,14 @@
+﻿@(Html.Kendo().DropDownList()
+                .Name("Prod_Id")
+                .OptionLabel("Seleccione...")
+                .DataTextField("serv_name")
+                .DataValueField("serv_id")
+                .HtmlAttributes(new { style = "width:300px" })
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("GetProductos", "Agenda");
+                    });
+                })
+)

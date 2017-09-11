@@ -29,7 +29,6 @@
     </FunctionImport>
     <EntitySet Name="BARBEROS" EntityType="AppDTModel.BARBEROS" />
     <EntitySet Name="USUARIOS" EntityType="AppDTModel.USUARIOS" />
-    <EntitySet Name="VENTASTICKET" EntityType="AppDTModel.VENTASTICKET" />
     <EntitySet Name="HORARIO" EntityType="AppDTModel.HORARIO" />
     <EntitySet Name="TICKETS" EntityType="AppDTModel.TICKETS" />
     <FunctionImport Name="sp_Barberos_Pagos" ReturnType="Collection(AppDTModel.sp_Barberos_Pagos_Result)">
@@ -39,9 +38,15 @@
     <EntitySet Name="AGENDA" EntityType="AppDTModel.AGENDA" />
     <EntitySet Name="vis_Set_Agenda" EntityType="AppDTModel.vis_Set_Agenda" />
     <EntitySet Name="PRODUCTOS" EntityType="AppDTModel.PRODUCTOS" />
-    <EntitySet Name="SERVICIOS" EntityType="AppDTModel.SERVICIOS" />
     <EntitySet Name="vis_AGENDA" EntityType="AppDTModel.vis_AGENDA" />
     <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="AppDTModel.vis_AGENDA_BARBEROS" />
+    <EntitySet Name="BARBERO_COMISION" EntityType="AppDTModel.BARBERO_COMISION" />
+    <EntitySet Name="vis_VENTASTICKET_PRODUCTOS" EntityType="AppDTModel.vis_VENTASTICKET_PRODUCTOS" />
+    <EntitySet Name="SERVICIOS" EntityType="AppDTModel.SERVICIOS" />
+    <EntitySet Name="VENTASTICKET" EntityType="AppDTModel.VENTASTICKET" />
+    <FunctionImport Name="sp_Get_Commission" ReturnType="Collection(AppDTModel.sp_Get_Commission_Result)">
+      <Parameter Name="barber" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="BARBEROS">
     <Key>
@@ -70,17 +75,6 @@
     <Property Name="user_user" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="user_password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="user_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="VENTASTICKET">
-    <Key>
-      <PropertyRef Name="Venta_Id" />
-    </Key>
-    <Property Name="Venta_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
-    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
-    <Property Name="Venta_Cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="Prod_Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="Venta_Importe" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="HORARIO">
     <Key>
@@ -174,18 +168,6 @@
     <Property Name="prod_price" Type="Double" />
     <Property Name="prod_stock" Type="Int32" />
   </EntityType>
-  <EntityType Name="SERVICIOS">
-    <Key>
-      <PropertyRef Name="serv_id" />
-      <PropertyRef Name="sucu_id" />
-    </Key>
-    <Property Name="serv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="sucu_id" Type="Int32" Nullable="false" />
-    <Property Name="serv_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="serv_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="serv_price" Type="Double" />
-  </EntityType>
   <EntityType Name="vis_AGENDA">
     <Key>
       <PropertyRef Name="agen_id" />
@@ -220,4 +202,68 @@
     <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="agen_status" Type="Int32" />
   </EntityType>
+  <EntityType Name="BARBERO_COMISION">
+    <Key>
+      <PropertyRef Name="comi_Id" />
+      <PropertyRef Name="sucu_Id" />
+      <PropertyRef Name="barb_Id" />
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="comi_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_Id" Type="Int32" Nullable="false" />
+    <Property Name="barb_Id" Type="Int32" Nullable="false" />
+    <Property Name="serv_id" Type="Double" Nullable="false" />
+    <Property Name="como_procent" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vis_VENTASTICKET_PRODUCTOS">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Prod_Id" />
+      <PropertyRef Name="Venta_Cantidad" />
+      <PropertyRef Name="Prod_Price" />
+      <PropertyRef Name="Venta_Importe" />
+    </Key>
+    <Property Name="Venta_Id" Type="Int32" Nullable="false" />
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Venta_Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Price" Type="Double" Nullable="false" />
+    <Property Name="Venta_Importe" Type="Double" Nullable="false" />
+    <Property Name="venta_discount" Type="Double" />
+    <Property Name="disc_desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SERVICIOS">
+    <Key>
+      <PropertyRef Name="serv_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="serv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serv_price" Type="Double" />
+    <Property Name="serv_comi" Type="Double" />
+  </EntityType>
+  <EntityType Name="VENTASTICKET">
+    <Key>
+      <PropertyRef Name="Venta_Id" />
+      <PropertyRef Name="Ticket_Id" />
+      <PropertyRef Name="Prod_Id" />
+    </Key>
+    <Property Name="Venta_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="Venta_Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Price" Type="Double" Nullable="false" />
+    <Property Name="Venta_Importe" Type="Double" Nullable="false" />
+    <Property Name="venta_discount" Type="Double" />
+    <Property Name="disc_desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="serv_comi" Type="Double" />
+  </EntityType>
+  <ComplexType Name="sp_Get_Commission_Result">
+    <Property Type="Double" Name="comision" Nullable="true" />
+  </ComplexType>
 </Schema>

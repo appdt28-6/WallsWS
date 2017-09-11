@@ -15,12 +15,12 @@
         <EntityTypeShape EntityType="AppDTModel.AGENDA" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_Set_Agenda" Width="1.5" PointX="10.375" PointY="3.75" />
         <EntityTypeShape EntityType="AppDTModel.PRODUCTOS" Width="1.5" PointX="5.375" PointY="10.75" />
-        <EntityTypeShape EntityType="AppDTModel.SERVICIOS" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_AGENDA" Width="2.125" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_AGENDA_BARBEROS" Width="1.5" PointX="3.375" PointY="6.75" />
-        <EntityTypeShape EntityType="AppDTModel.VENTASTICKET" Width="1.5" PointX="11.375" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.BARBERO_COMISION" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_VENTASTICKET_PRODUCTOS" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AppDTModel.SERVICIOS" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AppDTModel.VENTASTICKET" Width="1.5" PointX="11.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

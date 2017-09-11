@@ -1,32 +1,33 @@
 ﻿
 @(Html.Kendo().Grid<WallsWS.Models.SERVICIOS>()
-      .Name("grid")
-      .Columns(columns =>
-      {
-          columns.Bound(c => c.sucu_id).Hidden();
-          columns.Bound(c => c.serv_sku).Title("Codigo");
-          columns.Bound(c => c.serv_name).Title("Serv/Producto");
-          columns.Bound(c => c.serv_desc).Title("Desc.");
-          columns.Bound(c => c.serv_price).Title("Precio");
-          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
-      })
-      .ToolBar(toolbar => {
-          toolbar.Create();
-          toolbar.Excel();
-          toolbar.Pdf();
-      })
-      .Editable(editable => editable.Mode(GridEditMode.InLine))
-      .Pageable()
-      .Filterable()
-      .Scrollable()
-      .DataSource(dataSource => dataSource
-          .Ajax()
-          .Model(model => model.Id(p => p.serv_id))
-          .Read(read => read.Action("SERVICIOS_Read", "Servicios"))
-          .Create(create => create.Action("SERVICIOS_Create", "Servicios"))
-          .Update(update => update.Action("SERVICIOS_Update", "Servicios"))
-          .Destroy(destroy => destroy.Action("SERVICIOS_Destroy", "Servicios"))
-      )
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.serv_sku).Title("Codigo");
+		  columns.Bound(c => c.serv_name).Title("Serv/Producto");
+		  columns.Bound(c => c.serv_desc).Title("Desc.");
+		  columns.Bound(c => c.serv_price).Title("Precio").Format("{0:C}");
+		  columns.Bound(c => c.serv_comi).Title("Comisión por Servicio").Format("{0:C}");
+		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+	  })
+	  .ToolBar(toolbar => {
+		  toolbar.Create();
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.InLine))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model => model.Id(p => p.serv_id))
+		  .Read(read => read.Action("SERVICIOS_Read", "Servicios"))
+		  .Create(create => create.Action("SERVICIOS_Create", "Servicios"))
+		  .Update(update => update.Action("SERVICIOS_Update", "Servicios"))
+		  .Destroy(destroy => destroy.Action("SERVICIOS_Destroy", "Servicios"))
+	  )
 )
 
 <br />

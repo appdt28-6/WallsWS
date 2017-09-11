@@ -207,6 +207,7 @@
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\SetAgendaController.cs" />
     <Compile Include="Controllers\SetBarberController.cs" />
+    <Compile Include="Controllers\SetcommissionController.cs" />
     <Compile Include="Controllers\SetHorarioBarberController.cs" />
     <Compile Include="Controllers\SetHorarioController.cs" />
     <Compile Include="Controllers\SetServicesController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\BARBERO_PAGO.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\commission_Return.cs" />
     <Compile Include="Models\HORARIO.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
@@ -261,6 +263,9 @@
     </Compile>
     <Compile Include="Models\SERVICIOS_Return.cs" />
     <Compile Include="Models\sp_Barberos_Pagos_Result.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Get_Commission_Result.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SUCURSAL.cs">
@@ -468,6 +473,7 @@
     <Content Include="Views\Shared\_Total.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Cobro.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Producto.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Total.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

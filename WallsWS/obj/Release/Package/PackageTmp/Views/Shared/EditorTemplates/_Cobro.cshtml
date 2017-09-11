@@ -34,13 +34,7 @@
 		  columns.Bound(c => c.hrdi_hora).Hidden();
 		  columns.Bound(c => c.agen_status).Hidden();
 	  })
-	  .ToolBar(toolbar =>
-	  {
-		  toolbar.Excel();
-		  toolbar.Pdf();
-	  })
 	  .Pageable()
-	  .Filterable()
 	  .Scrollable()
 	  .DataSource(dataSource => dataSource
 		  .Ajax()

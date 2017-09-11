@@ -102,6 +102,7 @@
     <Property Name="serv_name" Type="varchar" MaxLength="50" />
     <Property Name="serv_desc" Type="varchar" MaxLength="50" />
     <Property Name="serv_price" Type="float" />
+    <Property Name="serv_comi" Type="float" />
   </EntityType>
   <EntityType Name="SUCURSAL">
     <Key>
@@ -158,6 +159,7 @@
     <Property Name="Venta_Importe" Type="float" Nullable="false" />
     <Property Name="venta_discount" Type="float" />
     <Property Name="disc_desc" Type="varchar" MaxLength="150" />
+    <Property Name="serv_comi" Type="float" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -240,6 +242,9 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     <Property Name="disc_desc" Type="varchar" MaxLength="150" />
   </EntityType>
   <Function Name="sp_Barberos_Pagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="barber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_Commission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barber" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

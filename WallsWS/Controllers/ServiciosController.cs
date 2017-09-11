@@ -42,7 +42,8 @@ namespace WallsWS.Controllers
                 serv_sku = sERVICIOS.serv_sku,
                 serv_name = sERVICIOS.serv_name,
                 serv_desc = sERVICIOS.serv_desc,
-                serv_price = sERVICIOS.serv_price
+                serv_price = sERVICIOS.serv_price,
+                serv_comi = sERVICIOS.serv_comi
             });
 
             return Json(result);
@@ -60,7 +61,8 @@ namespace WallsWS.Controllers
                     serv_sku = sERVICIOS.serv_sku,
                     serv_name = sERVICIOS.serv_name,
                     serv_desc = sERVICIOS.serv_desc,
-                    serv_price = sERVICIOS.serv_price
+                    serv_price = sERVICIOS.serv_price,
+                    serv_comi = sERVICIOS.serv_comi
                 };
 
                 db.SERVICIOS.Add(entity);
@@ -82,6 +84,7 @@ namespace WallsWS.Controllers
                 prod_desc = sERVICIOS.prod_desc,
                 prod_price = sERVICIOS.prod_price,
                 prod_stock = sERVICIOS.prod_stock
+               
             });
 
             return Json(result);
@@ -99,7 +102,8 @@ namespace WallsWS.Controllers
                     serv_sku = sERVICIOS.serv_sku,
                     serv_name = sERVICIOS.serv_name,
                     serv_desc = sERVICIOS.serv_desc,
-                    serv_price = sERVICIOS.serv_price
+                    serv_price = sERVICIOS.serv_price,
+                    serv_comi = sERVICIOS.serv_comi,
                 };
 
                 db.SERVICIOS.Attach(entity);
@@ -122,7 +126,8 @@ namespace WallsWS.Controllers
                     serv_sku = sERVICIOS.serv_sku,
                     serv_name = sERVICIOS.serv_name,
                     serv_desc = sERVICIOS.serv_desc,
-                    serv_price = sERVICIOS.serv_price
+                    serv_price = sERVICIOS.serv_price,
+                    serv_comi = sERVICIOS.serv_comi
                 };
 
                 db.SERVICIOS.Attach(entity);

@@ -30,6 +30,8 @@ public partial class SERVICIOS
 
     public Nullable<double> serv_price { get; set; }
 
+    public Nullable<double> serv_comi { get; set; }
+
 }
 
 }

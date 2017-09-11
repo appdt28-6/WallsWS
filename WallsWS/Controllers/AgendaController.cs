@@ -21,10 +21,6 @@ namespace WallsWS.Controllers
         {
             if (Session["user_id"] != null)
             {
-                //var total = db.TICKETS.Sum(q => q.Ticket_Subtotal);
-
-                // ViewData["Total"] = total;
-
                 return View();
             }
             else

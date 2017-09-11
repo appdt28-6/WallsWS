@@ -55,17 +55,17 @@ public partial class AppDTEntities : DbContext
 
     public virtual DbSet<PRODUCTOS> PRODUCTOS { get; set; }
 
-    public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
-
     public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
 
     public virtual DbSet<vis_AGENDA_BARBEROS> vis_AGENDA_BARBEROS { get; set; }
 
-    public virtual DbSet<VENTASTICKET> VENTASTICKET { get; set; }
-
     public virtual DbSet<BARBERO_COMISION> BARBERO_COMISION { get; set; }
 
     public virtual DbSet<vis_VENTASTICKET_PRODUCTOS> vis_VENTASTICKET_PRODUCTOS { get; set; }
+
+    public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
+
+    public virtual DbSet<VENTASTICKET> VENTASTICKET { get; set; }
 
 
     public virtual int sp_SET_HORARIO(Nullable<int> barbid)
@@ -89,6 +89,18 @@ public partial class AppDTEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Barberos_Pagos_Result>("sp_Barberos_Pagos", barberParameter);
+    }
+
+
+    public virtual ObjectResult<sp_Get_Commission_Result> sp_Get_Commission(Nullable<int> barber)
+    {
+
+        var barberParameter = barber.HasValue ?
+            new ObjectParameter("barber", barber) :
+            new ObjectParameter("barber", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Get_Commission_Result>("sp_Get_Commission", barberParameter);
     }
 
 }

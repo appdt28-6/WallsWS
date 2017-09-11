@@ -1,25 +1,125 @@
-﻿
-@(Html.Kendo().Grid<WallsWS.Models.TICKETS>()
-      .Name("grid")
-      .Columns(columns =>
-      {
-        columns.Bound(c => c.Ticket_Date);
-        columns.Bound(c => c.Ticket_Subtotal);
-        columns.Bound(c => c.Ticket_Factura);
-        columns.Bound(c => c.Sucu_Id);
-        columns.Bound(c => c.Ticket_Status);
-        columns.Bound(c => c.Ticket_Pago);
-        columns.Bound(c => c.Ticket_Turno);
-      })
-      .ToolBar(toolbar => {
-            toolbar.Excel();
-            toolbar.Pdf();
-      })
-      .Pageable()
-      .Filterable()
-      .Scrollable()
-      .DataSource(dataSource => dataSource
-          .Ajax()
-          .Read(read => read.Action("TICKETS_Read", "Tickets"))
-      )
-)
+﻿<div class="blank">
+
+	<div id="partial">
+		@Html.Partial("_Total")
+	</div>
+
+	@(Html.Kendo().Grid<WallsWS.Models.vis_VENTASTICKET_PRODUCTOS>()
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.Venta_Id).Hidden();
+		  columns.Bound(c => c.Prod_Id).Title("Producto").EditorTemplateName("_Producto");
+		  columns.Bound(c => c.serv_name).Title("Producto");
+		  columns.Bound(c => c.Ticket_Id).Hidden();
+		  columns.Bound(c => c.Venta_Cantidad).Title("Cantidad");
+		  columns.Bound(c => c.Prod_Price).Title("Precio").Format("{0:C}");
+		  columns.Bound(c => c.Venta_Importe).Title("Subtotal").Format("{0:C}");
+		  columns.Bound(c => c.venta_discount).Title("Descuento").Format("{0:C}");
+		  columns.Bound(c => c.disc_desc).Title("Descripción");
+		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  toolbar.Create();
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .Events(e =>
+	  {
+		  e.Save("onSave");
+		  e.SaveChanges("OnChange");
+	  })
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model =>
+		  {
+			  model.Id(p => p.Venta_Id);
+			  model.Field(p => p.Prod_Price).Editable(false);
+			  model.Field(p => p.Venta_Importe).Editable(false);
+			  model.Field(p => p.serv_name).Editable(false);
+		  })
+		  .Read(read => read.Action("TICKETS_Read", "Tickets"))
+		  .Create(create => create.Action("TICKETS_Create", "Tickets"))
+		  .Update(update => update.Action("TICKETS_Update", "Tickets"))
+		  .Destroy(destroy => destroy.Action("TICKETS_Destroy", "Tickets"))
+	  ).HtmlAttributes(new { style = "heigth: 400px" })
+	)
+
+	<br />
+
+	<table>
+		<tr>
+			<td>Tipo de Pago:</td>
+			<td>
+				@(Html.Kendo().DropDownList()
+		  .Name("pago")
+		  .OptionLabel("Seleccione")
+		  .DataTextField("Text")
+		  .DataValueField("Value")
+		  .BindTo(new List<SelectListItem>() {
+			  new SelectListItem() {
+				  Text = "Efectivo",
+				  Value = "1"
+			  },
+			  new SelectListItem() {
+				  Text = "Tarjeta",
+				  Value = "2"
+			  }
+		  })
+		  .HtmlAttributes(new { style = "width: 100%" })
+			)
+		</td>
+		<td><input type="button" onclick="Close();" value="Terminar Venta" /></td>
+	</tr>
+</table>
+	</div>
+<script>
+	function Close()
+	{
+		var tp = $("#pago").val();
+		alert("cierra" + tp)
+		$.ajax({
+			type: "POST",
+			data: {Tp:tp},
+			url:'@Url.Action("TICKETS_Close", "Tickets")',
+			success: function (response) {
+				if (response != null && response.success) {
+					alert(response.responseText);
+					window.open('/Agenda/Agenda', "_self")
+				} else {
+					// DoSomethingElse()
+					alert(response.responseText);
+				}
+			},
+			error: function (response) {
+				alert("error!");  //
+			}
+
+		});
+	}
+</script>
+<script>
+	//alert("Refresca")
+	function onSave(e) {
+		e.sender.one("dataBound", function () {
+			e.sender.dataSource.read();
+			$("#partial").load('@Url.Action("GetTotal", "Tickets")')
+		});
+
+	}
+
+	function OnChange(e)
+	{
+		$("#partial").load('@Url.Action("GetTotal", "Tickets")')
+	}
+
+</script>
+
+
+
+
+
