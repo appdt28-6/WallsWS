@@ -29,30 +29,9 @@ namespace WallsWS.Controllers
             }
         }
 
-        public ActionResult AGENDA_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            IQueryable<vis_AGENDA> agenda = db.vis_AGENDA.Where(q => q.agen_status == 0);
-            DataSourceResult result = agenda.ToDataSourceResult(request, aGENDA => new {
-                agen_id = aGENDA.agen_id,
-                barb_id = aGENDA.barb_id,
-                barb_name = aGENDA.barb_name,
-                serv_id = aGENDA.serv_id,
-                serv_name = aGENDA.serv_name,
-                serv_price = aGENDA.serv_price,
-                cust_name = aGENDA.cust_name,
-                cust_phone = aGENDA.cust_phone,
-                cust_mail = aGENDA.cust_mail,
-                agen_date = aGENDA.agen_date,
-                hrdi_hora = aGENDA.hrdi_hora,
-                agen_status = aGENDA.agen_status
-            });
-
-            return Json(result);
-        }
-
         public ActionResult AGENDA_Barbero_Read([DataSourceRequest]DataSourceRequest request,int barb)
         {
-
+            Session["barb"] = barb;
             try
             {
                 IQueryable<vis_AGENDA> agenda = db.vis_AGENDA.Where(q => q.barb_id == barb && q.agen_status == 0);
@@ -231,6 +210,68 @@ namespace WallsWS.Controllers
             });
             return Json(routes, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetHorario(int barber)
+        {
+            var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
+            //int comp = int.Parse(Session["comp_identifier"].ToString());
+            var routes = db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barber && q.hrdi_date == fecha && q.hrdi_status == 0).ToList().Select(route => new HORARIO_DISPONIBLE()
+            {
+                hrdi_id = route.hrdi_id,
+                hrdi_hora = route.hrdi_hora
+                //id_last = route.id_last
+            });
+            return Json(routes, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetBarber()
+        {
+            var routes = db.BARBEROS.Where(q => q.sucu_id == 1).ToList().Select(route => new BARBEROS()
+            {
+                barb_id = route.barb_id,
+                barb_name = route.barb_name
+                //id_last = route.id_last
+            });
+            return Json(routes, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SetAgenda(int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id)
+        {
+            var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
+            try
+            {
+                var CrearAgenda = new AGENDA //Make sure you have a table called test in DB
+                {
+
+                    barb_id = barb,
+                    serv_id = serv_id,
+                    hrdi_id = hora,
+                    cust_name = cust_name,
+                    cust_mail = cust_email,
+                    cust_phone = cust_phone,
+                    agen_date = fecha,
+                    agen_status = 0
+                };
+
+                db.AGENDA.Add(CrearAgenda);
+                db.SaveChanges();
+
+                var result2 = from r in db.HORARIO_DISPONIBLE where r.hrdi_id == hora select r;
+                HORARIO_DISPONIBLE vISITA_ASSIGN = result2.First();
+                vISITA_ASSIGN.hrdi_status = 1;
+                db.SaveChanges();
+
+                return Json(new { success = true, responseText = "Dato registrado" }, JsonRequestBehavior.AllowGet);
+                // return RedirectToAction("Agenda","Agenda");
+
+
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, responseText = "Error" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
 
     }

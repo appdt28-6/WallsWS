@@ -1,4 +1,6 @@
 ﻿
+Catalogo de Servicios<br />
+
 @(Html.Kendo().Grid<WallsWS.Models.SERVICIOS>()
 	  .Name("grid")
 	  .Columns(columns =>
@@ -9,7 +11,7 @@
 		  columns.Bound(c => c.serv_desc).Title("Desc.");
 		  columns.Bound(c => c.serv_price).Title("Precio").Format("{0:C}");
 		  columns.Bound(c => c.serv_comi).Title("Comisión por Servicio").Format("{0:C}");
-		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+		  columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar => {
 		  toolbar.Create();
@@ -31,36 +33,52 @@
 )
 
 <br />
+Catalogo de Productos:<br />
 
-@(Html.Kendo().Grid<WallsWS.Models.PRODUCTOS>()
-      .Name("grid")
-      .Columns(columns =>
-      {
-          columns.Bound(c => c.sucu_id).Hidden();
-          columns.Bound(c => c.prod_sku).Title("Codigo");
-          columns.Bound(c => c.prod_name).Title("Serv/Producto");
-          columns.Bound(c => c.prod_desc).Title("Desc.");
-          columns.Bound(c => c.prod_price).Title("Precio");
-          columns.Bound(c => c.prod_stock).Title("Stock");
-          columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
-      })
-      .ToolBar(toolbar =>
-      {
-          toolbar.Create();
-          toolbar.Excel();
-          toolbar.Pdf();
-      })
-      .Editable(editable => editable.Mode(GridEditMode.InLine))
-      .Pageable()
-      .Filterable()
-      .Scrollable()
-      .DataSource(dataSource => dataSource
-          .Ajax()
-          .Model(model => model.Id(p => p.prod_id))
-          .Read(read => read.Action("PRODUCTOS_Read", "Servicios"))
-          .Create(create => create.Action("PRODUCTOS_Create", "Servicios"))
-          .Update(update => update.Action("PRODUCTOS_Update", "Servicios"))
-          .Destroy(destroy => destroy.Action("PRODUCTOS_Destroy", "Servicios"))
-      )
+@(Html.Kendo().Grid<WallsWS.Models.SERVICIOS>()
+	  .Name("gridp")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.serv_id).Hidden();
+		  columns.Bound(c => c.serv_sku).Title("Codigo");
+		  columns.Bound(c => c.serv_name).Title("Serv/Producto");
+		  columns.Bound(c => c.serv_desc).Title("Desc.");
+		  columns.Bound(c => c.serv_price).Title("Precio").Format("{0:C}");
+		  columns.Bound(c => c.serv_stock).Title("Stock");
+		  columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  toolbar.Create();
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Events(e =>
+	  {
+		  e.Save("onSave");
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.InLine))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model => model.Id(p => p.serv_id))
+		  .Read(read => read.Action("PRODUCTOS_Read", "Servicios"))
+		  .Create(create => create.Action("PRODUCTOS_Create", "Servicios"))
+		  .Update(update => update.Action("PRODUCTOS_Update", "Servicios"))
+		  .Destroy(destroy => destroy.Action("PRODUCTOS_Destroy", "Servicios"))
+	  )
 )
+
+<script>
+	function onSave(e) {
+		//alert("Onsave");
+		e.sender.one("dataBound", function () {
+			e.sender.dataSource.read();
+		});
+
+	}
+</script>
 

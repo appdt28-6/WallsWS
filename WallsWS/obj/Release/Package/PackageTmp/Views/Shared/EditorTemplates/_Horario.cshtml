@@ -1,0 +1,15 @@
+﻿@(Html.Kendo().DropDownList()
+                .Name("hrdi_id")
+                .OptionLabel("Seleccione...")
+                .DataTextField("hrdi_hora")
+                .DataValueField("hrdi_id")
+                .HtmlAttributes(new { style = "width:300px" })
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("GetHorario", "Agenda");
+                    });
+                })
+)
+

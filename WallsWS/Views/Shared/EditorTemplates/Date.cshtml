@@ -1,3 +1,12 @@
-@model DateTime?
-
-@(Html.Kendo().DatePickerFor(m => m))
+<script src="http://kendo.cdn.telerik.com/2016.2.607/js/cultures/kendo.culture.es-ES.min.js"></script>
+@(Html.Kendo().DatePicker()
+              .Name("agen_date")
+              .Format("yyyy-MM-dd")
+              .Value(DateTime.Now.Date.ToString("yyyy-MM-dd"))
+              //.DateInput()
+              .HtmlAttributes(new { style = "width: 100%", title = "monthpicker" })
+)
+<script type="text/javascript">
+	//set current to the "en-GB" culture script
+	kendo.culture("es-ES");
+</script>

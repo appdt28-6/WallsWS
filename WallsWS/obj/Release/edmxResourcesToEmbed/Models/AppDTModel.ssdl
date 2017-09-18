@@ -57,6 +57,17 @@
     <Property Name="barb_password" Type="varchar" MaxLength="15" />
     <Property Name="barb_urlimage" Type="varchar" MaxLength="150" />
   </EntityType>
+  <EntityType Name="GASTOS">
+    <Key>
+      <PropertyRef Name="gast_id" />
+      <PropertyRef Name="sucu_id" />
+    </Key>
+    <Property Name="gast_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="gast_desc" Type="varchar" MaxLength="50" />
+    <Property Name="gast_amount" Type="float" />
+    <Property Name="gast_date" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="HORARIO">
     <Key>
       <PropertyRef Name="hora_id" />
@@ -103,6 +114,8 @@
     <Property Name="serv_desc" Type="varchar" MaxLength="50" />
     <Property Name="serv_price" Type="float" />
     <Property Name="serv_comi" Type="float" />
+    <Property Name="serv_product" Type="int" />
+    <Property Name="serv_stock" Type="int" />
   </EntityType>
   <EntityType Name="SUCURSAL">
     <Key>
@@ -247,6 +260,9 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
   <Function Name="sp_Get_Commission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barber" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_Get_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pago" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barbid" Type="int" Mode="In" />
   </Function>
@@ -255,6 +271,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     <EntitySet Name="BARBERO_COMISION" EntityType="Self.BARBERO_COMISION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BARBERO_PAGO" EntityType="Self.BARBERO_PAGO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BARBEROS" EntityType="Self.BARBEROS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GASTOS" EntityType="Self.GASTOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HORARIO" EntityType="Self.HORARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HORARIO_DISPONIBLE" EntityType="Self.HORARIO_DISPONIBLE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />

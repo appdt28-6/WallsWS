@@ -1,0 +1,80 @@
+﻿<form>
+	<div class="form-group">
+		<label for="name">Cliente:</label>
+		<input type="text" class="form-control" id="name">
+	</div>
+	<div class="form-group">
+		<label for="name">Telefono:</label>
+		<input type="text" class="form-control" id="phone">
+	</div>
+	<div class="form-group">
+		<label for="name">Email:</label>
+		<input type="text" class="form-control" id="mail">
+	</div>
+	<div class="form-group">
+		<label for="pwd">Barbero:</label>
+		@(Html.Kendo().DropDownList()
+                .Name("barb_id")
+                .OptionLabel("Seleccione...")
+                .DataTextField("barb_name")
+                .DataValueField("barb_id")
+                .HtmlAttributes(new { style = "width:300px" })
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("GetBarber", "Agenda");
+                    });
+                })
+		)
+	</div>
+	<div class="form-group">
+		<label for="pwd">Servicio:</label>
+		@(Html.Kendo().DropDownList()
+                .Name("Prod_Id")
+                .OptionLabel("Seleccione...")
+                .DataTextField("serv_name")
+                .DataValueField("serv_id")
+                .HtmlAttributes(new { style = "width:300px" })
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("GetProductos", "Agenda");
+                    });
+                })
+		)
+	</div>
+	<div class="form-group">
+		<label for="pwd">Horario:</label>
+		@(Html.Kendo().DropDownList()
+				.Name("hrdi_id")
+				.OptionLabel("Seleccione")
+				.DataTextField("hrdi_hora")
+				.DataValueField("hrdi_id")
+				.HtmlAttributes(new { style = "width:300px" })
+				.DataSource(source =>
+				{
+					source.Read(read =>
+					{
+						read.Action("GetHorario", "Agenda").Data("filterBarber");
+					}).ServerFiltering(true);
+				})
+				.Enable(false)
+			  .AutoBind(false)
+				.CascadeFrom("barb_id")
+		)
+		<script>
+			function filterBarber() {
+                return {
+                    barber: $("#barb_id").val()
+                };
+            }
+		</script>
+	</div>
+	@(Html.Kendo().Button()
+	.Name("textButton2")
+	.Content("Agendar")
+	.HtmlAttributes(new { type = "button" })
+	.Events(ev => ev.Click("SetAgenda")))
+</form>

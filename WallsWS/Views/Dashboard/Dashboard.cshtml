@@ -6,49 +6,46 @@
 
     <!--market updates updates-->
 <div class="market-updates">
-	<div class="col-md-4 market-update-gd">
+	<div class="col-md-3 market-update-gd">
 		<div class="market-update-block clr-block-1">
-			<div class="col-md-8 market-update-left">
-				@Html.Partial("_Total")
-				<h4>Ventas del dia</h4>
-				<!--<p>Other hand, we denounce</p>-->
-			</div>
-			<div class="col-md-4 market-update-right">
-				<i class="fa fa-file-text-o"> </i>
+			<div class="col-md-12 market-update-left">
+				<h3>$@ViewData["efectivo"].00</h3>
+				<p>Ventas en efectivo</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<div class="col-md-4 market-update-gd">
+	<div class="col-md-3 market-update-gd">
 		<div class="market-update-block clr-block-2">
-			<div class="col-md-8 market-update-left">
-				<h3>135</h3>
-				<h4>Citas Agendadas</h4>
-				<!-- <p>Other hand, we denounce</p>-->
-			</div>
-			<div class="col-md-4 market-update-right">
-				<i class="fa fa-bookmark-o"> </i>
+			<div class="col-md-12 market-update-left">
+				<h3>$@ViewData["tarjeta"].00</h3>
+					<p>Ventas en tarjeta</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<div class="col-md-4 market-update-gd">
+	<div class="col-md-3 market-update-gd">
 		<div class="market-update-block clr-block-3">
 			<div class="col-md-8 market-update-left">
-				<h3></h3>
-				<h4>---</h4>
-				<!-- <p>Other hand, we denounce</p>-->
-			</div>
-			<div class="col-md-4 market-update-right">
-				<i class="fa fa-envelope-o"> </i>
+				<h3>$@ViewData["gastos"].00</h3>
+				<p>Gastos</p>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<div class="clearfix"> </div>
+	<div class="col-md-3 market-update-gd">
+		<div class="market-update-block clr-block-1">
+			<div class="col-md-12 market-update-left">
+				<h3>Dato 4</h3>
+				<!-- <p>Other hand, we denounce</p>-->
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	
 </div>
 <!--market updates end here--> 
-
+<div class="clearfix"> </div>
 <!--inner block start here-->
 <div class="inner-block">
     <div class="chart-main-block">

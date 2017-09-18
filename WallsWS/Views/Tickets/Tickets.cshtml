@@ -1,6 +1,11 @@
-﻿<div class="blank">
+﻿
+@{
+	ViewBag.Title = "Ticket";
+}
 
-	<div id="partial">
+<div class="blank">
+
+	<div id="partialTotal">
 		@Html.Partial("_Total")
 	</div>
 
@@ -32,6 +37,8 @@
 	  {
 		  e.Save("onSave");
 		  e.SaveChanges("OnChange");
+		  e.Edit("OnEdit");
+		  e.Remove("OnRemove");
 	  })
 	  .DataSource(dataSource => dataSource
 		  .Ajax()
@@ -41,6 +48,10 @@
 			  model.Field(p => p.Prod_Price).Editable(false);
 			  model.Field(p => p.Venta_Importe).Editable(false);
 			  model.Field(p => p.serv_name).Editable(false);
+		  })
+		  .Events(events =>
+		  {
+			  events.RequestEnd("onRequestEnd"); //I've added this
 		  })
 		  .Read(read => read.Action("TICKETS_Read", "Tickets"))
 		  .Create(create => create.Action("TICKETS_Create", "Tickets"))
@@ -81,7 +92,7 @@
 	function Close()
 	{
 		var tp = $("#pago").val();
-		alert("cierra" + tp)
+		//alert("cierra" + tp)
 		$.ajax({
 			type: "POST",
 			data: {Tp:tp},
@@ -103,18 +114,44 @@
 	}
 </script>
 <script>
+	function onRequestEnd(e) {
+		if (e.type == "update" && !e.response.Errors) {
+			//alert("Update record is successfull");
+			$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
+    }
+
+    if (e.type == "create" && !e.response.Errors) {
+		//alert("Create record is successfull");
+		$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
+    }
+
+	}
 	//alert("Refresca")
 	function onSave(e) {
+		//alert("Onsave");
 		e.sender.one("dataBound", function () {
 			e.sender.dataSource.read();
-			$("#partial").load('@Url.Action("GetTotal", "Tickets")')
+			$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
 		});
 
 	}
 
 	function OnChange(e)
 	{
-		$("#partial").load('@Url.Action("GetTotal", "Tickets")')
+		//alert("Onchange");
+		$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
+	}
+
+	function OnEdit(e)
+	{
+		//alert("Onedit");
+		//$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
+	}
+
+	function OnRemove(e)
+	{
+		alert("Onremove");
+		$("#partialTotal").load('@Url.Action("GetTotal", "Tickets")')
 	}
 
 </script>

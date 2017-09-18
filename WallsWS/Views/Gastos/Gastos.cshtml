@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Gastos";
+}
+
+<h2>Gastos registrados</h2>
+
+@(Html.Kendo().Grid<WallsWS.Models.GASTOS>()
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.gast_id).Hidden();
+		  columns.Bound(c => c.gast_desc).Title("Desc. Gasto");
+		  columns.Bound(c => c.gast_amount).Title("Importe");
+		  columns.Bound(c => c.gast_date).Title("Fecha");
+		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  toolbar.Create();
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.InLine))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model => {
+			  model.Id(p => p.gast_id);
+			  model.Field(q => q.gast_date).Editable(false);
+		  })
+		  .Read(read => read.Action("GASTOS_Read", "Gastos"))
+		  .Create(create => create.Action("GASTOS_Create", "Gastos"))
+		  .Update(update => update.Action("GASTOS_Update", "Gastos"))
+		  .Destroy(destroy => destroy.Action("GASTOS_Destroy", "Gastos"))
+	  )
+)
+

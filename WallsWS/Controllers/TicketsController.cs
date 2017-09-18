@@ -18,61 +18,69 @@ namespace WallsWS.Controllers
 
         public ActionResult Tickets(int agenid, int servid, int barbid)
         {
-            Session["agenid"] = agenid;
 
-            var context = new AppDTEntities();
-
-            var CrearTicket = new TICKETS //Make sure you have a table called test in DB
+            if (Session["user_id"] != null)
             {
-                Ticket_Subtotal = 0,
-                Ticket_Factura = 0,
-                Ticket_Date = DateTime.Now,
-                Sucu_Id = 1,
-                Ticket_Status = "abierto",
-                Ticket_Pago = 0,
-                Ticket_Turno = 1,
-                barb_id = barbid
-            };
+                Session["agenid"] = agenid;
 
-            context.TICKETS.Add(CrearTicket);
-            context.SaveChanges();
+                var context = new AppDTEntities();
 
-            var idTicket = db.TICKETS.Max(t => t.Ticket_Id);
+                var CrearTicket = new TICKETS //Make sure you have a table called test in DB
+                {
+                    Ticket_Subtotal = 0,
+                    Ticket_Factura = 0,
+                    Ticket_Date = DateTime.Now,
+                    Sucu_Id = 1,
+                    Ticket_Status = "abierto",
+                    Ticket_Pago = 0,
+                    Ticket_Turno = 1,
+                    barb_id = barbid
+                };
 
-            var price = db.SERVICIOS.Where(a => a.serv_id == servid).ToList();
-            double pri = Convert.ToDouble(price[0].serv_price);
-            double comi= Convert.ToDouble(price[0].serv_comi);
+                context.TICKETS.Add(CrearTicket);
+                context.SaveChanges();
+
+                var idTicket = db.TICKETS.Max(t => t.Ticket_Id);
+
+                var price = db.SERVICIOS.Where(a => a.serv_id == servid).ToList();
+                double pri = Convert.ToDouble(price[0].serv_price);
+                double comi = Convert.ToDouble(price[0].serv_comi);
 
 
-            var CrearVenta = new VENTASTICKET //Make sure you have a table called test in DB
+                var CrearVenta = new VENTASTICKET //Make sure you have a table called test in DB
+                {
+                    Ticket_Id = idTicket,
+                    Prod_Id = servid,
+                    Venta_Cantidad = 1,
+                    Prod_Price = pri,
+                    Venta_Importe = 1 * pri,
+                    serv_comi = comi,
+                    venta_discount = 0,
+                    disc_desc = ""
+                };
+
+                db.VENTASTICKET.Add(CrearVenta);
+                db.SaveChanges();
+
+                var total = db.VENTASTICKET.Where(q => q.Ticket_Id == idTicket).Sum(q => q.Venta_Importe);
+
+                var stud = (from s in db.TICKETS
+                            where s.Ticket_Id == idTicket
+                            select s).FirstOrDefault();
+
+                stud.Ticket_Subtotal = total;
+
+                db.SaveChanges();
+
+                Session["ticket"] = idTicket;
+                GetTotal();
+                return View();
+            }
+            else
             {
-                Ticket_Id = idTicket,
-                Prod_Id = servid,
-                Venta_Cantidad = 1,
-                Prod_Price = pri,
-                Venta_Importe = 1 * pri,
-                serv_comi= comi,
-                venta_discount=0,
-                disc_desc=""
-            };
+                return Redirect("~/Home/Login");
+            }
 
-            db.VENTASTICKET.Add(CrearVenta);
-            db.SaveChanges();
-
-            var total = db.VENTASTICKET.Where(q => q.Ticket_Id == idTicket).Sum(q => q.Venta_Importe);
-
-            var stud = (from s in db.TICKETS
-                        where s.Ticket_Id == idTicket
-                        select s).FirstOrDefault();
-
-            stud.Ticket_Subtotal = total;
-
-            db.SaveChanges();
-
-            Session["ticket"] = idTicket;
-            GetTotal();
-
-            return View();
         }
 
         public ActionResult TICKETS_Read([DataSourceRequest]DataSourceRequest request)
@@ -101,11 +109,20 @@ namespace WallsWS.Controllers
             var price = db.SERVICIOS.Where(a => a.serv_id == vENTASTICKET.Prod_Id).ToList() ;
             double pri = Convert.ToDouble(price[0].serv_price);
             double com = Convert.ToDouble(price[0].serv_comi);
+            int p = Convert.ToInt32(price[0].serv_product);
             double di = Convert.ToDouble(vENTASTICKET.venta_discount);
+          
             if (di == 0) { di = 0; } else { }
 
             var disc = ((di) / 100) * pri;
             double sub = ((vENTASTICKET.Venta_Cantidad) * (pri));
+
+            int s = Convert.ToInt32(price[0].serv_stock);
+
+            if (s == 0) {
+
+            }
+            else {
 
             var CrearVenta = new VENTASTICKET //Make sure you have a table called test in DB
             {
@@ -123,16 +140,125 @@ namespace WallsWS.Controllers
             db.VENTASTICKET.Add(CrearVenta);
             db.SaveChanges();
 
-            var total = db.VENTASTICKET.Where(q=>q.Ticket_Id==ticket).Sum(q => q.Venta_Importe);
+                    if (p == 1)
+                    {
+                        int stock = s - vENTASTICKET.Venta_Cantidad;
+
+                        var sto = (from st in db.SERVICIOS
+                                    where st.serv_id == vENTASTICKET.Prod_Id
+                                   select st).FirstOrDefault();
+
+                        sto.serv_stock = stock;
+
+
+                        db.SaveChanges();
+
+                    }
+                    else { }
+
+                    var total = db.VENTASTICKET.Where(q=>q.Ticket_Id==ticket).Sum(q => q.Venta_Importe);
+
+                    var stud = (from v in db.TICKETS
+                                where v.Ticket_Id == ticket
+                                select v).FirstOrDefault();
+
+                    stud.Ticket_Subtotal = total;
+
+
+                    db.SaveChanges();
+            }
+
+
+            return Json(new[] { vENTASTICKET }.ToDataSourceResult(request, ModelState));
+        }
+
+        public ActionResult TICKETS_Update([DataSourceRequest]DataSourceRequest request, vis_VENTASTICKET_PRODUCTOS vENTASTICKET)
+        {
+            var price = db.SERVICIOS.Where(a => a.serv_id == vENTASTICKET.Prod_Id).ToList();
+            double pri = Convert.ToDouble(price[0].serv_price);
+            int p = Convert.ToInt32(price[0].serv_product);
+            double di = Convert.ToDouble(vENTASTICKET.venta_discount);
+            if (di == 0) { di = 0; } else { }
+
+            var disc = ((di) / 100) * pri;
+            double sub = ((vENTASTICKET.Venta_Cantidad) * (pri));
+
+            var venta = (from s in db.VENTASTICKET
+                        where s.Venta_Id == vENTASTICKET.Venta_Id && s.Ticket_Id== vENTASTICKET.Ticket_Id
+                         select s).FirstOrDefault();
+
+            venta.Venta_Cantidad = vENTASTICKET.Venta_Cantidad;
+            venta.Venta_Importe = sub-disc;
+            venta.venta_discount = disc;
+            venta.disc_desc = vENTASTICKET.disc_desc;
+
+            db.SaveChanges();
+
+            if (p == 1)
+            {
+                int s = Convert.ToInt32(price[0].serv_stock);
+                int stock = vENTASTICKET.Venta_Cantidad - s;
+
+                var sto = (from st in db.SERVICIOS
+                           where st.serv_id == vENTASTICKET.Prod_Id
+                           select st).FirstOrDefault();
+
+                sto.serv_stock = stock;
+
+
+                db.SaveChanges();
+
+            }
+            else { }
+
+            var total = db.VENTASTICKET.Where(q => q.Ticket_Id == vENTASTICKET.Ticket_Id).Sum(q => q.Venta_Importe);
 
             var stud = (from s in db.TICKETS
-                        where s.Ticket_Id == ticket
+                        where s.Ticket_Id == vENTASTICKET.Ticket_Id
                         select s).FirstOrDefault();
 
             stud.Ticket_Subtotal = total;
 
 
             db.SaveChanges();
+           
+
+            return Json(new[] { vENTASTICKET }.ToDataSourceResult(request, ModelState));
+        }
+
+        public ActionResult TICKETS_Delete([DataSourceRequest]DataSourceRequest request, vis_VENTASTICKET_PRODUCTOS vENTASTICKET)
+        {
+            if (ModelState.IsValid)
+            {
+                var deleteVenta = new VENTASTICKET //Make sure you have a table called test in DB
+                {
+                    Ticket_Id = vENTASTICKET.Ticket_Id,
+                    Prod_Id = vENTASTICKET.Prod_Id,
+                    Venta_Cantidad = vENTASTICKET.Venta_Cantidad,
+                    Prod_Price = vENTASTICKET.Prod_Price,
+                    Venta_Importe = vENTASTICKET.Venta_Importe,
+                    venta_discount = vENTASTICKET.venta_discount,
+                    disc_desc = vENTASTICKET.disc_desc
+                };
+
+                db.VENTASTICKET.Attach(deleteVenta);
+                db.VENTASTICKET.Remove(deleteVenta);
+                db.SaveChanges();
+
+                var total = db.VENTASTICKET.Where(q => q.Ticket_Id == vENTASTICKET.Ticket_Id).Sum(q => q.Venta_Importe);
+
+                var stud = (from s in db.TICKETS
+                            where s.Ticket_Id == vENTASTICKET.Ticket_Id
+                            select s).FirstOrDefault();
+
+                stud.Ticket_Subtotal = total;
+
+
+                db.SaveChanges();
+
+
+            }
+           
 
             return Json(new[] { vENTASTICKET }.ToDataSourceResult(request, ModelState));
         }
@@ -180,7 +306,7 @@ namespace WallsWS.Controllers
         public ActionResult GetTotal()
         {
             var ticket =Convert.ToInt32(Session["ticket"].ToString());
-            var total = db.TICKETS.Where(q=>q.Ticket_Id == ticket).Sum(q => q.Ticket_Subtotal);
+            var total = db.VENTASTICKET.Where(q=>q.Ticket_Id == ticket).Sum(q => q.Venta_Importe);
             ViewData["Total"] = total;
             return PartialView("_Total");
 

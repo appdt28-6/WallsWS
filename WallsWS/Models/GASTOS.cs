@@ -15,26 +15,18 @@ namespace WallsWS.Models
 using System;
     using System.Collections.Generic;
     
-public partial class SERVICIOS
+public partial class GASTOS
 {
 
-    public int serv_id { get; set; }
+    public int gast_id { get; set; }
 
     public int sucu_id { get; set; }
 
-    public string serv_sku { get; set; }
+    public string gast_desc { get; set; }
 
-    public string serv_name { get; set; }
+    public Nullable<double> gast_amount { get; set; }
 
-    public string serv_desc { get; set; }
-
-    public Nullable<double> serv_price { get; set; }
-
-    public Nullable<double> serv_comi { get; set; }
-
-    public Nullable<int> serv_product { get; set; }
-
-    public Nullable<int> serv_stock { get; set; }
+    public string gast_date { get; set; }
 
 }
 

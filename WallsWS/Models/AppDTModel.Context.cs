@@ -49,13 +49,9 @@ public partial class AppDTEntities : DbContext
 
     public virtual DbSet<BARBERO_PAGO> BARBERO_PAGO { get; set; }
 
-    public virtual DbSet<AGENDA> AGENDA { get; set; }
-
     public virtual DbSet<vis_Set_Agenda> vis_Set_Agenda { get; set; }
 
     public virtual DbSet<PRODUCTOS> PRODUCTOS { get; set; }
-
-    public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
 
     public virtual DbSet<vis_AGENDA_BARBEROS> vis_AGENDA_BARBEROS { get; set; }
 
@@ -63,9 +59,15 @@ public partial class AppDTEntities : DbContext
 
     public virtual DbSet<vis_VENTASTICKET_PRODUCTOS> vis_VENTASTICKET_PRODUCTOS { get; set; }
 
-    public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
-
     public virtual DbSet<VENTASTICKET> VENTASTICKET { get; set; }
+
+    public virtual DbSet<AGENDA> AGENDA { get; set; }
+
+    public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
+
+    public virtual DbSet<GASTOS> GASTOS { get; set; }
+
+    public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
 
 
     public virtual int sp_SET_HORARIO(Nullable<int> barbid)
@@ -101,6 +103,18 @@ public partial class AppDTEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Get_Commission_Result>("sp_Get_Commission", barberParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> sp_Get_Ventas(Nullable<int> pago)
+    {
+
+        var pagoParameter = pago.HasValue ?
+            new ObjectParameter("pago", pago) :
+            new ObjectParameter("pago", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Get_Ventas", pagoParameter);
     }
 
 }

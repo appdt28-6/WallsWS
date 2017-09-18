@@ -200,10 +200,12 @@
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\BarberosController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\GetAgendaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorariosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\SetAgendaController.cs" />
     <Compile Include="Controllers\SetBarberController.cs" />
@@ -247,6 +249,9 @@
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\commission_Return.cs" />
+    <Compile Include="Models\GASTOS.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HORARIO.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
@@ -474,6 +479,11 @@
     <Content Include="Views\Shared\EditorTemplates\_Cobro.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Producto.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Total.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Horario.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Servicios.cshtml" />
+    <Content Include="Views\Gastos\Gastos.cshtml" />
+    <Content Include="Views\Productos\Productos.cshtml" />
+    <Content Include="Views\Shared\_Cita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

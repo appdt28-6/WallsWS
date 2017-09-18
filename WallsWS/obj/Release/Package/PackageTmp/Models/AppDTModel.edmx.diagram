@@ -5,22 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="20a1ed33414e41a1b7a8fd7e4568f134" Name="Diagram1">
-        <EntityTypeShape EntityType="AppDTModel.HORARIO_DISPONIBLE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AppDTModel.HORARIO_DISPONIBLE" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AppDTModel.SUCURSAL" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AppDTModel.BARBEROS" Width="1.5" PointX="2.375" PointY="0.875" />
+        <EntityTypeShape EntityType="AppDTModel.BARBEROS" Width="1.5" PointX="0.625" PointY="0.5" />
         <EntityTypeShape EntityType="AppDTModel.USUARIOS" Width="1.5" PointX="7.75" PointY="3.75" />
         <EntityTypeShape EntityType="AppDTModel.HORARIO" Width="1.5" PointX="4.375" PointY="3.75" />
         <EntityTypeShape EntityType="AppDTModel.TICKETS" Width="1.5" PointX="9.375" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.BARBERO_PAGO" Width="1.5" PointX="9.375" PointY="0.75" />
-        <EntityTypeShape EntityType="AppDTModel.AGENDA" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_Set_Agenda" Width="1.5" PointX="10.375" PointY="3.75" />
         <EntityTypeShape EntityType="AppDTModel.PRODUCTOS" Width="1.5" PointX="5.375" PointY="10.75" />
-        <EntityTypeShape EntityType="AppDTModel.vis_AGENDA" Width="2.125" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_AGENDA_BARBEROS" Width="1.5" PointX="3.375" PointY="6.75" />
         <EntityTypeShape EntityType="AppDTModel.BARBERO_COMISION" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="AppDTModel.vis_VENTASTICKET_PRODUCTOS" Width="1.5" PointX="7.375" PointY="11.75" />
-        <EntityTypeShape EntityType="AppDTModel.SERVICIOS" Width="1.5" PointX="9.375" PointY="11.75" />
         <EntityTypeShape EntityType="AppDTModel.VENTASTICKET" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="AppDTModel.AGENDA" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="AppDTModel.vis_AGENDA" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AppDTModel.GASTOS" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AppDTModel.SERVICIOS" Width="1.5" PointX="9.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

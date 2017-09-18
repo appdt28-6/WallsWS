@@ -21,9 +21,6 @@ namespace WallsWS.Controllers
 
             if (Session["user_id"] != null)
             {
-                //var total = db.TICKETS.Sum(q => q.Ticket_Subtotal);
-
-                // ViewData["Total"] = total;
 
                 return View();
             }
@@ -31,11 +28,13 @@ namespace WallsWS.Controllers
             {
                 return Redirect("~/Home/Login");
             }
+
+            //return View();
         }
 
         public ActionResult SERVICIOS_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<SERVICIOS> servicios = db.SERVICIOS.Where(q=>q.sucu_id==1);
+            IQueryable<SERVICIOS> servicios = db.SERVICIOS.Where(q=>q.sucu_id==1&&q.serv_product==0);
             DataSourceResult result = servicios.ToDataSourceResult(request, sERVICIOS => new {
                 sucu_id = sERVICIOS.sucu_id,
                 serv_id = sERVICIOS.serv_id,
@@ -62,7 +61,9 @@ namespace WallsWS.Controllers
                     serv_name = sERVICIOS.serv_name,
                     serv_desc = sERVICIOS.serv_desc,
                     serv_price = sERVICIOS.serv_price,
-                    serv_comi = sERVICIOS.serv_comi
+                    serv_comi = sERVICIOS.serv_comi,
+                    serv_product = 0,
+                    serv_stock=0
                 };
 
                 db.SERVICIOS.Add(entity);
@@ -71,23 +72,6 @@ namespace WallsWS.Controllers
             }
 
             return Json(new[] { sERVICIOS }.ToDataSourceResult(request, ModelState));
-        }
-
-        public ActionResult PRODUCTOS_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            IQueryable<PRODUCTOS> servicios = db.PRODUCTOS.Where(q => q.sucu_id == 1);
-            DataSourceResult result = servicios.ToDataSourceResult(request, sERVICIOS => new {
-                sucu_id = sERVICIOS.sucu_id,
-                prod_id = sERVICIOS.prod_id,
-                prod_sku = sERVICIOS.prod_sku,
-                prod_name = sERVICIOS.prod_name,
-                prod_desc = sERVICIOS.prod_desc,
-                prod_price = sERVICIOS.prod_price,
-                prod_stock = sERVICIOS.prod_stock
-               
-            });
-
-            return Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -138,76 +122,103 @@ namespace WallsWS.Controllers
             return Json(new[] { sERVICIOS }.ToDataSourceResult(request, ModelState));
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult PRODUCTOS_Create([DataSourceRequest]DataSourceRequest request, PRODUCTOS pRODUCTOS)
+        public ActionResult PRODUCTOS_Read([DataSourceRequest]DataSourceRequest request)
         {
-            if (ModelState.IsValid)
-            {
-                var entity = new PRODUCTOS
-                {
-                    sucu_id = pRODUCTOS.sucu_id,
-                    prod_id = pRODUCTOS.prod_id,
-                    prod_sku = pRODUCTOS.prod_sku,
-                    prod_name = pRODUCTOS.prod_name,
-                    prod_desc = pRODUCTOS.prod_desc,
-                    prod_price = pRODUCTOS.prod_price,
-                    prod_stock = pRODUCTOS.prod_stock
-                };
+            IQueryable<SERVICIOS> servicios = db.SERVICIOS.Where(q => q.sucu_id == 1 && q.serv_product == 1);
+            DataSourceResult result = servicios.ToDataSourceResult(request, sERVICIOS => new {
+                sucu_id = sERVICIOS.sucu_id,
+                serv_id = sERVICIOS.serv_id,
+                serv_sku = sERVICIOS.serv_sku,
+                serv_name = sERVICIOS.serv_name,
+                serv_desc = sERVICIOS.serv_desc,
+                serv_price = sERVICIOS.serv_price,
+                serv_product = sERVICIOS.serv_product,
+                serv_stock = sERVICIOS.serv_stock,
 
-                db.PRODUCTOS.Add(entity);
-                db.SaveChanges();
-                pRODUCTOS.prod_id = entity.prod_id;
-            }
+            });
 
-            return Json(new[] { pRODUCTOS }.ToDataSourceResult(request, ModelState));
+            return Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult PRODUCTOS_Update([DataSourceRequest]DataSourceRequest request, PRODUCTOS pRODUCTOS)
+        public ActionResult PRODUCTOS_Create([DataSourceRequest]DataSourceRequest request, SERVICIOS sERVICIOS)
         {
             if (ModelState.IsValid)
             {
-                var entity = new PRODUCTOS
+                var entity = new SERVICIOS
                 {
-                    sucu_id = pRODUCTOS.sucu_id,
-                    prod_id = pRODUCTOS.prod_id,
-                    prod_sku = pRODUCTOS.prod_sku,
-                    prod_name = pRODUCTOS.prod_name,
-                    prod_desc = pRODUCTOS.prod_desc,
-                    prod_price = pRODUCTOS.prod_price,
-                    prod_stock = pRODUCTOS.prod_stock
+                    sucu_id = 1,
+                    serv_sku = sERVICIOS.serv_sku,
+                    serv_name = sERVICIOS.serv_name,
+                    serv_desc = sERVICIOS.serv_desc,
+                    serv_price = sERVICIOS.serv_price,
+                    serv_product = 1,
+                    serv_stock = 1
                 };
 
-                db.PRODUCTOS.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
+                db.SERVICIOS.Add(entity);
                 db.SaveChanges();
+                sERVICIOS.serv_id = entity.serv_id;
             }
 
-            return Json(new[] { pRODUCTOS }.ToDataSourceResult(request, ModelState));
+            return Json(new[] { sERVICIOS }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult PRODUCTOS_Destroy([DataSourceRequest]DataSourceRequest request, PRODUCTOS pRODUCTOS)
+        public ActionResult PRODUCTOS_Update([DataSourceRequest]DataSourceRequest request, SERVICIOS sERVICIOS)
         {
             if (ModelState.IsValid)
             {
-                var entity = new PRODUCTOS
+
+                var stock =db.SERVICIOS.Where(q => q.serv_id == sERVICIOS.serv_id).ToList();
+
+                int st =Convert.ToInt32(stock[0].serv_stock);
+
+                try
                 {
-                    sucu_id = pRODUCTOS.sucu_id,
-                    prod_id = pRODUCTOS.prod_id,
-                    prod_sku = pRODUCTOS.prod_sku,
-                    prod_name = pRODUCTOS.prod_name,
-                    prod_desc = pRODUCTOS.prod_desc,
-                    prod_price = pRODUCTOS.prod_price,
-                    prod_stock = pRODUCTOS.prod_stock
+                   
+
+                    var stud = (from s in db.SERVICIOS
+                                where s.serv_id == sERVICIOS.serv_id && s.sucu_id== sERVICIOS.sucu_id
+                                select s).FirstOrDefault();
+
+                    stud.serv_name = sERVICIOS.serv_name;
+                    stud.serv_desc = sERVICIOS.serv_desc;
+                    stud.serv_price = sERVICIOS.serv_price;
+                    stud.serv_stock = st + sERVICIOS.serv_stock;
+
+
+                    db.SaveChanges();
+                }
+                catch (Exception e) { }
+            }
+
+            return Json(new[] { sERVICIOS }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult PRODUCTOS_Destroy([DataSourceRequest]DataSourceRequest request, SERVICIOS sERVICIOS)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new SERVICIOS
+                {
+                    sucu_id = sERVICIOS.sucu_id,
+                    serv_id = sERVICIOS.serv_id,
+                    serv_sku = sERVICIOS.serv_sku,
+                    serv_name = sERVICIOS.serv_name,
+                    serv_desc = sERVICIOS.serv_desc,
+                    serv_price = sERVICIOS.serv_price,
+                    serv_stock = sERVICIOS.serv_stock,
+                    serv_product = sERVICIOS.serv_product,
                 };
 
-                db.PRODUCTOS.Attach(entity);
-                db.PRODUCTOS.Remove(entity);
+                db.SERVICIOS.Attach(entity);
+                db.SERVICIOS.Remove(entity);
                 db.SaveChanges();
             }
 
-            return Json(new[] { pRODUCTOS }.ToDataSourceResult(request, ModelState));
+            return Json(new[] { sERVICIOS }.ToDataSourceResult(request, ModelState));
         }
 
         [HttpPost]
