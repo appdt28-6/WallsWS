@@ -4,7 +4,7 @@
 }
 
 
-<script src="http://kendo.cdn.telerik.com/2016.2.607/js/cultures/kendo.culture.es-ES.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2016.2.607/js/cultures/kendo.culture.es-MX.min.js"></script>
 <!--http://kendo.cdn.telerik.com/2016.2.607/js/cultures/kendo.culture.es-MX.min.js-->
 <style>
 	#example {
@@ -42,10 +42,10 @@
 <div class="blank">
 	<table width="100%">
 		<tr>
-			<td><a id="myLink" href="#" onclick="MyFunction(1);return false;"><img src="~/Content/images/b1.png" /></a></td>
+			<td><a id="myLink" href="#" onclick="MyFunction(4);return false;"><img src="~/Content/images/b1.png" /></a></td>
 			<td><a id="myLink" href="#" onclick="MyFunction(2);return false;"><img src="~/Content/images/b2.png" /></a></td>
 			<td><a id="myLink" href="#" onclick="MyFunction(3);return false;"><img src="~/Content/images/b3.png" /></a></td>
-			<td><a id="myLink" href="#" onclick="MyFunction(4);return false;"><img src="~/Content/images/b4.png" /></a></td>
+			<td><a id="myLink" href="#" onclick="MyFunction(5);return false;"><img src="~/Content/images/b4.png" /></a></td>
 		</tr>
 	</table>
 	<br />
@@ -54,7 +54,29 @@
 	.Content("Nueva Cita")
 	.HtmlAttributes(new { type = "button" })
 	.Events(ev => ev.Click("onClick")))
-	<br />
+
+	@(Html.Kendo().Button()
+	.Name("textButton2")
+	.Content("Registrar venta")
+	.HtmlAttributes(new { type = "button" })
+	.Events(ev => ev.Click("onClickv")))
+
+	@(Html.Kendo().DropDownList()
+	.Name("barb_id")
+	.OptionLabel("Seleccione...")
+	.DataTextField("barb_name")
+	.DataValueField("barb_id")
+	.HtmlAttributes(new { style = "width:300px" })
+	.DataSource(source =>
+	{
+		source.Read(read =>
+		{
+			read.Action("GetBarber", "Agenda");
+		});
+	})
+	)
+
+                        <br />
 
 	@(Html.Kendo().Grid<WallsWS.Models.vis_AGENDA>()
 	  .Name("grid")
@@ -66,7 +88,7 @@
 		  columns.Bound(c => c.serv_id).Hidden();
 		  columns.Bound(c => c.serv_name).Title("Servicio");
 		  columns.Bound(c => c.cust_name).Title("Cliente");
-		  columns.Bound(c => c.cust_phone).Hidden();
+		  columns.Bound(c => c.cust_phone).Title("Telefono");
 		  columns.Bound(c => c.cust_mail).Hidden();
 		  columns.Bound(c => c.agen_date).Title("Fecha").Format("{0:yyyy-MM-dd}");
 		  columns.Bound(c => c.hrdi_hora).Title("Hora");
@@ -116,33 +138,54 @@
 	<br />
 	Servicios Cobrados<br />
 	<br />
-	@(Html.Kendo().Grid<WallsWS.Models.vis_AGENDA>()
+	@(Html.Kendo().Grid<WallsWS.Models.vis_Ticket>()
 	  .Name("gridend")
 	  .Columns(columns =>
 	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.ticket_id).Title("ID Ticket");
 		  columns.Bound(c => c.barb_name).Title("Barbero");
-		  columns.Bound(c => c.serv_name).Title("Servicio");
-		  columns.Bound(c => c.cust_name).Title("Cliente");
-		  columns.Bound(c => c.cust_phone).Hidden();
-		  columns.Bound(c => c.cust_mail).Hidden();
-		  columns.Bound(c => c.agen_date).Title("Fecha");
-		  columns.Bound(c => c.serv_price).Title("Pagado").Format("{0:C}");
-		  columns.Bound(c => c.hrdi_hora).Hidden();
-		  columns.Bound(c => c.agen_status).Hidden();
+		  columns.Bound(c => c.ticket_subtotal).Title("Total de Venta");
 	  })
 	  .ToolBar(toolbar =>
 	  {
 		  toolbar.Excel();
 		  toolbar.Pdf();
 	  })
+	  .ClientDetailTemplateId("template")
 	  .Pageable()
 	  .Filterable()
 	  .Scrollable()
 	  .DataSource(dataSource => dataSource
 		  .Ajax()
-		  .Read(read => read.Action("AGENDA_Sin_Read", "Agenda"))
+		.Model(model => model.Id(p => p.ticket_id))
+		.Read(read => read.Action("AGENDA_Sin_Read", "Agenda"))
 	  )
 	)
+	<script id="template" type="text/kendo-tmpl">
+		@(Html.Kendo().Grid<WallsWS.Models.vis_Ticket_Detail>()
+			.Name("gridend_#=ticket_id#") // template expression, to be evaluated in the master context
+			.Columns(columns =>
+			{
+				columns.Bound(o => o.venta_id).Hidden();
+				columns.Bound(o => o.serv_name).Title("Producto").Width(110);
+				columns.Bound(o => o.prod_price).Title("Precio").Format("{0:C}");
+				columns.Bound(o => o.venta_cantidad).Title("Cantidad");
+				columns.Bound(o => o.Venta_Importe).Title("Importe").Format("{0:C}");
+				columns.Bound(o => o.venta_discount).Title("Descuento").Format("{0:C}");
+				columns.Bound(o => o.disc_desc).Title("Descripción").Format("{0:C}");
+				columns.Bound(o => o.serv_comi).Title("Comosión B.").Format("{0:C}");
+			})
+			.DataSource(dataSource => dataSource
+				.Ajax()
+				.PageSize(10)
+				.Read(read => read.Action("AGENDA_Sin_Read_Detail", "Agenda", new { ticket = "#=ticket_id#" }))
+			)
+			.Pageable()
+			.Sortable()
+			.ToClientTemplate()
+		)
+	</script>
 	</div>
 
 	<script>
@@ -164,10 +207,19 @@
 			$("#window").data("kendoWindow").open().center();
 		}
 
+		function onClickv(e) {
+			var barb = $("#barb_id").val();
+			if (barb == "") { alert("Seleccione Vandedor") }
+			else {
+				window.location.href = "../Tickets/Tickets?agenid=0&servid=0&barbid=" + barb;
+			}
+					
+		}
+
 		function onClose() {
 			$("#grid").data("kendoGrid").dataSource.read();
 			$("#gridend").data("kendoGrid").dataSource.read();
-	
+
 			var dropDownList = $('#barb_id').data('kendoDropDownList');
 			dropDownList.dataSource.read();
 			dropDownList.refresh();
@@ -179,7 +231,7 @@
 			var dropDownList3 = $('#hrdi_id').data('kendoDropDownList');
 			dropDownList3.dataSource.read();
 			dropDownList3.refresh();
-			
+
 			document.getElementById("name").value="";
 			document.getElementById("phone").value = "";
 			document.getElementById("mail").value = "";
@@ -193,12 +245,13 @@
 			var cust = document.getElementById("name").value;
 			var phone = document.getElementById("phone").value;
 			var mail = document.getElementById("mail").value;
+			var date=document.getElementById("datepicker").value;
 
 			//alert(barb + "-" + serv + "-" + hora + "-" + cust + "-" + phone + "-" + mail)
 
 			 $.ajax({
 					type: "POST",
-					data: { serv_id: serv, barb: barb, hora: hora, cust_name: cust, cust_phone: phone, cust_email: mail },
+					data: { serv_id: serv, barb: barb, hora: hora, cust_name: cust, cust_phone: phone, cust_email: mail, date:date },
 					url: '@Url.Action("SetAgenda", "Agenda")',
 					success: function (response) {
 						if (response != null && response.success) {
@@ -219,7 +272,7 @@
 			});
 		}
 
-		kendo.culture("es-ES");
+		kendo.culture("es-MX");
 
 	</script>
 

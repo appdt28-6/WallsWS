@@ -36,7 +36,8 @@
 	<div class="col-md-3 market-update-gd">
 		<div class="market-update-block clr-block-1">
 			<div class="col-md-12 market-update-left">
-				<h3>Dato 4</h3>
+				<h3>@ViewData["total"]</h3>
+				<p>Total</p>
 				<!-- <p>Other hand, we denounce</p>-->
 			</div>
 			<div class="clearfix"> </div>
@@ -50,6 +51,33 @@
 <div class="inner-block">
     <div class="chart-main-block">
         <div class="chart-first-line">
+
+			<h3>Productos y servicios vendidos</h3>
+			
+	@(Html.Kendo().Grid<WallsWS.Models.vis_Get_Quanty_Product>()
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.serv_name).Title("Servicio");
+		  columns.Bound(c => c.productos).Title("Cantidad");
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  // toolbar.Create().Text("Asignar Nueva Cita");
+		  toolbar.Excel().Text("");
+		  toolbar.Pdf().Text("");
+	  })
+	  //.Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("_Cobro"))
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		.Ajax()
+		.Read(read => read.Action("PRODUCTOS_Read", "Dashboard"))
+	  )
+
+      )
+			<br />
+
             <div class="col-md-6 chart-blo-1">
                 <div class="dygno">
                     <h2>Servicios mas Solicitados</h2>

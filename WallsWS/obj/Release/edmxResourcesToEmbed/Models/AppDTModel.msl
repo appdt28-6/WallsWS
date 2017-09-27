@@ -250,5 +250,46 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_Get_Ventas" FunctionName="AppDTModel.Store.sp_Get_Ventas" />
+    <EntitySetMapping Name="vis_Ticket_Detail">
+      <EntityTypeMapping TypeName="AppDTModel.vis_Ticket_Detail">
+        <MappingFragment StoreEntitySet="vis_Ticket_Detail">
+          <ScalarProperty Name="serv_comi" ColumnName="serv_comi" />
+          <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+          <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+          <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+          <ScalarProperty Name="prod_price" ColumnName="prod_price" />
+          <ScalarProperty Name="venta_cantidad" ColumnName="venta_cantidad" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+          <ScalarProperty Name="venta_id" ColumnName="venta_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_Ticket">
+      <EntityTypeMapping TypeName="AppDTModel.vis_Ticket">
+        <MappingFragment StoreEntitySet="vis_Ticket">
+          <ScalarProperty Name="Ticket_Pago" ColumnName="Ticket_Pago" />
+          <ScalarProperty Name="Ticket_Status" ColumnName="Ticket_Status" />
+          <ScalarProperty Name="ticket_subtotal" ColumnName="ticket_subtotal" />
+          <ScalarProperty Name="ticket_date" ColumnName="ticket_date" />
+          <ScalarProperty Name="barb_name" ColumnName="barb_name" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_Gastos" FunctionName="AppDTModel.Store.sp_Get_Gastos" />
+    <EntitySetMapping Name="vis_Get_Quanty_Product">
+      <EntityTypeMapping TypeName="AppDTModel.vis_Get_Quanty_Product">
+        <MappingFragment StoreEntitySet="vis_Get_Quanty_Product">
+          <ScalarProperty Name="productos" ColumnName="productos" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

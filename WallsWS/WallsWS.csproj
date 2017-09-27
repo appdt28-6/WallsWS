@@ -293,7 +293,16 @@
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vis_AGENDA_BARBEROS_Result.cs" />
+    <Compile Include="Models\vis_Get_Quanty_Product.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vis_Set_Agenda.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vis_Ticket.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vis_Ticket_Detail.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vis_VENTASTICKET_PRODUCTOS.cs">

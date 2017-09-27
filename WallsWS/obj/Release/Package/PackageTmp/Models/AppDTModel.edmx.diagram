@@ -22,6 +22,9 @@
         <EntityTypeShape EntityType="AppDTModel.vis_AGENDA" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="AppDTModel.GASTOS" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="AppDTModel.SERVICIOS" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AppDTModel.vis_Ticket_Detail" Width="1.5" PointX="12.375" PointY="3.75" />
+        <EntityTypeShape EntityType="AppDTModel.vis_Ticket" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AppDTModel.vis_Get_Quanty_Product" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

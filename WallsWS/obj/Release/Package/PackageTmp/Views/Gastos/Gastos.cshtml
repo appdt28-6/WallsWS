@@ -12,16 +12,20 @@
 		  columns.Bound(c => c.sucu_id).Hidden();
 		  columns.Bound(c => c.gast_id).Hidden();
 		  columns.Bound(c => c.gast_desc).Title("Desc. Gasto");
-		  columns.Bound(c => c.gast_amount).Title("Importe");
+		  columns.Bound(c => c.gast_amount).Title("Importe").Format("{0:C}");
 		  columns.Bound(c => c.gast_date).Title("Fecha");
-		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar =>
 	  {
-		  toolbar.Create();
+		  toolbar.Create().Text("Nuevo");
 		  toolbar.Excel();
 		  toolbar.Pdf();
 	  })
+	   .Events(e =>
+	   {
+		   e.Save("onSave");
+	   })
 	  .Editable(editable => editable.Mode(GridEditMode.InLine))
 	  .Pageable()
 	  .Filterable()
@@ -35,7 +39,15 @@
 		  .Read(read => read.Action("GASTOS_Read", "Gastos"))
 		  .Create(create => create.Action("GASTOS_Create", "Gastos"))
 		  .Update(update => update.Action("GASTOS_Update", "Gastos"))
-		  .Destroy(destroy => destroy.Action("GASTOS_Destroy", "Gastos"))
+		  .Destroy(destroy => destroy.Action("GASTOS_Deleted", "Gastos"))
 	  )
 )
+<script>
+function onSave(e) {
+		//alert("Onsave");
+		e.sender.one("dataBound", function () {
+			e.sender.dataSource.read();
+			});
 
+	}
+</script>

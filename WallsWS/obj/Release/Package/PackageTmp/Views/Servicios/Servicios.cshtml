@@ -11,7 +11,7 @@ Catalogo de Servicios<br />
 		  columns.Bound(c => c.serv_desc).Title("Desc.");
 		  columns.Bound(c => c.serv_price).Title("Precio").Format("{0:C}");
 		  columns.Bound(c => c.serv_comi).Title("Comisión por Servicio").Format("{0:C}");
-		  columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
+		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar => {
 		  toolbar.Create();
@@ -45,6 +45,7 @@ Catalogo de Productos:<br />
 		  columns.Bound(c => c.serv_name).Title("Serv/Producto");
 		  columns.Bound(c => c.serv_desc).Title("Desc.");
 		  columns.Bound(c => c.serv_price).Title("Precio").Format("{0:C}");
+		  columns.Bound(c => c.serv_comi).Title("Comisión");
 		  columns.Bound(c => c.serv_stock).Title("Stock");
 		  columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })

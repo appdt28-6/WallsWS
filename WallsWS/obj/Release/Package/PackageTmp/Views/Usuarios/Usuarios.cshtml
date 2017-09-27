@@ -3,13 +3,13 @@
       .Name("grid")
       .Columns(columns =>
       {
-        columns.Bound(c => c.comp_id).Hidden();
+        columns.Bound(c => c.sucu_id).Hidden();
         columns.Bound(c => c.user_name).Title("Nombre");
         columns.Bound(c => c.user_phone).Title("Telefono");
         columns.Bound(c => c.user_mail).Title("Email");
         columns.Bound(c => c.user_user).Title("Usuario");
         columns.Bound(c => c.user_password).Title("Contraseña").Format("***");
-        columns.Command(command => { command.Edit().Text("Editar"); command.Destroy().Text("Eliminar"); }).Width(180);
+        columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
       })
       .ToolBar(toolbar => {
             toolbar.Create().Text("Nuevo");

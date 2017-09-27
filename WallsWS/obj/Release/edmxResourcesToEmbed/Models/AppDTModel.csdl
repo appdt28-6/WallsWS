@@ -51,6 +51,10 @@
     <FunctionImport Name="sp_Get_Ventas" ReturnType="Collection(Int32)">
       <Parameter Name="pago" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="vis_Ticket_Detail" EntityType="AppDTModel.vis_Ticket_Detail" />
+    <EntitySet Name="vis_Ticket" EntityType="AppDTModel.vis_Ticket" />
+    <FunctionImport Name="sp_Get_Gastos" ReturnType="Collection(Int32)" />
+    <EntitySet Name="vis_Get_Quanty_Product" EntityType="AppDTModel.vis_Get_Quanty_Product" />
   </EntityContainer>
   <EntityType Name="BARBEROS">
     <Key>
@@ -282,5 +286,53 @@
     <Property Name="serv_comi" Type="Double" />
     <Property Name="serv_product" Type="Int32" />
     <Property Name="serv_stock" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_Ticket_Detail">
+    <Key>
+      <PropertyRef Name="venta_id" />
+      <PropertyRef Name="ticket_id" />
+      <PropertyRef Name="prod_id" />
+      <PropertyRef Name="venta_cantidad" />
+      <PropertyRef Name="prod_price" />
+      <PropertyRef Name="Venta_Importe" />
+    </Key>
+    <Property Name="venta_id" Type="Int32" Nullable="false" />
+    <Property Name="ticket_id" Type="Int32" Nullable="false" />
+    <Property Name="prod_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="venta_cantidad" Type="Int32" Nullable="false" />
+    <Property Name="prod_price" Type="Double" Nullable="false" />
+    <Property Name="Venta_Importe" Type="Double" Nullable="false" />
+    <Property Name="venta_discount" Type="Double" />
+    <Property Name="disc_desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="serv_comi" Type="Double" />
+  </EntityType>
+  <EntityType Name="vis_Ticket">
+    <Key>
+      <PropertyRef Name="ticket_id" />
+      <PropertyRef Name="sucu_id" />
+      <PropertyRef Name="barb_id" />
+      <PropertyRef Name="ticket_date" />
+      <PropertyRef Name="ticket_subtotal" />
+      <PropertyRef Name="Ticket_Status" />
+    </Key>
+    <Property Name="ticket_id" Type="Int32" Nullable="false" />
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_id" Type="Int32" Nullable="false" />
+    <Property Name="barb_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ticket_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ticket_subtotal" Type="Double" Nullable="false" />
+    <Property Name="Ticket_Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ticket_Pago" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_Get_Quanty_Product">
+    <Key>
+      <PropertyRef Name="sucu_id" />
+      <PropertyRef Name="Prod_Id" />
+    </Key>
+    <Property Name="sucu_id" Type="Int32" Nullable="false" />
+    <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+    <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="productos" Type="Int32" />
   </EntityType>
 </Schema>

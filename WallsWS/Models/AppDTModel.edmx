@@ -218,6 +218,18 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' no 
           <Property Name="agen_status" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Get_Quanty_Product' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vis_Get_Quanty_Product">
+          <Key>
+            <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="Prod_Id" />
+          </Key>
+          <Property Name="sucu_id" Type="int" Nullable="false" />
+          <Property Name="Prod_Id" Type="int" Nullable="false" />
+          <Property Name="serv_name" Type="varchar" MaxLength="50" />
+          <Property Name="productos" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vis_Set_Agenda">
           <Key>
@@ -237,6 +249,48 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Set_Agenda' no tiene
           <Property Name="hrdi_id" Type="int" Nullable="false" />
           <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
           <Property Name="agen_status" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Ticket' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vis_Ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+            <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="barb_id" />
+            <PropertyRef Name="ticket_date" />
+            <PropertyRef Name="ticket_subtotal" />
+            <PropertyRef Name="Ticket_Status" />
+          </Key>
+          <Property Name="ticket_id" Type="int" Nullable="false" />
+          <Property Name="sucu_id" Type="int" Nullable="false" />
+          <Property Name="barb_id" Type="int" Nullable="false" />
+          <Property Name="barb_name" Type="varchar" MaxLength="50" />
+          <Property Name="ticket_date" Type="smalldatetime" Nullable="false" />
+          <Property Name="ticket_subtotal" Type="float" Nullable="false" />
+          <Property Name="Ticket_Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ticket_Pago" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_Ticket_Detail' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vis_Ticket_Detail">
+          <Key>
+            <PropertyRef Name="venta_id" />
+            <PropertyRef Name="ticket_id" />
+            <PropertyRef Name="prod_id" />
+            <PropertyRef Name="venta_cantidad" />
+            <PropertyRef Name="prod_price" />
+            <PropertyRef Name="Venta_Importe" />
+          </Key>
+          <Property Name="venta_id" Type="int" Nullable="false" />
+          <Property Name="ticket_id" Type="int" Nullable="false" />
+          <Property Name="prod_id" Type="int" Nullable="false" />
+          <Property Name="serv_name" Type="varchar" MaxLength="50" />
+          <Property Name="venta_cantidad" Type="int" Nullable="false" />
+          <Property Name="prod_price" Type="float" Nullable="false" />
+          <Property Name="Venta_Importe" Type="float" Nullable="false" />
+          <Property Name="venta_discount" Type="float" />
+          <Property Name="disc_desc" Type="varchar" MaxLength="150" />
+          <Property Name="serv_comi" Type="float" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCTOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -265,6 +319,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
         <Function Name="sp_Get_Commission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="barber" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Get_Gastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Get_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pago" Type="int" Mode="In" />
         </Function>
@@ -313,6 +368,14 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     [vis_AGENDA_BARBEROS].[agen_status] AS [agen_status]
     FROM [dbo].[vis_AGENDA_BARBEROS] AS [vis_AGENDA_BARBEROS]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vis_Get_Quanty_Product" EntityType="Self.vis_Get_Quanty_Product" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vis_Get_Quanty_Product].[sucu_id] AS [sucu_id], 
+    [vis_Get_Quanty_Product].[Prod_Id] AS [Prod_Id], 
+    [vis_Get_Quanty_Product].[serv_name] AS [serv_name], 
+    [vis_Get_Quanty_Product].[productos] AS [productos]
+    FROM [dbo].[vis_Get_Quanty_Product] AS [vis_Get_Quanty_Product]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vis_Set_Agenda" EntityType="Self.vis_Set_Agenda" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vis_Set_Agenda].[agen_id] AS [agen_id], 
@@ -327,6 +390,32 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     [vis_Set_Agenda].[hrdi_hora] AS [hrdi_hora], 
     [vis_Set_Agenda].[agen_status] AS [agen_status]
     FROM [dbo].[vis_Set_Agenda] AS [vis_Set_Agenda]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vis_Ticket" EntityType="Self.vis_Ticket" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vis_Ticket].[ticket_id] AS [ticket_id], 
+    [vis_Ticket].[sucu_id] AS [sucu_id], 
+    [vis_Ticket].[barb_id] AS [barb_id], 
+    [vis_Ticket].[barb_name] AS [barb_name], 
+    [vis_Ticket].[ticket_date] AS [ticket_date], 
+    [vis_Ticket].[ticket_subtotal] AS [ticket_subtotal], 
+    [vis_Ticket].[Ticket_Status] AS [Ticket_Status], 
+    [vis_Ticket].[Ticket_Pago] AS [Ticket_Pago]
+    FROM [dbo].[vis_Ticket] AS [vis_Ticket]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vis_Ticket_Detail" EntityType="Self.vis_Ticket_Detail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vis_Ticket_Detail].[venta_id] AS [venta_id], 
+    [vis_Ticket_Detail].[ticket_id] AS [ticket_id], 
+    [vis_Ticket_Detail].[prod_id] AS [prod_id], 
+    [vis_Ticket_Detail].[serv_name] AS [serv_name], 
+    [vis_Ticket_Detail].[venta_cantidad] AS [venta_cantidad], 
+    [vis_Ticket_Detail].[prod_price] AS [prod_price], 
+    [vis_Ticket_Detail].[Venta_Importe] AS [Venta_Importe], 
+    [vis_Ticket_Detail].[venta_discount] AS [venta_discount], 
+    [vis_Ticket_Detail].[disc_desc] AS [disc_desc], 
+    [vis_Ticket_Detail].[serv_comi] AS [serv_comi]
+    FROM [dbo].[vis_Ticket_Detail] AS [vis_Ticket_Detail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vis_VENTASTICKET_PRODUCTOS" EntityType="Self.vis_VENTASTICKET_PRODUCTOS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -395,8 +484,12 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <EntitySet Name="GASTOS" EntityType="AppDTModel.GASTOS" />
           <EntitySet Name="SERVICIOS" EntityType="AppDTModel.SERVICIOS" />
           <FunctionImport Name="sp_Get_Ventas" ReturnType="Collection(Int32)">
-            <Parameter Name="pago" Mode="In" Type="Int32" />
+          <Parameter Name="pago" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="vis_Ticket_Detail" EntityType="AppDTModel.vis_Ticket_Detail" />
+          <EntitySet Name="vis_Ticket" EntityType="AppDTModel.vis_Ticket" />
+          <FunctionImport Name="sp_Get_Gastos" ReturnType="Collection(Int32)" />
+          <EntitySet Name="vis_Get_Quanty_Product" EntityType="AppDTModel.vis_Get_Quanty_Product" />
         </EntityContainer>
         <EntityType Name="BARBEROS">
           <Key>
@@ -628,6 +721,54 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <Property Name="serv_comi" Type="Double" />
           <Property Name="serv_product" Type="Int32" />
           <Property Name="serv_stock" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vis_Ticket_Detail">
+          <Key>
+            <PropertyRef Name="venta_id" />
+            <PropertyRef Name="ticket_id" />
+            <PropertyRef Name="prod_id" />
+            <PropertyRef Name="venta_cantidad" />
+            <PropertyRef Name="prod_price" />
+            <PropertyRef Name="Venta_Importe" />
+          </Key>
+          <Property Name="venta_id" Type="Int32" Nullable="false" />
+          <Property Name="ticket_id" Type="Int32" Nullable="false" />
+          <Property Name="prod_id" Type="Int32" Nullable="false" />
+          <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="venta_cantidad" Type="Int32" Nullable="false" />
+          <Property Name="prod_price" Type="Double" Nullable="false" />
+          <Property Name="Venta_Importe" Type="Double" Nullable="false" />
+          <Property Name="venta_discount" Type="Double" />
+          <Property Name="disc_desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="serv_comi" Type="Double" />
+        </EntityType>
+        <EntityType Name="vis_Ticket">
+          <Key>
+            <PropertyRef Name="ticket_id" />
+            <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="barb_id" />
+            <PropertyRef Name="ticket_date" />
+            <PropertyRef Name="ticket_subtotal" />
+            <PropertyRef Name="Ticket_Status" />
+          </Key>
+          <Property Name="ticket_id" Type="Int32" Nullable="false" />
+          <Property Name="sucu_id" Type="Int32" Nullable="false" />
+          <Property Name="barb_id" Type="Int32" Nullable="false" />
+          <Property Name="barb_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ticket_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ticket_subtotal" Type="Double" Nullable="false" />
+          <Property Name="Ticket_Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ticket_Pago" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vis_Get_Quanty_Product">
+          <Key>
+            <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="Prod_Id" />
+          </Key>
+          <Property Name="sucu_id" Type="Int32" Nullable="false" />
+          <Property Name="Prod_Id" Type="Int32" Nullable="false" />
+          <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productos" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -884,6 +1025,47 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Get_Ventas" FunctionName="AppDTModel.Store.sp_Get_Ventas" />
+          <EntitySetMapping Name="vis_Ticket_Detail">
+            <EntityTypeMapping TypeName="AppDTModel.vis_Ticket_Detail">
+              <MappingFragment StoreEntitySet="vis_Ticket_Detail">
+                <ScalarProperty Name="serv_comi" ColumnName="serv_comi" />
+                <ScalarProperty Name="disc_desc" ColumnName="disc_desc" />
+                <ScalarProperty Name="venta_discount" ColumnName="venta_discount" />
+                <ScalarProperty Name="Venta_Importe" ColumnName="Venta_Importe" />
+                <ScalarProperty Name="prod_price" ColumnName="prod_price" />
+                <ScalarProperty Name="venta_cantidad" ColumnName="venta_cantidad" />
+                <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+                <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+                <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+                <ScalarProperty Name="venta_id" ColumnName="venta_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vis_Ticket">
+            <EntityTypeMapping TypeName="AppDTModel.vis_Ticket">
+              <MappingFragment StoreEntitySet="vis_Ticket">
+                <ScalarProperty Name="Ticket_Pago" ColumnName="Ticket_Pago" />
+                <ScalarProperty Name="Ticket_Status" ColumnName="Ticket_Status" />
+                <ScalarProperty Name="ticket_subtotal" ColumnName="ticket_subtotal" />
+                <ScalarProperty Name="ticket_date" ColumnName="ticket_date" />
+                <ScalarProperty Name="barb_name" ColumnName="barb_name" />
+                <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+                <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+                <ScalarProperty Name="ticket_id" ColumnName="ticket_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Get_Gastos" FunctionName="AppDTModel.Store.sp_Get_Gastos" />
+          <EntitySetMapping Name="vis_Get_Quanty_Product">
+            <EntityTypeMapping TypeName="AppDTModel.vis_Get_Quanty_Product">
+              <MappingFragment StoreEntitySet="vis_Get_Quanty_Product">
+                <ScalarProperty Name="productos" ColumnName="productos" />
+                <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

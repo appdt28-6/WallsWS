@@ -69,6 +69,12 @@ public partial class AppDTEntities : DbContext
 
     public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
 
+    public virtual DbSet<vis_Ticket_Detail> vis_Ticket_Detail { get; set; }
+
+    public virtual DbSet<vis_Ticket> vis_Ticket { get; set; }
+
+    public virtual DbSet<vis_Get_Quanty_Product> vis_Get_Quanty_Product { get; set; }
+
 
     public virtual int sp_SET_HORARIO(Nullable<int> barbid)
     {
@@ -115,6 +121,13 @@ public partial class AppDTEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Get_Ventas", pagoParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> sp_Get_Gastos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Get_Gastos");
     }
 
 }

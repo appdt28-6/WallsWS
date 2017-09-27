@@ -22,11 +22,11 @@
 		  columns.Bound(c => c.Venta_Importe).Title("Subtotal").Format("{0:C}");
 		  columns.Bound(c => c.venta_discount).Title("Descuento").Format("{0:C}");
 		  columns.Bound(c => c.disc_desc).Title("Descripción");
-		  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar =>
 	  {
-		  toolbar.Create();
+		  toolbar.Create().Text("Agregar");
 		  toolbar.Excel();
 		  toolbar.Pdf();
 	  })
@@ -107,7 +107,7 @@
 				}
 			},
 			error: function (response) {
-				alert("error!");  //
+				alert("Seleccione metodo de pago");  //
 			}
 
 		});

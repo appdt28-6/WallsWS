@@ -61,20 +61,34 @@ namespace WallsWS.Controllers
 
         public ActionResult AGENDA_Sin_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<vis_AGENDA> agenda = db.vis_AGENDA.Where(q=>q.agen_status==1);
+            try{ 
+            IQueryable<vis_Ticket> agenda = db.vis_Ticket.Where(q=>q.sucu_id==1);
             DataSourceResult result = agenda.ToDataSourceResult(request, aGENDA => new {
-                agen_id = aGENDA.agen_id,
+                ticket_id = aGENDA.ticket_id,
                 barb_id = aGENDA.barb_id,
                 barb_name = aGENDA.barb_name,
-                serv_id = aGENDA.serv_id,
+                sucu_id = aGENDA.sucu_id,
+                ticket_subtotal = aGENDA.ticket_subtotal,
+            });
+
+            return Json(result);
+            }
+            catch(Exception e){ return View(); }
+        }
+
+        public ActionResult AGENDA_Sin_Read_Detail([DataSourceRequest]DataSourceRequest request,int ticket)
+        {
+            IQueryable<vis_Ticket_Detail> agenda = db.vis_Ticket_Detail.Where(q => q.ticket_id == ticket);
+            DataSourceResult result = agenda.ToDataSourceResult(request, aGENDA => new {
+                ticket_id = aGENDA.ticket_id,
+                venta_id = aGENDA.venta_id,
                 serv_name = aGENDA.serv_name,
-                serv_price = aGENDA.serv_price,
-                cust_name = aGENDA.cust_name,
-                cust_phone = aGENDA.cust_phone,
-                cust_mail = aGENDA.cust_mail,
-                agen_date = aGENDA.agen_date,
-                hrdi_hora = aGENDA.hrdi_hora,
-                agen_status = aGENDA.agen_status
+                prod_price = aGENDA.prod_price,
+                venta_cantidad = aGENDA.venta_cantidad,
+                Venta_Importe = aGENDA.Venta_Importe,
+                venta_discount = aGENDA.venta_discount,
+                disc_desc = aGENDA.disc_desc,
+                serv_comi = aGENDA.serv_comi,
             });
 
             return Json(result);
@@ -202,7 +216,7 @@ namespace WallsWS.Controllers
         public ActionResult GetProductos()
         {
             //int comp = int.Parse(Session["comp_identifier"].ToString());
-            var routes = db.SERVICIOS.Where(a => a.sucu_id == 1).ToList().Select(route => new SERVICIOS()
+            var routes = db.SERVICIOS.Where(a => a.sucu_id == 1 && a.serv_product==0).ToList().Select(route => new SERVICIOS()
             {
                 serv_id = route.serv_id,
                 serv_name = route.serv_name
@@ -235,7 +249,7 @@ namespace WallsWS.Controllers
             return Json(routes, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SetAgenda(int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id)
+        public ActionResult SetAgenda(int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id,string date)
         {
             var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             try
@@ -249,7 +263,7 @@ namespace WallsWS.Controllers
                     cust_name = cust_name,
                     cust_mail = cust_email,
                     cust_phone = cust_phone,
-                    agen_date = fecha,
+                    agen_date = date,
                     agen_status = 0
                 };
 
