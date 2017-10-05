@@ -34,7 +34,8 @@ namespace WallsWS.Controllers
 
         public ActionResult BARBEROS_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<BARBEROS> barberos = db.BARBEROS.Where(q=>q.sucu_id==1);
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
+            IQueryable<BARBEROS> barberos = db.BARBEROS.Where(q=>q.sucu_id==sucu);
             DataSourceResult result = barberos.ToDataSourceResult(request, bARBEROS => new {
                 sucu_id = bARBEROS.sucu_id,
                 barb_id = bARBEROS.barb_id,
@@ -51,11 +52,12 @@ namespace WallsWS.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult BARBEROS_Create([DataSourceRequest]DataSourceRequest request, BARBEROS bARBEROS)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             if (ModelState.IsValid)
             {
                 var entity = new BARBEROS
                 {
-                    sucu_id = 1,
+                    sucu_id = sucu,
                     barb_id = bARBEROS.barb_id,
                     barb_name = bARBEROS.barb_name,
                     barb_phone = bARBEROS.barb_phone,

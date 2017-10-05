@@ -166,7 +166,6 @@ C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\bin\zh
 C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Debug\WallsWS.dll
 C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Debug\WallsWS.pdb
 C:\Users\Miguel Mendez\Documents\Visual Studio 2015\AppDT\WallsWS\WallsWS\obj\Debug\WallsWS.csprojResolveAssemblyReference.cache
-Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\obj\Debug\WallsWS.csprojResolveAssemblyReference.cache
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\bin\ApplicationInsights.config
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\bin\roslyn\csc.exe
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll

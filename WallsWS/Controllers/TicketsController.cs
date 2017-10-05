@@ -349,5 +349,18 @@ namespace WallsWS.Controllers
             //return RedirectToAction("Agenda", "Agenda");
         }
 
+        public ActionResult GetProductos()
+        {
+            //int comp = int.Parse(Session["comp_identifier"].ToString());
+            //var dt = (from x in db.SERVICIOS group x by x.serv_desc).ToList();
+            var routes = db.SERVICIOS.Where(q=>q.sucu_id==1).OrderBy(q=>q.serv_product).ToList().Select(route => new SERVICIOS()
+            {
+                serv_id = route.serv_id,
+                serv_name = route.serv_name
+                //id_last = route.id_last
+            });
+            return Json(routes, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

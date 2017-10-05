@@ -35,7 +35,8 @@ namespace WallsWS.Controllers
 
         public ActionResult HORARIO_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<HORARIO> horario = db.HORARIO;
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
+            IQueryable<HORARIO> horario = db.HORARIO.Where(q=>q.sucu_id==sucu);
             DataSourceResult result = horario.ToDataSourceResult(request, hORARIO => new {
                 sucu_id = hORARIO.sucu_id,
                 hora_id = hORARIO.hora_id,
@@ -48,11 +49,12 @@ namespace WallsWS.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult HORARIO_Create([DataSourceRequest]DataSourceRequest request, HORARIO hORARIO)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             if (ModelState.IsValid)
             {
                 var entity = new HORARIO
                 {
-                    sucu_id =1,
+                    sucu_id =sucu,
                     hora_id = hORARIO.hora_id,
                     hora_desc = hORARIO.hora_desc,
                 };

@@ -34,7 +34,8 @@ namespace WallsWS.Controllers
 
         public ActionResult SERVICIOS_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<SERVICIOS> servicios = db.SERVICIOS.Where(q=>q.sucu_id==1&&q.serv_product==0);
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
+            IQueryable<SERVICIOS> servicios = db.SERVICIOS.Where(q=>q.sucu_id==sucu&&q.serv_product==0);
             DataSourceResult result = servicios.ToDataSourceResult(request, sERVICIOS => new {
                 sucu_id = sERVICIOS.sucu_id,
                 serv_id = sERVICIOS.serv_id,
@@ -51,12 +52,13 @@ namespace WallsWS.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SERVICIOS_Create([DataSourceRequest]DataSourceRequest request, SERVICIOS sERVICIOS)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             if (ModelState.IsValid)
             {
                 var entity = new SERVICIOS
                 {
                     serv_id = sERVICIOS.serv_id,
-                    sucu_id = 1,
+                    sucu_id = sucu,
                     serv_sku = sERVICIOS.serv_sku,
                     serv_name = sERVICIOS.serv_name,
                     serv_desc = sERVICIOS.serv_desc,

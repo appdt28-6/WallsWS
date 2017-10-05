@@ -32,12 +32,14 @@ namespace WallsWS.Controllers
         public ActionResult AGENDA_Barbero_Read([DataSourceRequest]DataSourceRequest request,int barb)
         {
             Session["barb"] = barb;
+            int sucu =Convert.ToInt32(Session["sucu_id"].ToString());
             try
             {
-                IQueryable<vis_AGENDA> agenda = db.vis_AGENDA.Where(q => q.barb_id == barb && q.agen_status == 0);
+                IQueryable<vis_AGENDA> agenda = db.vis_AGENDA.Where(q =>q.sucu_id==sucu &&q.barb_id == barb && q.agen_status == 0);
                 DataSourceResult result = agenda.ToDataSourceResult(request, aGENDA => new
                 {
                     agen_id = aGENDA.agen_id,
+                    sucu_id = aGENDA.sucu_id,
                     barb_id = aGENDA.barb_id,
                     barb_name = aGENDA.barb_name,
                     serv_id = aGENDA.serv_id,
@@ -119,6 +121,7 @@ namespace WallsWS.Controllers
 
         public ActionResult GetCobro(int agen_id,int serv_id,int barb_id)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             var producto = db.SERVICIOS.Where(q => q.serv_id == serv_id).ToList();
             var prod=producto[0].serv_id;
             double price=Convert.ToDouble(producto[0].serv_price);
@@ -130,7 +133,7 @@ namespace WallsWS.Controllers
                 Ticket_Subtotal = 0,
                 Ticket_Factura = 0,
                 Ticket_Date = DateTime.Now,
-                Sucu_Id = 1,
+                Sucu_Id = sucu,
                 Ticket_Status = "abierto",
                 Ticket_Pago = 0,
                 Ticket_Turno = 1,
@@ -158,7 +161,7 @@ namespace WallsWS.Controllers
 
             var CrearPago = new BARBERO_PAGO //Make sure you have a table called test in DB
             {
-                sucu_Id = 1,
+                sucu_Id = sucu,
                 barb_Id = barb_id,
                 pago_total = totalbarbero,
                 pago_procent=0,
@@ -215,8 +218,8 @@ namespace WallsWS.Controllers
 
         public ActionResult GetProductos()
         {
-            //int comp = int.Parse(Session["comp_identifier"].ToString());
-            var routes = db.SERVICIOS.Where(a => a.sucu_id == 1 && a.serv_product==0).ToList().Select(route => new SERVICIOS()
+            int sucu = int.Parse(Session["sucu_id"].ToString());
+            var routes = db.SERVICIOS.Where(a => a.sucu_id == sucu && a.serv_product==0).ToList().Select(route => new SERVICIOS()
             {
                 serv_id = route.serv_id,
                 serv_name = route.serv_name
@@ -240,7 +243,8 @@ namespace WallsWS.Controllers
 
         public ActionResult GetBarber()
         {
-            var routes = db.BARBEROS.Where(q => q.sucu_id == 1).ToList().Select(route => new BARBEROS()
+            int sucu = int.Parse(Session["sucu_id"].ToString());
+            var routes = db.BARBEROS.Where(q => q.sucu_id == sucu).ToList().Select(route => new BARBEROS()
             {
                 barb_id = route.barb_id,
                 barb_name = route.barb_name
@@ -249,7 +253,7 @@ namespace WallsWS.Controllers
             return Json(routes, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SetAgenda(int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id,string date)
+        public ActionResult SetAgenda(int sucu,int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id,string date)
         {
             var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             try
@@ -259,6 +263,7 @@ namespace WallsWS.Controllers
 
                     barb_id = barb,
                     serv_id = serv_id,
+                    sucu_id= sucu,
                     hrdi_id = hora,
                     cust_name = cust_name,
                     cust_mail = cust_email,

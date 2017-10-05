@@ -38,7 +38,7 @@ namespace WallsWS.Controllers
         {
 
             var role_id = IsValidUser(model.UserName, model.Password);
-            int comp = Convert.ToInt32(Session["comp_id"].ToString());
+            int comp = Convert.ToInt32(Session["sucu_id"].ToString());
 
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace WallsWS.Controllers
                         if (result.user_user != "")
                         {
                             Session["user_id"] = username;
-                            Session["comp_id"] = result.sucu_id;
+                            Session["sucu_id"] = result.sucu_id;
                             role_id = result.user_id.ToString();
                         }
                     }

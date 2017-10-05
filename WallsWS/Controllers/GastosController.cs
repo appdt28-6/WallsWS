@@ -32,8 +32,9 @@ namespace WallsWS.Controllers
 
         public ActionResult GASTOS_Read([DataSourceRequest]DataSourceRequest request)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
-            IQueryable<GASTOS> barberos = db.GASTOS.Where(q => q.sucu_id == 1 && q.gast_date==fecha);
+            IQueryable<GASTOS> barberos = db.GASTOS.Where(q => q.sucu_id == sucu && q.gast_date==fecha);
             DataSourceResult result = barberos.ToDataSourceResult(request, bARBEROS => new {
                 sucu_id = bARBEROS.sucu_id,
                 gast_id = bARBEROS.gast_id,
@@ -47,10 +48,11 @@ namespace WallsWS.Controllers
 
         public ActionResult GASTOS_Create([DataSourceRequest]DataSourceRequest request, GASTOS gASTOS)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             var CrearGasto = new GASTOS //Make sure you have a table called test in DB
             {
-                sucu_id = 1,
+                sucu_id = sucu,
                 gast_desc = gASTOS.gast_desc,
                 gast_amount = gASTOS.gast_amount,
                 gast_date = fecha,

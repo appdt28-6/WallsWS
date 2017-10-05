@@ -30,7 +30,8 @@ namespace WallsWS.Controllers
 
         public ActionResult USUARIOS_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<USUARIOS> usuarios = db.USUARIOS;
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
+            IQueryable<USUARIOS> usuarios = db.USUARIOS.Where(q=>q.sucu_id==sucu);
             DataSourceResult result = usuarios.ToDataSourceResult(request, uSUARIOS => new {
                 user_id = uSUARIOS.user_id,
                 sucu_id = uSUARIOS.sucu_id,
@@ -47,11 +48,12 @@ namespace WallsWS.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult USUARIOS_Create([DataSourceRequest]DataSourceRequest request, USUARIOS uSUARIOS)
         {
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
             if (ModelState.IsValid)
             {
                 var entity = new USUARIOS
                 {
-                    sucu_id = uSUARIOS.sucu_id,
+                    sucu_id = sucu,
                     user_name = uSUARIOS.user_name,
                     user_phone = uSUARIOS.user_phone,
                     user_mail = uSUARIOS.user_mail,

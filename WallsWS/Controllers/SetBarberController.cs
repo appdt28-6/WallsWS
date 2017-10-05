@@ -10,11 +10,11 @@ namespace WallsWS.Controllers
 {
     public class SetBarberController : ApiController
     {
-        public List<BARBEROS_Return> Index(int id)
+        public List<BARBEROS_Return> Index(int sucuid)
         {
             using (AppDTEntities db = new AppDTEntities())
             {
-                return db.BARBEROS.Select(barber => new BARBEROS_Return()
+                return db.BARBEROS.Where(q=>q.sucu_id== sucuid).Select(barber => new BARBEROS_Return()
                 {
                     barb_id = barber.barb_id,
                     barb_name = barber.barb_name,

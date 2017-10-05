@@ -61,10 +61,6 @@ public partial class AppDTEntities : DbContext
 
     public virtual DbSet<VENTASTICKET> VENTASTICKET { get; set; }
 
-    public virtual DbSet<AGENDA> AGENDA { get; set; }
-
-    public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
-
     public virtual DbSet<GASTOS> GASTOS { get; set; }
 
     public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
@@ -74,6 +70,12 @@ public partial class AppDTEntities : DbContext
     public virtual DbSet<vis_Ticket> vis_Ticket { get; set; }
 
     public virtual DbSet<vis_Get_Quanty_Product> vis_Get_Quanty_Product { get; set; }
+
+    public virtual DbSet<WALLSCARD> WALLSCARD { get; set; }
+
+    public virtual DbSet<AGENDA> AGENDA { get; set; }
+
+    public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
 
 
     public virtual int sp_SET_HORARIO(Nullable<int> barbid)
@@ -128,6 +130,35 @@ public partial class AppDTEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Get_Gastos");
+    }
+
+
+    public virtual int sp_New_Barber(Nullable<int> barber, Nullable<int> sucur)
+    {
+
+        var barberParameter = barber.HasValue ?
+            new ObjectParameter("barber", barber) :
+            new ObjectParameter("barber", typeof(int));
+
+
+        var sucurParameter = sucur.HasValue ?
+            new ObjectParameter("sucur", sucur) :
+            new ObjectParameter("sucur", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_New_Barber", barberParameter, sucurParameter);
+    }
+
+
+    public virtual ObjectResult<sp_SERVICIOS_AGROUP_Result> sp_SERVICIOS_AGROUP(Nullable<int> sucu)
+    {
+
+        var sucuParameter = sucu.HasValue ?
+            new ObjectParameter("sucu", sucu) :
+            new ObjectParameter("sucu", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SERVICIOS_AGROUP_Result>("sp_SERVICIOS_AGROUP", sucuParameter);
     }
 
 }

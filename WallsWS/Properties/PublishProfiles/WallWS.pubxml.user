@@ -79,7 +79,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2017 21:02:04</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>09/04/2017 21:02:04</publishTime>
+      <publishTime>04/09/2017 21:02:04</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>09/04/2017 21:02:03</publishTime>
@@ -223,7 +223,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2017 21:02:04</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>11/02/2014 14:26:04</publishTime>
+      <publishTime>09/04/2017 21:02:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>09/04/2017 21:02:04</publishTime>
@@ -244,10 +244,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2017 21:02:04</publishTime>
     </File>
     <File Include="bin/WallsWS.dll">
-      <publishTime>09/23/2017 13:34:09</publishTime>
+      <publishTime>10/04/2017 18:29:18</publishTime>
     </File>
     <File Include="bin/WallsWS.pdb">
-      <publishTime>09/23/2017 13:34:09</publishTime>
+      <publishTime>10/04/2017 18:29:18</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>09/04/2017 21:02:04</publishTime>
@@ -526,7 +526,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2017 21:02:03</publishTime>
     </File>
     <File Include="Models/AppDTModel.edmx.diagram">
-      <publishTime>09/23/2017 13:30:08</publishTime>
+      <publishTime>10/04/2017 18:08:12</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>09/04/2017 21:02:04</publishTime>
@@ -637,7 +637,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2017 11:43:54</publishTime>
     </File>
     <File Include="Views/Shared/EditorTemplates/_Producto.cshtml">
-      <publishTime>09/04/2017 22:09:38</publishTime>
+      <publishTime>10/04/2017 00:23:22</publishTime>
     </File>
     <File Include="Views/Shared/EditorTemplates/_Servicios.cshtml">
       <publishTime>09/14/2017 00:43:20</publishTime>
@@ -652,7 +652,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/18/2017 09:02:30</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/15/2017 22:29:36</publishTime>
+      <publishTime>09/30/2017 20:23:46</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/04/2017 21:02:03</publishTime>
@@ -669,6 +669,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Usuarios/Usuarios.cshtml">
       <publishTime>09/20/2017 15:57:16</publishTime>
     </File>
+    <File Include="Views/WallsCard/WallsCard.cshtml">
+      <publishTime>09/30/2017 20:28:41</publishTime>
+    </File>
     <File Include="Views/Web.config">
       <publishTime>09/04/2017 21:02:03</publishTime>
     </File>
@@ -676,7 +679,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/04/2017 21:02:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/08/2017 00:24:29</publishTime>
+      <publishTime>04/10/2017 17:09:22</publishTime>
     </File>
   </ItemGroup>
 </Project>

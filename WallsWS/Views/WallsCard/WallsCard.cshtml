@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "WallsCard";
+}
+
+@(Html.Kendo().Grid<WallsWS.Models.WALLSCARD>()
+	  .Name("grid")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.sucu_id).Hidden();
+		  columns.Bound(c => c.wall_id).Title("Walls ID");
+		  columns.Bound(c => c.cust_name).Title("Nombre");
+		  columns.Bound(c => c.cust_phone).Title("Telefono");
+		  columns.Bound(c => c.cust_mail).Title("Email");
+		  columns.Bound(c => c.cust_birth).Title("Cimpleaños");
+		  columns.Bound(c => c.cust_face).Title("Face");
+		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  toolbar.Create().Text("Nueva");
+		  toolbar.Excel();
+		  toolbar.Pdf();
+	  })
+	  .Editable(editable => editable.Mode(GridEditMode.InLine))
+	  .Pageable()
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		  .Ajax()
+		  .Model(model => {
+			  model.Id(p => p.wall_id);
+			  model.Field(p => p.wall_id).Editable(false);
+		  })
+		  .Read(read => read.Action("WallsCard_Read", "WallsCard"))
+		  .Create(create => create.Action("WallsCard_Create", "WallsCard"))
+		  .Update(update => update.Action("WallsCard_Update", "WallsCard"))
+		  .Destroy(destroy => destroy.Action("WallsCard_Destroy", "WallsCard"))
+	  )
+)
+

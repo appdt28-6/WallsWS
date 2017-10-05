@@ -190,39 +190,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="AGENDA">
-      <EntityTypeMapping TypeName="AppDTModel.AGENDA">
-        <MappingFragment StoreEntitySet="AGENDA">
-          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
-          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
-          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
-          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
-          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
-          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
-          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
-          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vis_AGENDA">
-      <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
-        <MappingFragment StoreEntitySet="vis_AGENDA">
-          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
-          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
-          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
-          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
-          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
-          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
-          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
-          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
-          <ScalarProperty Name="barb_name" ColumnName="barb_name" />
-          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
-          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="GASTOS">
       <EntityTypeMapping TypeName="AppDTModel.GASTOS">
         <MappingFragment StoreEntitySet="GASTOS">
@@ -288,6 +255,63 @@
           <ScalarProperty Name="serv_name" ColumnName="serv_name" />
           <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
           <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WALLSCARD">
+      <EntityTypeMapping TypeName="AppDTModel.WALLSCARD">
+        <MappingFragment StoreEntitySet="WALLSCARD">
+          <ScalarProperty Name="cust_face" ColumnName="cust_face" />
+          <ScalarProperty Name="cust_birth" ColumnName="cust_birth" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="wall_id" ColumnName="wall_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_New_Barber" FunctionName="AppDTModel.Store.sp_New_Barber" />
+    <FunctionImportMapping FunctionImportName="sp_SERVICIOS_AGROUP" FunctionName="AppDTModel.Store.sp_SERVICIOS_AGROUP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AppDTModel.sp_SERVICIOS_AGROUP_Result">
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_product" ColumnName="serv_product" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AGENDA">
+      <EntityTypeMapping TypeName="AppDTModel.AGENDA">
+        <MappingFragment StoreEntitySet="AGENDA">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vis_AGENDA">
+      <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
+        <MappingFragment StoreEntitySet="vis_AGENDA">
+          <ScalarProperty Name="agen_status" ColumnName="agen_status" />
+          <ScalarProperty Name="serv_price" ColumnName="serv_price" />
+          <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />
+          <ScalarProperty Name="agen_date" ColumnName="agen_date" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="barb_name" ColumnName="barb_name" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
+          <ScalarProperty Name="barb_id" ColumnName="barb_id" />
+          <ScalarProperty Name="agen_id" ColumnName="agen_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

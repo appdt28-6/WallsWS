@@ -13,30 +13,13 @@ namespace WallsWS.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class AGENDA
+public partial class sp_SERVICIOS_AGROUP_Result
 {
 
-    public int agen_id { get; set; }
+    public string serv_name { get; set; }
 
-    public int barb_id { get; set; }
-
-    public int serv_id { get; set; }
-
-    public int hrdi_id { get; set; }
-
-    public int sucu_id { get; set; }
-
-    public string cust_name { get; set; }
-
-    public string cust_phone { get; set; }
-
-    public string cust_mail { get; set; }
-
-    public string agen_date { get; set; }
-
-    public Nullable<int> agen_status { get; set; }
+    public Nullable<int> serv_product { get; set; }
 
 }
 

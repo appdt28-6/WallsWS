@@ -15,16 +15,10 @@ namespace WallsWS.Models
 using System;
     using System.Collections.Generic;
     
-public partial class AGENDA
+public partial class WALLSCARD
 {
 
-    public int agen_id { get; set; }
-
-    public int barb_id { get; set; }
-
-    public int serv_id { get; set; }
-
-    public int hrdi_id { get; set; }
+    public int wall_id { get; set; }
 
     public int sucu_id { get; set; }
 
@@ -34,9 +28,9 @@ public partial class AGENDA
 
     public string cust_mail { get; set; }
 
-    public string agen_date { get; set; }
+    public string cust_birth { get; set; }
 
-    public Nullable<int> agen_status { get; set; }
+    public string cust_face { get; set; }
 
 }
 

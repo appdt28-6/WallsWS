@@ -11,18 +11,16 @@ namespace WallsWS.Controllers
     public class SetServicesController : ApiController
     {
         AppDTEntities db = new AppDTEntities();
-        public IEnumerable<SERVICIOS_Return> Index()
+        public IEnumerable<SERVICIOS_Return> Index(int sucuid)
         {
+            return db.SERVICIOS.Where(q => q.sucu_id == sucuid).Select(g => new SERVICIOS_Return()
+            {
+                serv_id = g.serv_id,
+                serv_name = g.serv_name,
+                serv_desc = g.serv_desc,
+                serv_price = g.serv_price
 
-            var result = (from g in db.SERVICIOS
-                          select new SERVICIOS_Return
-                          {
-                              serv_id = g.serv_id,
-                              serv_name = g.serv_name,
-                              serv_desc = g.serv_desc,
-                              serv_price = g.serv_price
-                          }).ToList();
-            return result;
+            }).ToList();
         }
     }
 }

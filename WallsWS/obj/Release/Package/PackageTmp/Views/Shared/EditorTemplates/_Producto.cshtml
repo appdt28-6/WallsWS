@@ -6,9 +6,11 @@
                 .HtmlAttributes(new { style = "width:300px" })
                 .DataSource(source =>
                 {
+
                     source.Read(read =>
                     {
-                        read.Action("GetProductos", "Agenda");
+                        read.Action("GetProductos", "Tickets");
                     });
                 })
 )
+

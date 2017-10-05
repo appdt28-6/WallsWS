@@ -22,6 +22,8 @@ public partial class vis_AGENDA
 
     public int barb_id { get; set; }
 
+    public int sucu_id { get; set; }
+
     public string barb_name { get; set; }
 
     public int serv_id { get; set; }

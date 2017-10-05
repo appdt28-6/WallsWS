@@ -213,9 +213,11 @@
     <Compile Include="Controllers\SetHorarioBarberController.cs" />
     <Compile Include="Controllers\SetHorarioController.cs" />
     <Compile Include="Controllers\SetServicesController.cs" />
+    <Compile Include="Controllers\SetSucursalesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\WallsCardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,9 +275,13 @@
     <Compile Include="Models\sp_Get_Commission_Result.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SERVICIOS_AGROUP_Result.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SUCURSAL.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sucursal_Return.cs" />
     <Compile Include="Models\TICKETS.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
@@ -306,6 +312,9 @@
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vis_VENTASTICKET_PRODUCTOS.cs">
+      <DependentUpon>AppDTModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WALLSCARD.cs">
       <DependentUpon>AppDTModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -493,6 +502,7 @@
     <Content Include="Views\Gastos\Gastos.cshtml" />
     <Content Include="Views\Productos\Productos.cshtml" />
     <Content Include="Views\Shared\_Cita.cshtml" />
+    <Content Include="Views\WallsCard\WallsCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

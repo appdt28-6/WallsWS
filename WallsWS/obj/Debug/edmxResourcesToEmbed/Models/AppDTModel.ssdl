@@ -6,11 +6,13 @@
       <PropertyRef Name="barb_id" />
       <PropertyRef Name="serv_id" />
       <PropertyRef Name="hrdi_id" />
+      <PropertyRef Name="sucu_id" />
     </Key>
     <Property Name="agen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="barb_id" Type="int" Nullable="false" />
     <Property Name="serv_id" Type="int" Nullable="false" />
     <Property Name="hrdi_id" Type="int" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
     <Property Name="cust_name" Type="varchar" MaxLength="50" />
     <Property Name="cust_phone" Type="varchar" MaxLength="50" />
     <Property Name="cust_mail" Type="varchar" MaxLength="50" />
@@ -174,16 +176,30 @@
     <Property Name="disc_desc" Type="varchar" MaxLength="150" />
     <Property Name="serv_comi" Type="float" />
   </EntityType>
+  <EntityType Name="WALLSCARD">
+    <Key>
+      <PropertyRef Name="wall_id" />
+    </Key>
+    <Property Name="wall_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="cust_name" Type="varchar" MaxLength="150" />
+    <Property Name="cust_phone" Type="varchar" MaxLength="50" />
+    <Property Name="cust_mail" Type="varchar" MaxLength="150" />
+    <Property Name="cust_birth" Type="varchar" MaxLength="50" />
+    <Property Name="cust_face" Type="varchar" MaxLength="150" />
+  </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="vis_AGENDA">
     <Key>
       <PropertyRef Name="agen_id" />
       <PropertyRef Name="barb_id" />
+      <PropertyRef Name="sucu_id" />
       <PropertyRef Name="serv_id" />
     </Key>
     <Property Name="agen_id" Type="int" Nullable="false" />
     <Property Name="barb_id" Type="int" Nullable="false" />
+    <Property Name="sucu_id" Type="int" Nullable="false" />
     <Property Name="barb_name" Type="varchar" MaxLength="50" />
     <Property Name="serv_id" Type="int" Nullable="false" />
     <Property Name="serv_name" Type="varchar" MaxLength="50" />
@@ -318,6 +334,13 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
   <Function Name="sp_Get_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pago" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_New_Barber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="barber" Type="int" Mode="In" />
+    <Parameter Name="sucur" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_SERVICIOS_AGROUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sucu" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barbid" Type="int" Mode="In" />
   </Function>
@@ -335,10 +358,12 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     <EntitySet Name="TICKETS" EntityType="Self.TICKETS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VENTASTICKET" EntityType="Self.VENTASTICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WALLSCARD" EntityType="Self.WALLSCARD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vis_AGENDA" EntityType="Self.vis_AGENDA" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vis_AGENDA].[agen_id] AS [agen_id], 
     [vis_AGENDA].[barb_id] AS [barb_id], 
+    [vis_AGENDA].[sucu_id] AS [sucu_id], 
     [vis_AGENDA].[barb_name] AS [barb_name], 
     [vis_AGENDA].[serv_id] AS [serv_id], 
     [vis_AGENDA].[serv_name] AS [serv_name], 
