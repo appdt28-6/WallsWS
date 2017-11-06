@@ -13,7 +13,7 @@ namespace WallsWS.Controllers
         AppDTEntities db = new AppDTEntities();
         public IEnumerable<SERVICIOS_Return> Index(int sucuid)
         {
-            return db.SERVICIOS.Where(q => q.sucu_id == sucuid).Select(g => new SERVICIOS_Return()
+            return db.SERVICIOS.Where(q => q.sucu_id == sucuid&&q.serv_product==0).Select(g => new SERVICIOS_Return()
             {
                 serv_id = g.serv_id,
                 serv_name = g.serv_name,

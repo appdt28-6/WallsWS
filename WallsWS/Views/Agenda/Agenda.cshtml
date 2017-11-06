@@ -94,7 +94,8 @@
 		  columns.Bound(c => c.hrdi_hora).Title("Hora");
 		  columns.Bound(c => c.serv_price).Title("Costo").Format("{0:C}").Hidden();
 		  columns.Bound(c => c.agen_status).Hidden();
-		  columns.Command(command => { command.Destroy(); });
+		  columns.Bound(c => c.hrdi_id).Hidden();
+		  columns.Command(command => { command.Destroy().Text("Eliminar"); });
 		  columns.Bound(p => p.agen_id).ClientTemplate("<a href='/Tickets/Tickets?agenid=#=agen_id#&servid=#=serv_id#&barbid=#=barb_id#'><input type='button' class='k-button' value='Cobrar' /></a>")
 	  .Title("");
 		  //columns.Bound(p => p.agen_id)
@@ -104,7 +105,7 @@
 	  })
 	  .ToolBar(toolbar =>
 	  {
-		 // toolbar.Create().Text("Asignar Nueva Cita");
+		  // toolbar.Create().Text("Asignar Nueva Cita");
 		  toolbar.Excel().Text("");
 		  toolbar.Pdf().Text("");
 	  })
@@ -126,7 +127,7 @@
 		.Read(read => read.Action("AGENDA_Barbero_Read", "Agenda").Data("additionalData"))
 		//.Create(create => create.Action("AGENDA_Create", "Agenda").Data("additionalData"))
 		//.Update(update => update.Action("AGENDA_Barbero_Update", "Agenda").Data("additionalData"))
-		.Destroy(destroy => destroy.Action("AGENDA_Barbero_Update", "Agenda").Data("additionalData"))
+		.Destroy(destroy => destroy.Action("AGENDA_Barbero_Destroy", "Agenda").Data("additionalData"))
 	  )
 	)
 	<script type="text/javascript">
@@ -220,7 +221,7 @@
 			$("#grid").data("kendoGrid").dataSource.read();
 			$("#gridend").data("kendoGrid").dataSource.read();
 
-			var dropDownList = $('#barb_id').data('kendoDropDownList');
+			var dropDownList = $('#barbero').data('kendoDropDownList');
 			dropDownList.dataSource.read();
 			dropDownList.refresh();
 
@@ -239,7 +240,7 @@
 
 		function SetAgenda(e) {
 			//$("#window").data("kendoWindow").open().center();
-			var barb = $("#barb_id").val();
+			var barb = $("#barbero").val();
 			var serv = $("#Prod_Id").val();
 			var hora = $("#hrdi_id").val();
 			var cust = document.getElementById("name").value;
@@ -247,7 +248,7 @@
 			var mail = document.getElementById("mail").value;
 			var date=document.getElementById("datepicker").value;
 
-			//alert(barb + "-" + serv + "-" + hora + "-" + cust + "-" + phone + "-" + mail)
+			//alert(barb + "-" + serv + "-" + hora + "-" + cust + "-" + phone + "-" + mail + "-" + date)
 
 			 $.ajax({
 					type: "POST",

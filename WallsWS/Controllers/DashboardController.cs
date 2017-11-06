@@ -19,14 +19,13 @@ namespace WallsWS.Controllers
             if (Session["user_id"] != null)
             {
                 var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd") + " 00:00:00";
-                var totalefec = db.sp_Get_Ventas(1).ToList();
-                var totaltar = db.sp_Get_Ventas(2).ToList();
+                var totalefec = db.sp_Get_Ventas(0).ToList();
+                var totaltar = db.sp_Get_Ventas(1).ToList();
                 var totalgas = db.sp_Get_Gastos().ToList();
 
                 if (totalefec[0].Value == 0) { ViewData["efectivo"] = "0"; } else { ViewData["efectivo"] = totalefec[0].Value; }
                 if (totaltar[0].Value == 0) { ViewData["tarjeta"] = "0"; } else { ViewData["tarjeta"] = totaltar[0].Value; }
                 if (totalgas[0].Value == 0) { ViewData["gastos"] = "0"; } else { ViewData["gastos"] = totalgas[0].Value; }
-
 
                 ViewData["total"] = (totalefec[0].Value + totaltar[0].Value) - totalgas[0].Value;
                 return View();
@@ -50,6 +49,29 @@ namespace WallsWS.Controllers
             });
 
             return Json(result);
+        }
+
+        public ActionResult BARBEROS_Read([DataSourceRequest]DataSourceRequest request)
+        {
+           
+            var barberos = db.BARBEROS.Where(q => q.sucu_id == 1).ToList();
+
+            List<VentaBarbero> vendidoList = new List<VentaBarbero>();
+
+            foreach (var a in barberos)
+            {
+                var dato = db.sp_Get_Ticktes_BARBEROS(a.barb_id, 1).ToList();
+
+                VentaBarbero masve = new VentaBarbero();
+                masve.barbero = a.barb_name;
+                masve.Total = dato[0].Value;
+                vendidoList.Add(masve);
+                masve = null;
+
+            }
+
+            DataSourceResult result = vendidoList.ToDataSourceResult(request);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetTotal()

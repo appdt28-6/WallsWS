@@ -41,7 +41,8 @@ namespace WallsWS.Controllers
                 cust_phone = wALLSCARD.cust_phone,
                 cust_mail = wALLSCARD.cust_mail,
                 cust_birth = wALLSCARD.cust_birth,
-                cust_face = wALLSCARD.cust_face
+                cust_face = wALLSCARD.cust_face,
+                walls_acumulado = wALLSCARD.walls_acumulado,
             });
 
             return Json(result);
@@ -60,7 +61,8 @@ namespace WallsWS.Controllers
                     cust_phone = wALLSCARD.cust_phone,
                     cust_mail = wALLSCARD.cust_mail,
                     cust_birth = wALLSCARD.cust_birth,
-                    cust_face = wALLSCARD.cust_face
+                    cust_face = wALLSCARD.cust_face,
+                    walls_acumulado = wALLSCARD.walls_acumulado
                 };
 
                 db.WALLSCARD.Add(entity);
@@ -84,7 +86,8 @@ namespace WallsWS.Controllers
                     cust_phone = wALLSCARD.cust_phone,
                     cust_mail = wALLSCARD.cust_mail,
                     cust_birth = wALLSCARD.cust_birth,
-                    cust_face = wALLSCARD.cust_face
+                    cust_face = wALLSCARD.cust_face,
+                    walls_acumulado = wALLSCARD.walls_acumulado,
                 };
 
                 db.WALLSCARD.Attach(entity);
@@ -108,7 +111,8 @@ namespace WallsWS.Controllers
                     cust_phone = wALLSCARD.cust_phone,
                     cust_mail = wALLSCARD.cust_mail,
                     cust_birth = wALLSCARD.cust_birth,
-                    cust_face = wALLSCARD.cust_face
+                    cust_face = wALLSCARD.cust_face,
+                    walls_acumulado = wALLSCARD.walls_acumulado,
                 };
 
                 db.WALLSCARD.Attach(entity);

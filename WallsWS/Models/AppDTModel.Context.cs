@@ -78,7 +78,7 @@ public partial class AppDTEntities : DbContext
     public virtual DbSet<vis_AGENDA> vis_AGENDA { get; set; }
 
 
-    public virtual int sp_SET_HORARIO(Nullable<int> barbid)
+    public virtual int sp_SET_HORARIO(Nullable<int> barbid, string agenDate)
     {
 
         var barbidParameter = barbid.HasValue ?
@@ -86,7 +86,12 @@ public partial class AppDTEntities : DbContext
             new ObjectParameter("barbid", typeof(int));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SET_HORARIO", barbidParameter);
+        var agenDateParameter = agenDate != null ?
+            new ObjectParameter("agenDate", agenDate) :
+            new ObjectParameter("agenDate", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SET_HORARIO", barbidParameter, agenDateParameter);
     }
 
 
@@ -159,6 +164,23 @@ public partial class AppDTEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SERVICIOS_AGROUP_Result>("sp_SERVICIOS_AGROUP", sucuParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> sp_Get_Ticktes_BARBEROS(Nullable<int> barber, Nullable<int> sucuid)
+    {
+
+        var barberParameter = barber.HasValue ?
+            new ObjectParameter("barber", barber) :
+            new ObjectParameter("barber", typeof(int));
+
+
+        var sucuidParameter = sucuid.HasValue ?
+            new ObjectParameter("sucuid", sucuid) :
+            new ObjectParameter("sucuid", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Get_Ticktes_BARBEROS", barberParameter, sucuidParameter);
     }
 
 }

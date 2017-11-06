@@ -24,9 +24,9 @@ public partial class AGENDA
 
     public int serv_id { get; set; }
 
-    public int hrdi_id { get; set; }
-
     public int sucu_id { get; set; }
+
+    public int hrdi_id { get; set; }
 
     public string cust_name { get; set; }
 

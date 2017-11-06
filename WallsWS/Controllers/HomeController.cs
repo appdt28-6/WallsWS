@@ -42,10 +42,10 @@ namespace WallsWS.Controllers
 
             if (ModelState.IsValid)
             {
+              
                 FormsAuthentication.SetAuthCookie(model.UserName, true);
-                
-                    return RedirectToAction(actionName: "Agenda", controllerName: "Agenda");
-                
+
+                return RedirectToAction(actionName: "Agenda", controllerName: "Agenda");
             }
             else
             {
@@ -77,6 +77,12 @@ namespace WallsWS.Controllers
                             Session["sucu_id"] = result.sucu_id;
                             role_id = result.user_id.ToString();
                         }
+                    }
+                    var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
+                    var barberlist = db.BARBEROS.ToList();
+                    foreach (var bar in barberlist)
+                    {
+                        var getHorario = db.sp_SET_HORARIO(bar.barb_id, fecha);
                     }
                 }
 

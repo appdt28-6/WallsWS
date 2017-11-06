@@ -56,7 +56,7 @@
 		  .Read(read => read.Action("TICKETS_Read", "Tickets"))
 		  .Create(create => create.Action("TICKETS_Create", "Tickets"))
 		  .Update(update => update.Action("TICKETS_Update", "Tickets"))
-		  .Destroy(destroy => destroy.Action("TICKETS_Destroy", "Tickets"))
+		  .Destroy(destroy => destroy.Action("TICKETS_Delete", "Tickets"))
 	  ).HtmlAttributes(new { style = "heigth: 400px" })
 	)
 
@@ -74,11 +74,11 @@
 		  .BindTo(new List<SelectListItem>() {
 			  new SelectListItem() {
 				  Text = "Efectivo",
-				  Value = "1"
+				  Value = "0"
 			  },
 			  new SelectListItem() {
 				  Text = "Tarjeta",
-				  Value = "2"
+				  Value = "1"
 			  }
 		  })
 		  .HtmlAttributes(new { style = "width: 100%" })

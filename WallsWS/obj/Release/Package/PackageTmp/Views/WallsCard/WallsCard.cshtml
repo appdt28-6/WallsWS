@@ -12,8 +12,9 @@
 		  columns.Bound(c => c.cust_name).Title("Nombre");
 		  columns.Bound(c => c.cust_phone).Title("Telefono");
 		  columns.Bound(c => c.cust_mail).Title("Email");
-		  columns.Bound(c => c.cust_birth).Title("Cimpleaños");
+		  columns.Bound(c => c.cust_birth).Title("Cumpleaños");
 		  columns.Bound(c => c.cust_face).Title("Face");
+		  columns.Bound(c => c.walls_acumulado).Title("No. Visitas");
 		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar =>

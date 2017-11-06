@@ -11,5 +11,7 @@ namespace WallsWS.Models
         public string barb_name { get; set; }
         public string barb_phone { get; set; }
         public string barb_mail { get; set; }
+
+        public string barb_urlimage { get; set; }
     }
 }

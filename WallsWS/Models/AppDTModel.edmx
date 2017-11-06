@@ -10,14 +10,14 @@
             <PropertyRef Name="agen_id" />
             <PropertyRef Name="barb_id" />
             <PropertyRef Name="serv_id" />
-            <PropertyRef Name="hrdi_id" />
             <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="hrdi_id" />
           </Key>
           <Property Name="agen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="barb_id" Type="int" Nullable="false" />
           <Property Name="serv_id" Type="int" Nullable="false" />
-          <Property Name="hrdi_id" Type="int" Nullable="false" />
           <Property Name="sucu_id" Type="int" Nullable="false" />
+          <Property Name="hrdi_id" Type="int" Nullable="false" />
           <Property Name="cust_name" Type="varchar" MaxLength="50" />
           <Property Name="cust_phone" Type="varchar" MaxLength="50" />
           <Property Name="cust_mail" Type="varchar" MaxLength="50" />
@@ -192,6 +192,7 @@
           <Property Name="cust_mail" Type="varchar" MaxLength="150" />
           <Property Name="cust_birth" Type="varchar" MaxLength="50" />
           <Property Name="cust_face" Type="varchar" MaxLength="150" />
+          <Property Name="walls_acumulado" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -201,6 +202,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene def
             <PropertyRef Name="barb_id" />
             <PropertyRef Name="sucu_id" />
             <PropertyRef Name="serv_id" />
+            <PropertyRef Name="hrdi_id" />
           </Key>
           <Property Name="agen_id" Type="int" Nullable="false" />
           <Property Name="barb_id" Type="int" Nullable="false" />
@@ -215,6 +217,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene def
           <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
           <Property Name="serv_price" Type="float" />
           <Property Name="agen_status" Type="int" />
+          <Property Name="hrdi_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -336,6 +339,10 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <Parameter Name="barber" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Get_Gastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Get_Ticktes_BARBEROS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="barber" Type="int" Mode="In" />
+          <Parameter Name="sucuid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Get_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pago" Type="int" Mode="In" />
         </Function>
@@ -348,6 +355,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
         </Function>
         <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="barbid" Type="int" Mode="In" />
+          <Parameter Name="agenDate" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AppDTModelStoreContainer">
           <EntitySet Name="AGENDA" EntityType="Self.AGENDA" Schema="dbo" store:Type="Tables" />
@@ -378,7 +386,8 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     [vis_AGENDA].[agen_date] AS [agen_date], 
     [vis_AGENDA].[hrdi_hora] AS [hrdi_hora], 
     [vis_AGENDA].[serv_price] AS [serv_price], 
-    [vis_AGENDA].[agen_status] AS [agen_status]
+    [vis_AGENDA].[agen_status] AS [agen_status], 
+    [vis_AGENDA].[hrdi_id] AS [hrdi_id]
     FROM [dbo].[vis_AGENDA] AS [vis_AGENDA]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="Self.vis_AGENDA_BARBEROS" store:Type="Views" store:Schema="dbo">
@@ -485,7 +494,8 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <EntitySet Name="HORARIO_DISPONIBLE" EntityType="Self.HORARIO_DISPONIBLE" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
           <FunctionImport Name="sp_SET_HORARIO">
-          <Parameter Name="barbid" Mode="In" Type="Int32" />
+            <Parameter Name="barbid" Mode="In" Type="Int32" />
+            <Parameter Name="agenDate" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="BARBEROS" EntityType="AppDTModel.BARBEROS" />
           <EntitySet Name="USUARIOS" EntityType="AppDTModel.USUARIOS" />
@@ -513,13 +523,17 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <EntitySet Name="vis_Ticket" EntityType="AppDTModel.vis_Ticket" />
           <FunctionImport Name="sp_Get_Gastos" ReturnType="Collection(Int32)" />
           <EntitySet Name="vis_Get_Quanty_Product" EntityType="AppDTModel.vis_Get_Quanty_Product" />
-          <EntitySet Name="WALLSCARD" EntityType="AppDTModel.WALLSCARD" />
           <FunctionImport Name="sp_New_Barber">
             <Parameter Name="barber" Mode="In" Type="Int32" />
             <Parameter Name="sucur" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_SERVICIOS_AGROUP" ReturnType="Collection(AppDTModel.sp_SERVICIOS_AGROUP_Result)" >
-            <Parameter Name="sucu" Mode="In" Type="Int32" />
+          <Parameter Name="sucu" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="WALLSCARD" EntityType="AppDTModel.WALLSCARD" />
+          <FunctionImport Name="sp_Get_Ticktes_BARBEROS" ReturnType="Collection(Int32)">
+            <Parameter Name="barber" Mode="In" Type="Int32" />
+            <Parameter Name="sucuid" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="AGENDA" EntityType="AppDTModel.AGENDA" />
           <EntitySet Name="vis_AGENDA" EntityType="AppDTModel.vis_AGENDA" />
@@ -767,6 +781,10 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <Property Name="serv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="productos" Type="Int32" />
         </EntityType>
+        <ComplexType Name="sp_SERVICIOS_AGROUP_Result">
+          <Property Type="String" Name="serv_name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="serv_product" Nullable="true" />
+        </ComplexType>
         <EntityType Name="WALLSCARD">
           <Key>
             <PropertyRef Name="wall_id" />
@@ -778,24 +796,21 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <Property Name="cust_mail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="cust_birth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_face" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="walls_acumulado" Type="Int32" />
         </EntityType>
-        <ComplexType Name="sp_SERVICIOS_AGROUP_Result">
-          <Property Type="String" Name="serv_name" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="serv_product" Nullable="true" />
-        </ComplexType>
         <EntityType Name="AGENDA">
           <Key>
             <PropertyRef Name="agen_id" />
             <PropertyRef Name="barb_id" />
             <PropertyRef Name="serv_id" />
-            <PropertyRef Name="hrdi_id" />
             <PropertyRef Name="sucu_id" />
+            <PropertyRef Name="hrdi_id" />
           </Key>
           <Property Name="agen_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="barb_id" Type="Int32" Nullable="false" />
           <Property Name="serv_id" Type="Int32" Nullable="false" />
-          <Property Name="hrdi_id" Type="Int32" Nullable="false" />
           <Property Name="sucu_id" Type="Int32" Nullable="false" />
+          <Property Name="hrdi_id" Type="Int32" Nullable="false" />
           <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -808,6 +823,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
             <PropertyRef Name="barb_id" />
             <PropertyRef Name="sucu_id" />
             <PropertyRef Name="serv_id" />
+            <PropertyRef Name="hrdi_id" />
           </Key>
           <Property Name="agen_id" Type="Int32" Nullable="false" />
           <Property Name="barb_id" Type="Int32" Nullable="false" />
@@ -822,6 +838,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <Property Name="hrdi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="serv_price" Type="Double" />
           <Property Name="agen_status" Type="Int32" />
+          <Property Name="hrdi_id" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1086,9 +1103,19 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_New_Barber" FunctionName="AppDTModel.Store.sp_New_Barber" />
+          <FunctionImportMapping FunctionImportName="sp_SERVICIOS_AGROUP" FunctionName="AppDTModel.Store.sp_SERVICIOS_AGROUP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AppDTModel.sp_SERVICIOS_AGROUP_Result">
+                <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+                <ScalarProperty Name="serv_product" ColumnName="serv_product" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="WALLSCARD">
             <EntityTypeMapping TypeName="AppDTModel.WALLSCARD">
               <MappingFragment StoreEntitySet="WALLSCARD">
+                <ScalarProperty Name="walls_acumulado" ColumnName="walls_acumulado" />
                 <ScalarProperty Name="cust_face" ColumnName="cust_face" />
                 <ScalarProperty Name="cust_birth" ColumnName="cust_birth" />
                 <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
@@ -1099,15 +1126,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_New_Barber" FunctionName="AppDTModel.Store.sp_New_Barber" />
-          <FunctionImportMapping FunctionImportName="sp_SERVICIOS_AGROUP" FunctionName="AppDTModel.Store.sp_SERVICIOS_AGROUP">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AppDTModel.sp_SERVICIOS_AGROUP_Result">
-                <ScalarProperty Name="serv_name" ColumnName="serv_name" />
-                <ScalarProperty Name="serv_product" ColumnName="serv_product" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Get_Ticktes_BARBEROS" FunctionName="AppDTModel.Store.sp_Get_Ticktes_BARBEROS" />
           <EntitySetMapping Name="AGENDA">
             <EntityTypeMapping TypeName="AppDTModel.AGENDA">
               <MappingFragment StoreEntitySet="AGENDA">
@@ -1116,8 +1135,8 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
                 <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
                 <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
                 <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-                <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
                 <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+                <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
                 <ScalarProperty Name="serv_id" ColumnName="serv_id" />
                 <ScalarProperty Name="barb_id" ColumnName="barb_id" />
                 <ScalarProperty Name="agen_id" ColumnName="agen_id" />
@@ -1127,6 +1146,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
           <EntitySetMapping Name="vis_AGENDA">
             <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
               <MappingFragment StoreEntitySet="vis_AGENDA">
+                <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
                 <ScalarProperty Name="agen_status" ColumnName="agen_status" />
                 <ScalarProperty Name="serv_price" ColumnName="serv_price" />
                 <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />

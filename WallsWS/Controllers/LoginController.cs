@@ -22,7 +22,8 @@ namespace WallsWS.Controllers
                         barb_id = 0,
                         barb_name = null,
                         barb_phone = null,
-                        barb_mail = null
+                        barb_mail = null,
+                        barb_urlimage = null
 
                     }).ToList();
                 }
@@ -34,13 +35,14 @@ namespace WallsWS.Controllers
                         var si = db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barb && q.hrdi_date == fecha).Count();
                         if (si == 0)
                         {
-                            var inicio = db.sp_SET_HORARIO(Convert.ToInt32(id[0].barb_id));
+                            var inicio = db.sp_SET_HORARIO(Convert.ToInt32(id[0].barb_id),fecha);
                             return db.BARBEROS.Where(q => q.barb_user == user && q.barb_password == password).Select(barber => new Login_Return()
                             {
                                 barb_id = barber.barb_id,
                                 barb_name = barber.barb_name,
                                 barb_phone = barber.barb_phone,
-                                barb_mail = barber.barb_mail
+                                barb_mail = barber.barb_mail,
+                                barb_urlimage = barber.barb_urlimage
 
                             }).ToList();
                         }
@@ -51,7 +53,8 @@ namespace WallsWS.Controllers
                                 barb_id = barber.barb_id,
                                 barb_name = barber.barb_name,
                                 barb_phone = barber.barb_phone,
-                                barb_mail = barber.barb_mail
+                                barb_mail = barber.barb_mail,
+                                barb_urlimage=barber.barb_urlimage
 
                             }).ToList();
                         }
@@ -63,7 +66,8 @@ namespace WallsWS.Controllers
                             barb_id = 0,
                             barb_name = null,
                             barb_phone = null,
-                            barb_mail = null
+                            barb_mail = null,
+                            barb_urlimage=null
 
                         }).ToList();
                     }

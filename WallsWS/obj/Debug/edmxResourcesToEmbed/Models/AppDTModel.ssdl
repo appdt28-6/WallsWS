@@ -5,14 +5,14 @@
       <PropertyRef Name="agen_id" />
       <PropertyRef Name="barb_id" />
       <PropertyRef Name="serv_id" />
-      <PropertyRef Name="hrdi_id" />
       <PropertyRef Name="sucu_id" />
+      <PropertyRef Name="hrdi_id" />
     </Key>
     <Property Name="agen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="barb_id" Type="int" Nullable="false" />
     <Property Name="serv_id" Type="int" Nullable="false" />
-    <Property Name="hrdi_id" Type="int" Nullable="false" />
     <Property Name="sucu_id" Type="int" Nullable="false" />
+    <Property Name="hrdi_id" Type="int" Nullable="false" />
     <Property Name="cust_name" Type="varchar" MaxLength="50" />
     <Property Name="cust_phone" Type="varchar" MaxLength="50" />
     <Property Name="cust_mail" Type="varchar" MaxLength="50" />
@@ -187,6 +187,7 @@
     <Property Name="cust_mail" Type="varchar" MaxLength="150" />
     <Property Name="cust_birth" Type="varchar" MaxLength="50" />
     <Property Name="cust_face" Type="varchar" MaxLength="150" />
+    <Property Name="walls_acumulado" Type="int" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -196,6 +197,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene def
       <PropertyRef Name="barb_id" />
       <PropertyRef Name="sucu_id" />
       <PropertyRef Name="serv_id" />
+      <PropertyRef Name="hrdi_id" />
     </Key>
     <Property Name="agen_id" Type="int" Nullable="false" />
     <Property Name="barb_id" Type="int" Nullable="false" />
@@ -210,6 +212,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA' no tiene def
     <Property Name="hrdi_hora" Type="varchar" MaxLength="50" />
     <Property Name="serv_price" Type="float" />
     <Property Name="agen_status" Type="int" />
+    <Property Name="hrdi_id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_AGENDA_BARBEROS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -331,6 +334,10 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     <Parameter Name="barber" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Get_Gastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Get_Ticktes_BARBEROS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="barber" Type="int" Mode="In" />
+    <Parameter Name="sucuid" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Get_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pago" Type="int" Mode="In" />
   </Function>
@@ -343,6 +350,7 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
   </Function>
   <Function Name="sp_SET_HORARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="barbid" Type="int" Mode="In" />
+    <Parameter Name="agenDate" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="AppDTModelStoreContainer">
     <EntitySet Name="AGENDA" EntityType="Self.AGENDA" Schema="dbo" store:Type="Tables" />
@@ -373,7 +381,8 @@ advertencia 6002: La tabla o vista 'DB_A09B1F_bshop.dbo.vis_VENTASTICKET_PRODUCT
     [vis_AGENDA].[agen_date] AS [agen_date], 
     [vis_AGENDA].[hrdi_hora] AS [hrdi_hora], 
     [vis_AGENDA].[serv_price] AS [serv_price], 
-    [vis_AGENDA].[agen_status] AS [agen_status]
+    [vis_AGENDA].[agen_status] AS [agen_status], 
+    [vis_AGENDA].[hrdi_id] AS [hrdi_id]
     FROM [dbo].[vis_AGENDA] AS [vis_AGENDA]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vis_AGENDA_BARBEROS" EntityType="Self.vis_AGENDA_BARBEROS" store:Type="Views" store:Schema="dbo">

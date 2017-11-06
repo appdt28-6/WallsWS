@@ -258,9 +258,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_New_Barber" FunctionName="AppDTModel.Store.sp_New_Barber" />
+    <FunctionImportMapping FunctionImportName="sp_SERVICIOS_AGROUP" FunctionName="AppDTModel.Store.sp_SERVICIOS_AGROUP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AppDTModel.sp_SERVICIOS_AGROUP_Result">
+          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
+          <ScalarProperty Name="serv_product" ColumnName="serv_product" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="WALLSCARD">
       <EntityTypeMapping TypeName="AppDTModel.WALLSCARD">
         <MappingFragment StoreEntitySet="WALLSCARD">
+          <ScalarProperty Name="walls_acumulado" ColumnName="walls_acumulado" />
           <ScalarProperty Name="cust_face" ColumnName="cust_face" />
           <ScalarProperty Name="cust_birth" ColumnName="cust_birth" />
           <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
@@ -271,15 +281,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_New_Barber" FunctionName="AppDTModel.Store.sp_New_Barber" />
-    <FunctionImportMapping FunctionImportName="sp_SERVICIOS_AGROUP" FunctionName="AppDTModel.Store.sp_SERVICIOS_AGROUP">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="AppDTModel.sp_SERVICIOS_AGROUP_Result">
-          <ScalarProperty Name="serv_name" ColumnName="serv_name" />
-          <ScalarProperty Name="serv_product" ColumnName="serv_product" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_Ticktes_BARBEROS" FunctionName="AppDTModel.Store.sp_Get_Ticktes_BARBEROS" />
     <EntitySetMapping Name="AGENDA">
       <EntityTypeMapping TypeName="AppDTModel.AGENDA">
         <MappingFragment StoreEntitySet="AGENDA">
@@ -288,8 +290,8 @@
           <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
           <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
           <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
           <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
+          <ScalarProperty Name="sucu_id" ColumnName="sucu_id" />
           <ScalarProperty Name="serv_id" ColumnName="serv_id" />
           <ScalarProperty Name="barb_id" ColumnName="barb_id" />
           <ScalarProperty Name="agen_id" ColumnName="agen_id" />
@@ -299,6 +301,7 @@
     <EntitySetMapping Name="vis_AGENDA">
       <EntityTypeMapping TypeName="AppDTModel.vis_AGENDA">
         <MappingFragment StoreEntitySet="vis_AGENDA">
+          <ScalarProperty Name="hrdi_id" ColumnName="hrdi_id" />
           <ScalarProperty Name="agen_status" ColumnName="agen_status" />
           <ScalarProperty Name="serv_price" ColumnName="serv_price" />
           <ScalarProperty Name="hrdi_hora" ColumnName="hrdi_hora" />

@@ -11,11 +11,22 @@ namespace WallsWS.Controllers
     public class SetHorarioController : ApiController
     {
 
-        public List<HORARIO_Return> Index(int barbid)
+        public List<HORARIO_Return> Index(int barbid,string fecha)
         {
-            var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
+            //var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             using (AppDTEntities db = new AppDTEntities())
             {
+
+                var disp = db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barbid && q.hrdi_date == fecha);
+                if (disp.Count() == 0)
+                {
+                    var nuevos = db.sp_SET_HORARIO(barbid, fecha);
+                }
+                else
+                {
+                    
+                }
+
                 return db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barbid && q.hrdi_date == fecha && q.hrdi_status == 0).Select(barber => new HORARIO_Return()
                 {
                     hrdi_id = barber.hrdi_id,
@@ -24,6 +35,8 @@ namespace WallsWS.Controllers
                     hrdi_date = barber.hrdi_date,
                     hrdi_status = barber.hrdi_status
                 }).ToList();
+
+
             };
         }
     }

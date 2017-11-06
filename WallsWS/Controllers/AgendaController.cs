@@ -50,7 +50,8 @@ namespace WallsWS.Controllers
                     cust_mail = aGENDA.cust_mail,
                     agen_date = aGENDA.agen_date,
                     hrdi_hora = aGENDA.hrdi_hora,
-                    agen_status = aGENDA.agen_status
+                    agen_status = aGENDA.agen_status,
+                    hrdi_id = aGENDA.hrdi_id,
                 });
 
                 return Json(result);
@@ -60,6 +61,49 @@ namespace WallsWS.Controllers
                 return View();
             }
         }
+
+        public ActionResult AGENDA_Barbero_Destroy([DataSourceRequest]DataSourceRequest request, int barb, vis_AGENDA vENTASTICKET)
+        {
+            Session["barb"] = barb;
+            int sucu = Convert.ToInt32(Session["sucu_id"].ToString());
+           
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+
+                        var deleteAgenda = new AGENDA //Make sure you have a table called test in DB
+                        {
+                            agen_id = vENTASTICKET.agen_id,
+                            barb_id = barb,
+                            serv_id = vENTASTICKET.serv_id,
+                            sucu_id = sucu,
+                            hrdi_id = vENTASTICKET.hrdi_id,
+                            
+                        };
+
+                        db.AGENDA.Attach(deleteAgenda);
+                        db.AGENDA.Remove(deleteAgenda);
+                        db.SaveChanges();
+
+                        var stud = (from s in db.HORARIO_DISPONIBLE
+                                    where s.hrdi_id == vENTASTICKET.hrdi_id
+                                    select s).FirstOrDefault();
+
+                        stud.hrdi_status = 0;
+                        db.SaveChanges();
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                }
+
+
+                return Json(new[] { vENTASTICKET }.ToDataSourceResult(request, ModelState));
+            }
 
         public ActionResult AGENDA_Sin_Read([DataSourceRequest]DataSourceRequest request)
         {
@@ -228,10 +272,21 @@ namespace WallsWS.Controllers
             return Json(routes, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetHorario(int barber)
+        public ActionResult GetHorario(int barber,string fecha)
         {
-            var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
+            //var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             //int comp = int.Parse(Session["comp_identifier"].ToString());
+            var disp = db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barber && q.hrdi_date == fecha);
+            if(disp.Count()==0)
+            {
+                var nuevos = db.sp_SET_HORARIO(barber, fecha);
+
+            }
+            else
+            {
+
+            }
+
             var routes = db.HORARIO_DISPONIBLE.Where(q => q.barb_id == barber && q.hrdi_date == fecha && q.hrdi_status == 0).ToList().Select(route => new HORARIO_DISPONIBLE()
             {
                 hrdi_id = route.hrdi_id,
@@ -253,7 +308,7 @@ namespace WallsWS.Controllers
             return Json(routes, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SetAgenda(int sucu,int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id,string date)
+        public ActionResult SetAgenda(int barb, string cust_name, string cust_phone, string cust_email, int hora, int serv_id,string date)
         {
             var fecha = DateTime.Today.Date.ToString("yyyy-MM-dd");
             try
@@ -263,7 +318,7 @@ namespace WallsWS.Controllers
 
                     barb_id = barb,
                     serv_id = serv_id,
-                    sucu_id= sucu,
+                    sucu_id= 1,
                     hrdi_id = hora,
                     cust_name = cust_name,
                     cust_mail = cust_email,

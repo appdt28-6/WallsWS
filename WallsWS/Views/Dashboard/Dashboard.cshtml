@@ -77,6 +77,31 @@
 
       )
 			<br />
+			<h3>Venta por Barberos</h3>
+
+			@(Html.Kendo().Grid<WallsWS.Models.VentaBarbero>()
+	  .Name("gridB")
+	  .Columns(columns =>
+	  {
+		  columns.Bound(c => c.barbero).Title("Barbero");
+		  columns.Bound(c => c.Total).Title("Total").Format("{0:C}");
+	  })
+	  .ToolBar(toolbar =>
+	  {
+		  // toolbar.Create().Text("Asignar Nueva Cita");
+		  toolbar.Excel().Text("");
+		  toolbar.Pdf().Text("");
+	  })
+	  //.Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("_Cobro"))
+	  .Filterable()
+	  .Scrollable()
+	  .DataSource(dataSource => dataSource
+		.Ajax()
+		.Read(read => read.Action("BARBEROS_Read", "Dashboard"))
+	  )
+
+			)
+			<br />
 
             <div class="col-md-6 chart-blo-1">
                 <div class="dygno">

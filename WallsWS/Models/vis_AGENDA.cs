@@ -44,6 +44,8 @@ public partial class vis_AGENDA
 
     public Nullable<int> agen_status { get; set; }
 
+    public int hrdi_id { get; set; }
+
 }
 
 }

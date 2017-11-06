@@ -32,6 +32,8 @@ public partial class WALLSCARD
 
     public string cust_face { get; set; }
 
+    public Nullable<int> walls_acumulado { get; set; }
+
 }
 
 }

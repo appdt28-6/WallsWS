@@ -249,3 +249,4 @@ Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\bin\uk-UA\Kendo.Mvc.resources.dll
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\bin\zh-CN\Kendo.Mvc.resources.dll
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\obj\Debug\WallsWS.dll
 Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\obj\Debug\WallsWS.pdb
+Z:\Applications\MAMP\htdocs\WallsWS\WallsWS\obj\Debug\WallsWS.csprojResolveAssemblyReference.cache
