@@ -11,7 +11,7 @@ namespace WallsWS.Controllers
 {
     public class GetAgendaController : ApiController
     {
-        public HttpResponseMessage Index(int barbid, int servid,string cust_name, string cust_phone, string cust_mail, int agen_hora)
+        public HttpResponseMessage Index(int barbid, int sucuid,int servid,string cust_name, string cust_phone, string cust_mail, int agen_hora)
         {
             string message = "";
             using (AppDTEntities db = new AppDTEntities())
@@ -23,7 +23,7 @@ namespace WallsWS.Controllers
                     {
                         barb_id = barbid,
                         serv_id = servid,
-                        sucu_id= 1,
+                        sucu_id= sucuid,
                         cust_name = cust_name,
                         cust_phone = cust_phone,
                         cust_mail = cust_mail,
