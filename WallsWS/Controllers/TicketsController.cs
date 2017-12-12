@@ -25,6 +25,7 @@ namespace WallsWS.Controllers
                 var revisa = db.TICKETS.Where(w => w.Ticket_Id == verificar).ToList();
                 if(revisa[0].Ticket_Status=="abierto")
                 {
+                    Session["agenid"] = (agenid==0)?0: agenid;
                     GetTotal(verificar);
                     return View();
                 }
@@ -47,10 +48,11 @@ namespace WallsWS.Controllers
                 context.TICKETS.Add(CrearTicket);
                 context.SaveChanges();
 
-                var idTicket = CrearTicket.barb_id;
+                var idTicket = CrearTicket.Ticket_Id;
 
                     //var idTicket = db.TICKETS.Max(t => t.Ticket_Id);
                 Session["ticket"] = idTicket;
+                Session["agenid"] = agenid;
                 double pri = 0;
                 double comi = 0;
                 if (servid == 0) { }
@@ -352,9 +354,20 @@ namespace WallsWS.Controllers
         public ActionResult GetTotal(int ticket)
         {
             //var ticket =Convert.ToInt32(Session["ticket"].ToString());
-            var total = db.VENTASTICKET.Where(q=>q.Ticket_Id == ticket).Sum(q => q.Venta_Importe);
-            ViewData["Total"] = total;
-            return PartialView("_Total");
+            var contar = db.VENTASTICKET.Where(q => q.Ticket_Id == ticket);
+          
+            if(contar.Count()!=0)
+            {
+                var total = db.VENTASTICKET.Where(q => q.Ticket_Id == ticket).Sum(q => q.Venta_Importe);
+                ViewData["Total"] = total;
+                return PartialView("_Total");
+            }
+            else
+            {
+                return PartialView("_Total");
+            }
+            //ViewData["Total"] = total;
+            //return PartialView("_Total");
 
         }
 
@@ -388,7 +401,9 @@ namespace WallsWS.Controllers
                 }
 
                 return Json(new { success = true, responseText = "Venta terminada con exito" }, JsonRequestBehavior.AllowGet);
-               // return RedirectToAction("Agenda","Agenda");
+                // return RedirectToAction("Agenda","Agenda");
+                Session["ticket"] = "";
+                Session["agenid"] = "";
 
 
             }

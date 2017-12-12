@@ -14,14 +14,14 @@
 	  .Columns(columns =>
 	  {
 		  columns.Bound(c => c.Venta_Id).Hidden();
-		  columns.Bound(c => c.Prod_Id).Title("Producto").EditorTemplateName("_Producto");
-		  columns.Bound(c => c.serv_name).Title("Producto");
+		  columns.Bound(c => c.Prod_Id).Title("Producto").EditorTemplateName("_Producto").Width(200);
+		  columns.Bound(c => c.serv_name).Title("Producto").Width(200);
 		  columns.Bound(c => c.Ticket_Id).Hidden();
-		  columns.Bound(c => c.Venta_Cantidad).Title("Cantidad");
-		  columns.Bound(c => c.Prod_Price).Title("Precio").Format("{0:C}");
-		  columns.Bound(c => c.Venta_Importe).Title("Subtotal").Format("{0:C}");
-		  columns.Bound(c => c.venta_discount).Title("Descuento").Format("{0:C}");
-		  columns.Bound(c => c.disc_desc).Title("Descripción");
+		  columns.Bound(c => c.Venta_Cantidad).Title("Cantidad").Width(150);
+		  columns.Bound(c => c.Prod_Price).Title("Precio").Format("{0:C}").Width(150);
+		  columns.Bound(c => c.Venta_Importe).Title("Subtotal").Format("{0:C}").Width(150);
+		  columns.Bound(c => c.venta_discount).Title("Descuento").Format("{0:C}").Width(150);
+		  columns.Bound(c => c.disc_desc).Title("Descripción").Width(200);
 		  columns.Command(command => { command.Edit().Text("Editar").UpdateText("Guardar").CancelText("Cancelar"); command.Destroy().Text("Eliminar"); }).Width(180);
 	  })
 	  .ToolBar(toolbar =>
